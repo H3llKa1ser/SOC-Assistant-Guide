@@ -11,3 +11,17 @@
 ### 4) HKEY_CLASSES_ROOT (HKCR)
 
 #### 5) HKEY_CURRENT_CONFIG 
+
+## REGISTRY HIVES
+
+### Location: C:\Windows\System32\Config
+
+### 1) DEFAULT (HKEY_USERS\DEFAULT)
+
+### 2) SAM (HKLM\SAM)
+
+### 3) SECURITY (HKLM\SECURITY)
+
+### 4) SOFTWARE (HKLM\Software)
+
+### SYSTEM (HKLM\SYSTEM)
