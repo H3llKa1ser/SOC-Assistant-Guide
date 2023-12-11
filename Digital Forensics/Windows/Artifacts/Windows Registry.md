@@ -25,3 +25,17 @@
 ### 4) SOFTWARE (HKLM\Software)
 
 ### 5) SYSTEM (HKLM\SYSTEM)
+
+## HIVES CONTAINING USER INFORMATION
+
+### 1) NTUSER.DAT(HKCU when a user logs in) (Located in C:\Users\USERNAME\
+
+### 2) USRCLASS.DAT (HKCU\Software\CLASSES) (Located in C:\Users\USER\AppData\Local\Microsoft\Windows
+
+#### Note: These 2 files are hidden files
+
+## AmCache File
+
+#### Windows creates this hive to save information on programs that were recently run on the system.
+
+### Located: C:\Windows\AppCompat\Programs\AmCache.hve
