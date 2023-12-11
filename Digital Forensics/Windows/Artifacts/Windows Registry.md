@@ -24,4 +24,4 @@
 
 ### 4) SOFTWARE (HKLM\Software)
 
-### SYSTEM (HKLM\SYSTEM)
+### 5) SYSTEM (HKLM\SYSTEM)
