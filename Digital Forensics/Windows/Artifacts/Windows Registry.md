@@ -28,9 +28,9 @@
 
 ## HIVES CONTAINING USER INFORMATION
 
-### 1) NTUSER.DAT(HKCU when a user logs in) (Located in C:\Users\USERNAME\
+### 1) NTUSER.DAT(HKCU when a user logs in) (Located in C:\Users\USERNAME\)
 
-### 2) USRCLASS.DAT (HKCU\Software\CLASSES) (Located in C:\Users\USER\AppData\Local\Microsoft\Windows
+### 2) USRCLASS.DAT (HKCU\Software\CLASSES) (Located in C:\Users\USER\AppData\Local\Microsoft\Windows)
 
 #### Note: These 2 files are hidden files
 
