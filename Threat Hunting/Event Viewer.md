@@ -39,3 +39,13 @@
 ## Usage example:
 
 #### Get-WinEvent -FilterHashTable @{LogName='Application' ProviderName='WLMS'}
+
+# XPATH QUERIES
+
+### You can use XML view on an event to construct a valid XPath query
+
+### Wevtutil and Get-WinEvent support XPath queries as event filters
+
+### Example query:
+
+#### Get-WinEvent -LogName Application -FilterXPath '*/System/EventID=100' (We can use "and" operators to combine more queries)
