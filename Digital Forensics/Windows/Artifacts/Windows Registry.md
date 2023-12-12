@@ -1,5 +1,7 @@
 ## Tool to access registry: regedit.exe
 
+### Notes: MRU = Most Recently Used
+
 ## Structure of the registry:
 
 ### 1) HKEY_CURRENTUSER (HKCU)
