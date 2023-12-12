@@ -27,3 +27,34 @@
 #### 1) Insider Threats
 
 #### 2) Passive steps hard to detect (Passive recon, weaponization)
+
+
+# DEFENSE IN DEPTH
+
+## Countermeasures against the Cyber Kill Chain steps:
+
+#### 1) Detect
+
+#### 2) Deny
+
+#### 3) Disrupt
+
+#### 4) Degrade
+
+#### 5) Deceive
+
+#### 6) Contain
+
+#### Recon counters: Web analytics, NIDS, Firewall, Sharing Policy
+
+#### Weaponize counters: Threat Intelligence
+
+#### Delivery counters: Vigilant users, NIDS, NIPS, Proxy filtering, Email AV, Inline AV, Sandboxing
+
+#### Exploitation counters: AV, HIDS, 2FA, Patching, Honeypots
+
+#### Installation counters: Log monitoring, Privilege Access Management (PAM), AV
+
+#### C2 counters: Log monitoring, NIDS, Firewall, NIPS, DNS redirect, Honeypot
+
+#### Action on objectives counters: Audit logs, Data Loss Prevention (DLP), Honeypot
