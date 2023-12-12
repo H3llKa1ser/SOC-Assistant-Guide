@@ -2,7 +2,7 @@
 
 ### A series of steps to ultimately improve the security of a system.
 
-### Therat modelling is about identifying risk and essentially boils down to:
+### Threat modelling is about identifying risk and essentially boils down to:
 
 #### 1) Identifying what systems and applications need to be secured and what function they serve in the environment
 
