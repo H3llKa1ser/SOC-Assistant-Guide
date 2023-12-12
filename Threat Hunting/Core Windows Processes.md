@@ -79,3 +79,11 @@
 #### Start Time = Within seconds of boot time for the first 2 instances (session 0/1). Start times for additional instances occur as new sessions are created, although only sessions 0 and 1 are often created.
 
 ## UNUSUAL BEHAVIOR
+
+#### 1) An actual parent process (smss.exe calls this process and self-terminates)
+
+#### 2) Image file path other than C:\\Windows\System32
+
+#### 3) Subtle misspellings to hide rogue processes, masquerading as csrss.exe in plain sight
+
+#### 4) The user is not SYSTEM
