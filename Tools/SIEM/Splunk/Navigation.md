@@ -1,6 +1,6 @@
 # SPLUNK NAVIGATION
 
-### Splunk Bat (Top Panel)
+### Splunk Bar (Top Panel)
 
 #### messages = system-level messages
 
