@@ -2,7 +2,7 @@
 
 ## FEATURES
 
-#### Journaling = Kepes a log of changes to the metadata in the volume.
+#### Journaling = Keeps a log of changes to the metadata in the volume.
 
 #### This feature helps the system recover from a crash or data movement due to defragmentation.
 
