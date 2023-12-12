@@ -1,6 +1,6 @@
 ## Tool to access registry: regedit.exe
 
-### Structure of the registry:
+## Structure of the registry:
 
 ### 1) HKEY_CURRENTUSER (HKCU)
 
