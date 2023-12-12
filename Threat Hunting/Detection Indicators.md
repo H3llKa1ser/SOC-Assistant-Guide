@@ -99,3 +99,71 @@
 #### %WINDIR%Panthersysprep.ini
 
 #### %WINDIR%system32configAppEvent.Evt
+
+## LFI IDENTIFICATION
+
+#### 1) Weird requests
+
+#### 2) OS Commands/Files
+
+#### 3) New Files Seen
+
+#### 4) URL Encoded
+
+#### 5) Increase in upload
+
+#### 6) Answers with bigger sizes
+
+#### 7) Many "/" or "%2F" on the request
+
+## RFI IDENTIFICATION
+
+#### 1) Requests for other/unknown servers - outside traffic
+
+#### 2) Increase in webserver download traffic
+
+#### 3) Encoded requests
+
+#### 4) User agent
+
+## CROSS-SITE SCRIPTING (XSS)
+
+#### 1) Script tags in the request (<script></script>)
+
+#### 2) Javascript code in the request
+
+#### 3) Many encoded characters
+
+#### 4) Unexpected user agents
+
+## STORED XSS
+
+### Same as reflected with 2 bonuses:
+
+#### 1) Check the web page code and look for malicious commands
+
+#### 2) IDPS logs because stored XSS payload is sent via POST request
+
+## CROSS SITE REQUEST FORGERY (CSRF)
+
+#### 1) Referer
+
+#### 2) Different behavior from the user
+
+#### 3) Same action with an uncommon interval
+
+## FLOOD ATTACKS (DDoS)
+
+#### 1) Many equal requests
+
+#### 2) Small period of time
+
+#### 3) High CPU/Bandwidth usage
+
+#### 4) Half connected TCP connections
+
+#### 5) Uncommon or random requests
+
+#### 6) Web Application slow/notworking
+
+#### 7) User agent
