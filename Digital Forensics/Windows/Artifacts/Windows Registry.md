@@ -121,3 +121,29 @@
 ## Office 365
 
 ### Location: NTUSER.DAT\Software\Microsoft\Office\VERSION\UserMRU\LiveID_####\FileMRU
+
+## Shellbags
+
+### Contains information about a windows shell. Also there is a tool for them named "Shellbag Explorer" (EZTools)
+
+### Locations:
+
+### USRCLASS.DAT\Local Settings\Software\Microsoft\Windows\Shell\Bags
+
+### USRCLASS.DAT\Local Settings\Software\Microsoft\Windows\Shell\BagMRU
+
+## Open/Save and Last Visited MRUs
+
+### Locations:
+
+### NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePID\MRU
+
+### NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\LastVisitedPid\MRU
+
+## Windows Explorer Address/Search Bars
+
+### Locations:
+
+### NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths
+
+###  NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\WordwheelQuery
