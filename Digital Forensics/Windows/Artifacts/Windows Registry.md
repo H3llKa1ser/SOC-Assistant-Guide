@@ -51,3 +51,71 @@
 ### Registry backups are the opposite of transaction logs.
 
 ### The backups of the registry hives are located in C:\Windows\System32\Config\RegBack every 10 days.
+
+# WHERE TO LOOK FOR DATA IN THE REGISTRY?
+
+## OS Version
+
+### Location: SOFTWARE\Microsoft\Windows NT\CurrentVersion
+
+## Control set that the machine booted with
+
+### Location: SYSTEM\ControlSet001
+
+## Last known good configuration 
+
+### Location: SYSTEM\ControlSet002 SYSTEM\Select\LastKnownGood
+
+## Most accurate system information (Current control set)
+
+### Location: HKLM\SYSTEM\CurrentControlSet
+
+## Computer Name
+
+### Location: SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName
+
+## Timezone Information
+
+### Location: SYSTEM\CurrentControlSet\Control\TimeZoneInformation
+
+## Network Interfaces and past networks
+
+### Location: SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\interfaces
+
+## Past networks and last time connection
+
+### Location: SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Managed
+
+## Info about services
+
+### Location: SYSTEM\CurrentControlSet\Services (Start key 0x02 = Service will start at boot)
+
+## Autostart programs AKA Autoruns
+
+### Locations:
+
+### NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Run
+
+### NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\RunOnce
+
+### Software\Microsoft\Windows\CurrentVersion\RunOnce
+
+### Software\Microsoft\Windows\CurrentVersion\policies\Explorer\run
+
+### Software\Microsoft\Windows\CurrentVersion\Run
+
+## SAM hive and user information
+
+### Location: SAM\Domains\Account\Users
+
+## Recently Opened Files
+
+### Location: NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\"Insert File extension here e.g. PDF"
+
+## Microsoft Office
+
+### Location: NTUSER.DAT\Software\Microsoft\Office\VERSION
+
+## Office 365
+
+### Location: NTUSER.DAT\Software\Microsoft\Office\VERSION\UserMRU\LiveID_####\FileMRU
