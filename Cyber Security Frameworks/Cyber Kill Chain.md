@@ -24,6 +24,6 @@
 
 ## CYBER KILL CHAIN WEAKNESSES
 
-#### 1) Insider Therats
+#### 1) Insider Threats
 
 #### 2) Passive steps hard to detect (Passive recon, weaponization)
