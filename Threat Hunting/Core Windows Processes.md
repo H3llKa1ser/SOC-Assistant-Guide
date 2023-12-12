@@ -46,3 +46,36 @@
 
 ## UNUSUAL BEHAVIORS
 
+#### 1) A different parent process other than system (4)
+
+#### 2) The image path is different from C:\Windows\System32
+
+#### 3) More than one running process. (Children self-terminate and exit after each new session)
+
+#### 4) The running user is not SYSTEM user
+
+#### 5) Unexpected registry entries for subsystem
+
+## Client Server Runtime Subsystem (csrss.exe)
+
+#### It's the user mode of the windows subsystem. This process is always running and is critical to system operation. If this process is terminated by chance, it will result in system failure.
+
+#### This process is responsible for the Win32 console window and process thread creation and deletion.
+
+#### This process is also responsible for making the windows API available to other processes, handling the windows shutdown process.
+
+### Note: csrss.exe and winlogon.exe are called from smss.exe at startup for session 1
+
+#### PID = 392 (session 0) 512 (session 1)
+
+#### Image Path = %SYSTEMROOT%\System32\csrss.exe
+
+#### Parent Process = Created by an instance of smss.exe
+
+#### Number of instances = 2 or more
+
+#### User account = Local System
+
+#### Start Time = Within seconds of boot time for the first 2 instances (session 0/1). Start times for additional instances occur as new sessions are created, although only sessions 0 and 1 are often created.
+
+## UNUSUAL BEHAVIOR
