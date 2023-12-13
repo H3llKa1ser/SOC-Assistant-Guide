@@ -87,3 +87,83 @@
 #### 3) Subtle misspellings to hide rogue processes, masquerading as csrss.exe in plain sight
 
 #### 4) The user is not SYSTEM
+
+## Wndows Initialization Process (wininit.exe)
+
+#### It's responsible for launching services.exe, lsass.exe and lsaiso.exe within session 0.
+
+#### Note: lsaiso.exe is a process associated with Credential Guard and Keyguard. You will only see this process if Credential Guard is enabled.
+
+#### Image Path = %SYSTEMROOT%\System32\wininit.exe
+
+#### Parent Process = Created by an instance of smss.exe
+
+#### Number of instances = 1
+
+#### Iser account = Local System
+
+#### Start time = Within seconds of boot time
+
+## UNUSUAL BEHAVIORS
+
+#### 1) An actual parent process (smss.exe calls it, then self-terminates)
+
+#### 2) Subtle misspellings to hide rigue processes in plain sight
+
+#### 3) Multiple tunning instances
+
+#### 4) Not running as SYSTEM
+
+## Service Control Manager (services.exe)
+
+#### It's responsible to handle system services: Loading services, interacting with services and starting or ending services.
+
+#### It maintatins a database that can be queried using a windows built-in utility: sc.exe
+
+#### Information regarding services is stored in the registry: HKLM\CurrentControlSet\Services
+
+#### It also loads device drivers marked as auto-start into memory.
+
+#### When a user logs into a machine successfully, this process is responsible for setting the value of Last Known God control set, to that of the CurrentControlSet in registry.
+
+#### This process is the parent of several other key processes: svchost.exe, spoolsv.exe, msmpeng.exe and dllhost.exe
+
+#### Image Path = %SYSTEMROOT%\System32\services.exe
+
+#### Parent process = wininit.exe
+
+#### Number of instances = 1
+
+#### User account = Local System
+
+#### Start time = Within seconds of boot time
+
+## UNUSUAL BEHAVIORS
+
+#### 1) Aparent process other than wininit.eex
+
+#### 2) Image file path other than C:\Windows\System32
+
+#### 3) Subtle misspellings to hide process in plain sight
+
+#### 4) Multiple running instances
+
+#### 5) Not running as SYSTEM
+
+## Service Host (svchost.exe)
+
+#### It's responsible for hosting and managing windows services
+
+#### The services running in this process are implemented as Dynamic Link Libraries (DLL).
+
+#### The DLL to implement is stored in the registry for the service under the "Parameters" subkey in "Service DLL".
+
+#### The full path is "HKLM\SYSTEM\CurrentControlSet\Services\"SERVICE NAME"\Parameters
+
+#### A legitimate svchost.exe process is called with a key identifier that is "-k" in the binary path.
+
+#### Since svchost.exe will always have multiple running processes on any windows system, this process has been a TARGET FOR MALICIOUS USE. 
+
+#### Adversaries create malware to masquerade as this process and try to hide the malware svchost.exe or misspell it slightly, such as "scvhost.exe".
+
+#### By doing so, the intention is to go under the radar. Another tactic is to call/install a malicious service (DLL).
