@@ -222,3 +222,66 @@
 
 #### 5) Not running as SYSTEM
 
+## Windows Logon (winlogon.exe)
+
+#### It's responsible for handling the Secure Attention Sequence (SAS)
+
+#### It's the CTRL+ALT+DELETE key combination users press to enter username & password.
+
+#### This process is also responsible for loading the user profile. It loads the users NTUSER.DAT into HKCU, and userinit.exe loads the user's shell.
+
+#### It's also responsible for locking the screen and running the user's screensaver, among other functions.
+
+#### Note: smss.exe launches this process along with a copy of csrss.exe within session 1.
+
+#### Image Path = %SYSTEMROOT%\System32\winlogon.exe
+
+#### Parent Process = Created by an instance of smss.exe that exits, so analysis tools do not provide the parent process name.
+
+#### Number of instances = 1 or more
+
+#### User account = Local system
+
+#### Start time = Within seconds of boot time for the first instance (Session 1). Additional instances occur as new sessions are created, typically through Remote Desktop or Fast User Switch Logons.
+
+## UNUSUAL BEHAVIORS
+
+#### 1) An actual process (smss.exe calls this process and self-terminates)
+
+#### 2) Image file path other than C:\Windows\System32
+
+#### 3) Subtle misspellings to hide processes in plain sight.
+
+#### 4) Not running as SYSTEM
+
+#### 5) Shell value is the registry other than explorer.exe
+
+## Windows Explorer (explorer.exe)
+
+#### This process gives the user access to their folders and files.
+
+#### It also provides functionality for other features, such as the Start Menu and Taskbar.
+
+#### Userinit.exe exits after swapning explorer.exe. Because of this, the parent process is non-existent.
+
+#### Image Path = %SYSTEMROOT%\explorer.exe
+
+#### Parent Process = Created by userinit.exe and exits.
+
+#### Number of instances = One or more per interactively logged-in user.
+
+#### User account = Logged-in users
+
+#### Start time = First instance when the first interactive user logon session begins.
+
+## UNUSUAL BEHAVIORS
+
+#### 1) An actual parent process (userinit.exe calls it then exits)
+
+#### 2) Image file path other than C:\Windows
+
+#### 3) Running as an unknown user
+
+#### 4) Subtle misspellings to hide rogue processes in plain sight
+
+#### 5) Outbound TCP/IP Connections
