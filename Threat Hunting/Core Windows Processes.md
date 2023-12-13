@@ -140,7 +140,7 @@
 
 ## UNUSUAL BEHAVIORS
 
-#### 1) Aparent process other than wininit.eex
+#### 1) Aparent process other than wininit.exe
 
 #### 2) Image file path other than C:\Windows\System32
 
@@ -167,3 +167,58 @@
 #### Adversaries create malware to masquerade as this process and try to hide the malware svchost.exe or misspell it slightly, such as "scvhost.exe".
 
 #### By doing so, the intention is to go under the radar. Another tactic is to call/install a malicious service (DLL).
+
+#### Image Path %SYSTEMROOT%\System32\svchost.exe
+
+#### Parent process = services.exe
+
+#### Number of instances = MANY
+
+#### User account = Varies(SYSTEM, Network Service, Local Service, etc) depending on the svchost.exe instance.
+
+#### In windows 10, some instances run as the logged-in user.
+
+#### Start time = Typically within seconds of boot time. Other instances of svchost.exe can be started after boot.
+
+## UNUSUAL BEHAVIORS
+
+#### 1) A parent process other than services.exe
+
+#### 2) Image file path other than c:\windows\system32
+
+#### 3) Subtle misspelings to hide rogue processes in plain sight
+
+#### 4) The absence of the "-k" parameter
+
+## Local Security Authority Subsystem Service (lsass.exe)
+
+#### It's responsible for enforcing the security policy on the system. It verifies users logging on to a windows computer or server, handles password changes and creates access tokens. It also writes to the windows security log.
+
+#### It creates security tokens for Security Account Manager (SAM), Active Directory (AD) and NETLOGON. It uses authentication packages specified in "HKLM\System\CurrentControlSet\Control\Lsa"
+
+#### Lsass.exe is another process adversaries target. Common tools such as Mimikatz are used to dump credentials, or adversaries mimic this process to hide in plain sight.
+
+#### Again, they do this by either naming their malwaer by this process name or simply misspelling the malware slightly.
+
+#### Image Path = %SYSTEMROOT%\System32\lsass.exe
+
+#### Parent process = wininit.exe
+
+#### Number of instances = 1
+
+#### User account = Local system
+
+#### Start time = Within seconds of boot time.
+
+## UNUSUAL BEHAVIORS
+
+#### 1) Aparent process other than wininit.exe
+
+#### 2) Image file path other than C:\Windows\System32
+
+#### 3) Subtle misspellings to hide process in plain sight
+
+#### 4) Multiple running instances
+
+#### 5) Not running as SYSTEM
+
