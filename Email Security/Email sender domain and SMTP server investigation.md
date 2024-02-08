@@ -4,6 +4,8 @@
 
 ### If the tools return results that the domain and the IP are blacklisted by some solutions and/or have bad reputation, there is a good chance that the domain and the IP are actually malicious.
 
+## Email sender behavior analysis
+
 ### If somehow, the email sender domain and the SMTP server are not blacklisted and the domain has not been spoofed, you can check the sender behavior by doing the following:
 
 #### 1) Have the recipient/s received emails from the email sender or its domain before? If yes, this behavior could be considered normal.
