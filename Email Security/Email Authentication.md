@@ -64,3 +64,25 @@
 #### 9) b = DKIM Signature
 
 ### 3) DMARC: It's an email authentication, policy, and reporting protocol that depends on the SPF and DKIM authentication results. If the authentication fails in any protocol, be it SPF, DKIM, or both, then DMARC applies the predefined policies by the sender domain owner and reports the violation to the sender domain owner. DMARC policies are published in the domain’s DNS as a TXT record containing the policy that should be applied when an email message fails to be authenticated and the email reports a violation.
+
+## DMARC Record example: 
+
+### v=DMARC1;p=reject;pct=100;rua=mailto:TEST@MAIL.com
+
+#### 1) v = DMARC version
+
+#### 2) p = Policy application in case the email fails the authentication process. 
+
+#### Policies: 
+
+#### Quarantine: Accepts the email but sends it to the junk folder for investigation
+
+#### Reject: Email is rejected
+
+#### None: No action taken
+
+#### 3) pct = Percentage of email messages subjected to the policy (Range: 1-100) Example: p=reject;pct=50 means that 50% of the emails that fail authentication are rejected, and the other 50% fall back to the next lower policy in sequence (quarantine)
+
+#### 4) rua = Specifies the URI of the mailbox what will receive DMARC aggregate reports
+
+#### 4) 
