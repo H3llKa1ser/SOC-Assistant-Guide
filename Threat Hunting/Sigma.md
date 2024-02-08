@@ -28,7 +28,7 @@
 
 ## Online sigma rule converter: uncoder.io
 
-### The sigma repo at Github has signatuers in the "rules folder".
+### The sigma repo at Github has signatures in the "rules folder".
 
 ### Sigmac, the sigma converter, located in the tools folder, can generate a specific SIEM rule (example)
 
