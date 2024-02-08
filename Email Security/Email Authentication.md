@@ -37,4 +37,24 @@
 
 ## DKIM Signature example: 
 
-#### DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1664539473; bh=1Ttd55RGpBC1Cevt3Xgw1XO9lBgWZj04bmslL5Urark=; h=Date:From:To:Subject:References:From:Subject:Reply-To; b=kRlmdNKBXBZsJLZvTpVqlfojnQL2aqxmliyWmE0bFLOdjgQXhpwAKF4pwYYsaWSDfyCekboIcwcuIQB/KyuRmqgyJpFXHEhD0eM7ppUswo6fPbyGIrUJKEeujHmnvOn7izMcVXFfbZl17g61TSbQaA/nj3uzusVqbQmS8ww0Rncsg7m+9FUWmiQn673zdWTnMsOxgoG7+b4QVJ4QvjvUWGyrRjXHMkxn0wtkn+u4B/V5uEoh3+I8tjtCBLBlLEOpQBAuIllc87vi7BwI44HplmnPTwv9wkLV9kjikNbrr4cEz9Vxehif2eLZd+FU3hwU04nPhjYSOWS2w5Y44jZi6w==
+### DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1664539473; bh=1Ttd55RGpBC1Cevt3Xgw1XO9lBgWZj04bmslL5Urark=; h=Date:From:To:Subject:References:From:Subject:Reply-To; b=kRlmdNKBXBZsJLZvTpVqlfojnQL2aqxmliyWmE0bFLOdjgQXhpwAKF4pwYYsaWSDfyCekboIcwcuIQB/KyuRmqgyJpFXHEhD0eM7ppUswo6fPbyGIrUJKEeujHmnvOn7izMcVXFfbZl17g61TSbQaA/nj3uzusVqbQmS8ww0Rncsg7m+9FUWmiQn673zdWTnMsOxgoG7+b4QVJ4QvjvUWGyrRjXHMkxn0wtkn+u4B/V5uEoh3+I8tjtCBLBlLEOpQBAuIllc87vi7BwI44HplmnPTwv9wkLV9kjikNbrr4cEz9Vxehif2eLZd+FU3hwU04nPhjYSOWS2w5Y44jZi6w==
+
+#### 1) v = DKIM version
+
+#### 2) a = Encryption and hashing algorithm
+
+#### 3) c=header/body =  Canonicalization algorithm that determines how the body and header are prepared for the hashing algorithm.
+
+#### Canonicalizations:
+
+#### simple/simple = Only removes trailing white spaces from the header fields and doesn;t modify the message body before hashing.
+
+#### relaxed/relaxed = Certain modifications can be made to the header and body of the email before the hashing process takes place, while still preserving the essential content of the message
+
+#### 4) d = Domain that is claiming to be authorized to send an email.This domian is where the email servers search for the public key in its DNS records to verify the authenticity of the DKIM signature.
+
+#### 5) s = Selector value used to define the value used in the DNS lookup to get the public key.
+
+#### 6) t = Epoch timestamp
+
+#### 7) bh = Base64-encoded strings of ther encoded message after it was canonicalized via method in c and then hashed via the hashing function in a
