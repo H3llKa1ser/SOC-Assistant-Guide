@@ -58,3 +58,7 @@
 #### 6) t = Epoch timestamp
 
 #### 7) bh = Base64-encoded strings of ther encoded message after it was canonicalized via method in c and then hashed via the hashing function in a
+
+#### 8) h = Headers
+
+#### 9) b = DKIM Signature
