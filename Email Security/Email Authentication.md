@@ -63,4 +63,4 @@
 
 #### 9) b = DKIM Signature
 
-### 3) DMARC: It's an email authentication, policy, and reporting protocol that depends on the SPF and DKIM authentication results. If the authentication fails in any protocol, be it SPF, DKIM, or both, then DMARC applies the predefined policies by the sender domain owner and reports the violation to the sender domain owner. DMARC policies are published in the domain’s DNS as a TXT record containing the policy that should be applied when an email message fails to be authenticated and the email reports a violation
+### 3) DMARC: It's an email authentication, policy, and reporting protocol that depends on the SPF and DKIM authentication results. If the authentication fails in any protocol, be it SPF, DKIM, or both, then DMARC applies the predefined policies by the sender domain owner and reports the violation to the sender domain owner. DMARC policies are published in the domain’s DNS as a TXT record containing the policy that should be applied when an email message fails to be authenticated and the email reports a violation.
