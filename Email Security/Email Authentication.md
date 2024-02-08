@@ -85,4 +85,4 @@
 
 #### 4) rua = Specifies the URI of the mailbox what will receive DMARC aggregate reports
 
-#### 4) 
+
