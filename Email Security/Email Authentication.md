@@ -30,3 +30,5 @@
 #### 6) +all = Any sender is authorized to send emails on behalf of the domain (Insecure)
 
 #### 7) - (Hyphen) = No policy defined (Neutral Option)
+
+### 2) DKIM: is an encryption methodology or digital signature that’s added to email headers as an email authentication mechanism to prevent email spoofing attempts. To generate the digital signature, it hashes the email message body and encrypts it alongside a list of the email header parameters using the private key. Then, it publishes the public key in the DNS records of the signer’s domain as a DNS TXT record type. The recipient can then retrieve the signer’s public key from the sender’s DNS records for decryption and to verify whether the signature is valid.
