@@ -2,7 +2,7 @@
 
 # EMAIL AUTHENTICATION
 
-### It's the process that ensures that the email sender's identity and domain are not spoofed by a malicious actor before the email message is delivered to the end user. An attacker can avoid this by impersonating trusted and well-known legitimate domains that he might have compromised or recently registered.
+### It's the process that ensures that the email sender's identity and domain are not spoofed by a malicious actor before the email message is delivered to the end user. An attacker can avoid this by impersonating trusted and well-known legitimate domains that he might have compromised or new domains that he recently registered.
 
 # EMAIL AUTHENTICATION PROTOCOLS
 
