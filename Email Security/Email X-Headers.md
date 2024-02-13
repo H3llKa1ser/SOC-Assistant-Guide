@@ -5,3 +5,5 @@
 #### 1) X-Mailer: A custom X-header that refers to the email client that was used to send the email. The X-Mailer header is added by mailbox providers to identify and block suspicious email messages that are sent via weird email clients such as script interpreters and uncommon email clients such as hacking tools and so on.
 
 #### 2) X-SONIC-DKIM-SIGN: This field seems to be holding a custom DKIM signature for email authentication.
+
+#### 3) X-Originating-IP: Contains  the IP address of the device that is the origin of the email. It helps identify the origin IP of the message and can be used for spam filtering and tracking purposes.
