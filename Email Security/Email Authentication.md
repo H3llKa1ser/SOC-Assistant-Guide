@@ -1,4 +1,4 @@
-## (Cited from: Effective threat investigation for SOC analysts)
+## (Cited from: Effective threat investigation for SOC analysts by Mostafa Yahia)
 
 # EMAIL AUTHENTICATION
 
