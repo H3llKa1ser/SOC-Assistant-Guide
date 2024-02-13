@@ -1,4 +1,4 @@
-## EMAIL X-HEADERS
+# EMAIL X-HEADERS
 
 ### Email X-headers are custom headers that are added to the email header by the mailbox providers in addition to the standard headers, such as To, From, Subject, and MIME-Version, all of which are defined by the RFC standards. Custom X-headers are added to the email header according to the needs of the mailbox provider.
 
@@ -13,4 +13,4 @@
 #### 5) X-Ymail-OSG: To understand this custom X-header, let’s break down its name. YMail stands for Yahoo Mail, while OSG stands for Outbound Spam Guard, so by breaking down the name, we can conclude that this X-header is related to the spam guard solution implemented by the Yahoo email service provider
 
 
-## Cited by: Effective Threat Investigation for SOC Analysts by Mostafa Yahia
+## Cited from: Effective Threat Investigation for SOC Analysts by Mostafa Yahia
