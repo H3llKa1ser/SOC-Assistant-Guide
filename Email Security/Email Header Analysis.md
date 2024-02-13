@@ -7,7 +7,7 @@
 #### 1) Email message content and metadata
 
 #### 2) Email X-Headers
-) From
+
 #### 3) The header that was added by the hop servers
 
 #### 4) Email Authentication (Explained in a separate section)
