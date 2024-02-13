@@ -11,3 +11,6 @@
 #### 4) X-Sonic-MF: A custom X-header that seems to refer to the email address that sent the email. It was used later by the X-SONIC-DKIM-SIGN Header.
 
 #### 5) X-Ymail-OSG: To understand this custom X-header, let’s break down its name. YMail stands for Yahoo Mail, while OSG stands for Outbound Spam Guard, so by breaking down the name, we can conclude that this X-header is related to the spam guard solution implemented by the Yahoo email service provider
+
+
+## Cited by: Effective Threat Investigation for SOC Analysts by Mostafa Yahia
