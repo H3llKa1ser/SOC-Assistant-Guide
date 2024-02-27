@@ -17,3 +17,5 @@
 ### In our queries, we can use operators like AND OR NOT LIKE and also use wildcards like %example% (%) 
 
 ### We can choose a timeframe from up to 90 days (depends on organizational log retention policy)
+
+### We can search for activity based on source/destination IP address
