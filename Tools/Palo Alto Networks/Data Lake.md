@@ -4,7 +4,7 @@
 
 ### Usage case: Further investigation if XDR does not give enough context.
 
-#### Explore tabs:
+### Explore tabs/Log Sources:
 
 #### 1) Firewall
 
