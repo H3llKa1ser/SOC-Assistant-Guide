@@ -19,3 +19,5 @@
 ### We can choose a timeframe from up to 90 days (depends on organizational log retention policy)
 
 ### We can search for activity based on source/destination IP address
+
+### We can further narrow our searches down further by searching based on source/destination port, command line, hostname, timeframe, log source, etc
