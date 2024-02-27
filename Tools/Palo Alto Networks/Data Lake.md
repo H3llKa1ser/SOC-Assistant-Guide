@@ -12,4 +12,4 @@
 
 #### 3) Endpoints
 
-### TIP: You can filter logs based in the columns (Severity, subtype, threat name, etc) or also download the PCAP file for more granular analysis
+### TIP: You can filter logs based in the columns (Severity, subtype, threat name, etc) or also download the PCAP file for more granular analysis (Firewall logs)
