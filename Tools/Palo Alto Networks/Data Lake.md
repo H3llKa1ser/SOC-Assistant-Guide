@@ -1,6 +1,6 @@
 # Palo Alto Networks Data Lake
 
-### Explore function
+## Explore function
 
 ### Usage case: Further investigation if XDR does not give enough context.
 
