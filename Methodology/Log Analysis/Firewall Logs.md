@@ -11,3 +11,7 @@
 ### 3) Check if the malicious IP has made any successful attempts to connect
 
     cat firewall.log | grep TARGET_IP | grep "ALLOW"
+
+### 4) Check if the IP tries to probe the internal network for other machines
+
+    cat firewall.log | grep INTERNAL_COMPROMISED_IP | grep "ALLOW" | head
