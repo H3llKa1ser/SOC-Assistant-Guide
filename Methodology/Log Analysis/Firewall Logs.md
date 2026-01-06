@@ -15,3 +15,7 @@
 ### 4) Check if the IP tries to probe the internal network for other machines
 
     cat firewall.log | grep INTERNAL_COMPROMISED_IP | grep "ALLOW" | head
+
+### 5) Check for potential data exfiltration attempts
+
+    cat firewall.log | grep INTERNAL_COMPROMISED_IP | cut -d' ' -f5,6,7  |   uniq  | sort 
