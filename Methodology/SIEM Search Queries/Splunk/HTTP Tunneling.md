@@ -16,4 +16,6 @@ TIP: "index" and "sourcetype" values may differ in your use case
 
 ### 4) Search for POST requests with large payloads
 
+Bytes value may be larger, depending on the use case
+
     index="data_exfil" sourcetype="http_logs" method=POST bytes_sent > 600 | table _time src_ip uri domain dst_ip bytes_sent | sort - bytes_sent
