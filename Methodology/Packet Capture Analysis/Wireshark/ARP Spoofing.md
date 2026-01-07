@@ -38,3 +38,16 @@ May indicate an attacker maintaining their poison state
 
     arp.duplicate-address-detected || arp.duplicate-address-frame
 
+## Attack Indicators
+
+Duplicate MAC-to-IP Mappings: Multiple MAC addresses claiming the same IP address. Indicates impersonation.
+
+Unsolicited ARP Replies: High number of ARP replies without matching requests ("gratuitous ARP").
+
+Abnormal ARP Traffic Volume: A Large number of ARP packets in short intervals.
+
+Unusual Traffic Routing: Traffic rerouted through the attacker’s MAC.
+
+Gateway Redirection Patterns: Multiple destination MACs for the same gateway IP.
+
+ARP Probe / Reply Loops: Many ARP requests with Who has 192.168.1.x? Tell 192.168.1.y patterns.
