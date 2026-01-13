@@ -83,3 +83,35 @@ https://ipinfo.io/
 #### 2) iplocation.net
 
 https://www.iplocation.net/
+
+## Service Analysis
+
+### Check for exposed services of an IP/Domain
+
+#### 1) shodan.io
+
+https://www.shodan.io/
+
+#### 2) censys.io
+
+https://search.censys.io/
+
+### TLS Certificate Transparency
+
+#### 1) crt.sh
+
+https://crt.sh/
+
+## Reputation Checks
+
+#### 1) VirusTotal
+
+https://www.virustotal.com/gui/home/search
+
+#### 2) Cisco Talos Intelligence
+
+https://talosintelligence.com/reputation_center
+
+#### 3) IP2Proxy
+
+https://www.ip2proxy.com/
