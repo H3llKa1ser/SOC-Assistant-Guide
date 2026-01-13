@@ -27,3 +27,4 @@ Log file: /var/log/apache2/access.log
 Parameters can be different!
 
     cat /var/log/apache2/access.log | grep "cmd="
+
