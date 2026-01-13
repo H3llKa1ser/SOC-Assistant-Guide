@@ -63,3 +63,23 @@ Domains like paypa1[.]com or micros0ft[.]net trick users visually. If a name loo
 #### 4) IDN (Internationalised Domain Names): 
 
 Attackers exploit Unicode, creating look-alike domains. Decode Punycode, for example xn--ppaypal-3ya[.]com, and compare to known brands using simple online decoder.
+
+## IP Enrichment
+
+If you find a potentially suspicious IP for further analysis, gather information using RDAP
+
+#### 1) Registration Data Access Protocol (RDAP)
+
+https://about.rdap.org/
+
+## Geolocation
+
+GeoIP tools
+
+#### 1) ipinfo.io
+
+https://ipinfo.io/
+
+#### 2) iplocation.net
+
+https://www.iplocation.net/
