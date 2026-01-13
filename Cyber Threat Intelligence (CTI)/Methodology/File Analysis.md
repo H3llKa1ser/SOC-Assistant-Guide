@@ -37,3 +37,12 @@ URL
 
 https://bazaar.abuse.ch/
 
+### 4) Check if there is already a known sample in online sandbox platforms
+
+Hybrid Analysis
+
+https://hybrid-analysis.com/
+
+Joe Sandbox
+
+https://www.joesandbox.com/
