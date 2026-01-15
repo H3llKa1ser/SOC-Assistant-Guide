@@ -19,3 +19,15 @@ Copy the Logon ID field from your 4720 / 4732 event
 Find the corresponding login event with the same Logon ID
 
 Refer to the workbooks from the previous task for further analysis
+
+### 4) Resetting Passwords
+
+Detect it with Security event ID: 4724
+
+#### In short: here are the event IDs to use to detect a potential backdoored user:
+
+1) 4720 (User account created)
+
+2) 4732 (Account was added to a security/privileged group)
+
+3) 4724 (User account password reset)
