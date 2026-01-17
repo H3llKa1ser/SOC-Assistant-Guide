@@ -11,6 +11,7 @@ Here are various log types you can find in a Linux machine.
 Location:
 
     /var/log/syslog
+    /var/log/messages
 
 This log file logs various activities in a Linux system.
 
@@ -67,3 +68,24 @@ Types of sessions:
 #### Filter user management events
 
     cat /var/log/auth.log | grep -E '(passwd|useradd|usermod|userdel)\['
+
+### 3) Bash History
+
+    cat /home/user/.bash_history
+
+### 4) Kernel log file
+
+Location
+
+    /var/log/kern.log
+
+### 5) Package Manager log file
+
+Locations:
+
+    /var/log/dpkg.log (Debian)
+    /var/log/apt (Debian)
+    /var/log/dnf.log (RHEL)
+    /var/log/yum.log (RHEL)
+
+ 
