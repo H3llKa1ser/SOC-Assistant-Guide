@@ -88,4 +88,12 @@ Locations:
     /var/log/dnf.log (RHEL)
     /var/log/yum.log (RHEL)
 
- 
+### 6) Web Server Logs
+
+Nginx
+
+    /var/log/nginx/access.log
+
+Apache
+
+    /var/log/apache2/access.log
