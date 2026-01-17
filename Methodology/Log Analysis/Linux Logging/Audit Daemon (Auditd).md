@@ -31,3 +31,4 @@ Used in conjunction with the previous command to create a process tree analysis.
 ### 4) List all child processes
 
     ausearch -i --ppid PPID | grep 'proctitle'
+
