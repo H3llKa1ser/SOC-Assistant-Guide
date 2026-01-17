@@ -26,6 +26,8 @@ Example usage:
 
     ausearch -i -x whoami
 
-### 4) Filter based on process ID (Used in conjunction with the previous command to create a process tree analysis. Repeat the same command, but with a different PID for the parent and grandparent process ID)
+### 4) Filter based on process ID 
+
+Used in conjunction with the previous command to create a process tree analysis. Repeat the same command, but with a different PID for the parent and grandparent process ID
 
     ausearch -i --pid PID
