@@ -32,3 +32,6 @@ Used in conjunction with the previous command to create a process tree analysis.
 
     ausearch -i --ppid PPID | grep 'proctitle'
 
+### 5) Read a specific audit.log file from other than the default location
+
+    ausearch -i -if audit.log
