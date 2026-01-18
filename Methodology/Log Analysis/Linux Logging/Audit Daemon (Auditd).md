@@ -35,3 +35,15 @@ Used in conjunction with the previous command to create a process tree analysis.
 ### 5) Read a specific audit.log file from other than the default location
 
     ausearch -i -if audit.log
+
+### 6) Look for file changes inside /etc/systemd (Malicious service detection)
+
+    ausearch -i -f /etc/systemd
+
+### 7) Look for execution of a crontab
+
+    ausearch -i -x crontab
+
+### 8) Search if SSH keys have been modified
+
+    ausearch -i -f /.ssh/authorized_keys
