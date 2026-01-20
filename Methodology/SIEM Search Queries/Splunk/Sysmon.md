@@ -8,4 +8,8 @@ Use these queries based on the event code of a Sysmon log file.
 
 ### 2) Get file hash of a suspicious process
 
-    index=task4 ("malicious.exe" OR "C:\\Windows\\Temp\\malicious.exe") | search (EventCode=11 OR "file hash" OR "md5" OR "hash") | table _time, host, _raw
+    index=main ("malicious.exe" OR "C:\\Windows\\Temp\\malicious.exe") | search (EventCode=11 OR "file hash" OR "md5" OR "hash") | table _time, host, _raw
+
+### 3) Malicious process execution
+
+    index=main EventCode=1 *powershell* AND *EncodedCommand* | table _time ComputerName ParentUser ParentImage ParentCommandLine Image CommandLine
