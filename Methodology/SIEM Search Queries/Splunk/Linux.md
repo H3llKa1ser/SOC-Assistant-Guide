@@ -17,3 +17,7 @@ Query various log files from a Linux system to conduct further investigation.
 ### 4) Port connections
 
     index=main *port*
+
+### 5) Persistence mechanisms
+
+    index=main sourcetype=syslog ("CRON" OR "cron") |  search ("python" OR "perl" OR "ruby" OR ".sh" OR "bash" OR "nc")
