@@ -21,3 +21,11 @@ Query various log files from a Linux system to conduct further investigation.
 ### 5) Persistence mechanisms
 
     index=main sourcetype=syslog ("CRON" OR "cron") |  search ("python" OR "perl" OR "ruby" OR ".sh" OR "bash" OR "nc")
+
+### 6) Enumerate the count of sign-in attempts per user
+
+    index="linux-alert" sourcetype="linux_secure" 10.10.242.248
+    | rex field=_raw "^\d{4}-\d{2}-\d{2}T[^\s]+\s+(?<log_hostname>\S+)"
+    | rex field=_raw "sshd\[\d+\]:\s*(?<action>Failed|Accepted)\s+\S+\s+for(?: invalid user)? (?<username>\S+) from (?<src_ip>\d{1,3}(?:\.\d{1,3}){3})"
+    | eval process="sshd"
+    | stats count values(src_ip) as src_ip values(log_hostname) as hostname values(process) as process by username
