@@ -1,6 +1,4 @@
-# Post-Exploitation
-
-## Credential Dumping
+# Credential Dumping
 
 ### 1) LSASS Memory Access / Dumping (Mimikatz)
 
