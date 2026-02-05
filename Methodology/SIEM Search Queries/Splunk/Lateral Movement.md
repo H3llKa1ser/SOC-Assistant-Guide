@@ -1,5 +1,15 @@
 # Lateral Movement
 
+#### Indices and sourcetypes customization according to environment
+
+| Environment | Index        | Sourcetype                                          |
+|-------------|--------------|-----------------------------------------------------|
+| Windows     | `wineventlog`| `WinEventLog:Security`, `WinEventLog:System`         |
+| Linux       | `linux`      | `linux_secure`, `syslog`                             |
+| AWS         | `aws`        | `aws:cloudtrail`, `aws:cloudwatch`                   |
+| Azure       | `azure`      | `azure:aad:audit`, `azure:activity`                  |
+| GCP         | `gcp`        | `google:gcp:pubsub:message`                          |
+
 ## On-Premises
 
 ### 1) Pass-the-Hash / Pass-the-Ticket
