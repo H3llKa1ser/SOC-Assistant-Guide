@@ -4,6 +4,30 @@ Detect credential stuffing attacks
 
 #### DO NOT FORGET TO REPLACE SOME OF THE VALUES ACCORDING TO YOUR ENVIRONMENT!!!!
 
+Workflow
+
+┌─────────────────────────────────────────────────────────────────┐
+│                 CREDENTIAL STUFFING DETECTION WORKFLOW          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐      │
+│  │   Layer 1    │───▶│   Layer 2    │───▶│   Layer 3    │      │
+│  │  Detection   │    │  Correlation │    │   Response   │      │
+│  └──────────────┘    └──────────────┘    └──────────────┘      │
+│         │                   │                   │               │
+│  • Volume-based      • Geo anomalies     • Block IP           │
+│  • Velocity-based    • User-Agent        • Force MFA          │
+│  • Pattern-based     • Success after     • Lock accounts      │
+│  • IP reputation       failures          • Alert SOC          │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│  SCHEDULED SEARCHES:                                            │
+│  • Real-time: Every 5 minutes (Query #10)                      │
+│  • Hourly: Distributed attack detection (Query #2)             │
+│  • Daily: Geographic anomaly report (Query #4)                 │
+└─────────────────────────────────────────────────────────────────┘
+
+
 ### 1) High volume failed logins form a single IP
 
     index=auth sourcetype=authentication action=failure
