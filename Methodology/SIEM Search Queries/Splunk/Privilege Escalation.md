@@ -96,6 +96,16 @@ Detects known vulnerable driver installations.
     | stats count by dest, ImageLoaded, driver_name, vulnerability_info
     | table _time, dest, ImageLoaded, driver_name, vulnerability_info
 
+### 9) AlwaysInstallElevated
+
+Detects MSI-based privilege escalation.
+
+    index=wineventlog sourcetype="WinEventLog:Security" EventCode=4688
+    | search Process_Name="msiexec.exe" AND (Process_Command_Line="*/q*" OR Process_Command_Line="*/i*")
+    | where match(Process_Command_Line, "(?i)(temp|appdata|downloads|public)")
+    | stats count by dest, user, Process_Command_Line
+    | table _time, dest, user, Process_Command_Line, count
+
 ## Linux
 
 ### 1) Sudo PrivEsc (GTFOBins)
@@ -128,6 +138,26 @@ Detects container breakout attempts.
     | stats count by host, container_id, user, cmdline
     | table _time, host, container_id, user, cmdline
 
+### 4) Kernel Exploits
+
+Detects potential kernel exploitation.
+
+    index=linux sourcetype=syslog OR sourcetype=linux_secure
+    | search "kernel:" AND ("segfault" OR "overflow" OR "exploit" OR "CVE-")
+      OR (comm="insmod" OR comm="modprobe")
+    | stats count by host, _raw
+    | table _time, host, _raw, count
+
+### 5) Cronjobs
+
+Detects suspicious cron job modifications.
+
+    index=linux sourcetype=cron OR sourcetype=auditd
+    | search path="/etc/cron*" OR path="/var/spool/cron*"
+    | where syscall IN ("write", "rename", "unlink", "chmod")
+    | stats count by host, user, path, syscall
+    | table _time, host, user, path, syscall, count
+
 ## Cloud
 
 ### 1)  AWS IAM PrivEsc
@@ -155,6 +185,14 @@ Detects privilege escalation in Azure RBAC.
     | stats count by caller, callerIpAddress, properties.principalId, properties.roleDefinitionId
     | table _time, caller, callerIpAddress, properties.principalId, properties.roleDefinitionId
 
+OR 
+
+    index=azure sourcetype=azure:aad:audit category="RoleManagement"
+    | search activityDisplayName="Add member to role"
+    | where match(targetResources{}.displayName, "(?i)(global admin|privileged|owner|contributor)")
+    | stats count by initiatedBy.user.userPrincipalName, targetResources{}.displayName
+    | table _time, initiatedBy.user.userPrincipalName, targetResources{}.displayName, count
+
 ### 3) GCP Service Account Key Creation
 
 Detects service account key creation for persistence/escalation.
@@ -164,3 +202,43 @@ Detects service account key creation for persistence/escalation.
     | search methodName="*CreateServiceAccountKey*" OR methodName="*SetIamPolicy*"
     | stats count by authenticationInfo.principalEmail, callerIp, methodName, resourceName
     | table _time, authenticationInfo.principalEmail, callerIp, methodName, resourceName
+
+### 4) AWS Lambda PrivEsc
+
+Detects Lambda-based privilege escalation.
+
+    index=aws sourcetype=aws:cloudtrail eventName IN ("CreateFunction*", "UpdateFunctionConfiguration", "AddPermission")
+    | search requestParameters.role="*admin*" OR requestParameters.role="*AdministratorAccess*"
+    | stats count values(eventName) as actions values(requestParameters.functionName) as functions by userIdentity.arn
+    | table _time, userIdentity.arn, functions, actions
+
+### 5) GCP IAM PrivEsc
+
+    index=gcp sourcetype=google:gcp:pubsub:message
+    | spath input=data.protoPayload
+    | search methodName IN ("SetIamPolicy", "CreateServiceAccountKey", "setIamPolicy")
+    | where match(request.policy.bindings{}.role, "(roles/owner|roles/editor|roles/iam)")
+    | stats count by authenticationInfo.principalEmail, methodName, resource.name
+    | table _time, authenticationInfo.principalEmail, methodName, resource.name
+
+## Kubernetes
+
+### 1) Kubernetes RBAC
+
+Detects suspicious RBAC modifications.
+
+    index=kubernetes sourcetype=kube:apiserver
+    | search verb IN ("create", "update", "patch") resource IN ("clusterroles", "clusterrolebindings", "roles", "rolebindings")
+    | where match(requestObject, "(?i)(cluster-admin|system:masters|secrets|pods/exec)")
+    | stats count by user.username, verb, resource, requestObject
+    | table _time, user.username, verb, resource, requestObject
+
+### 2) Privileged Container Creation
+
+    index=kubernetes sourcetype=kube:apiserver verb="create" resource="pods"
+    | spath input=requestObject
+    | where securityContext.privileged="true" 
+         OR securityContext.runAsUser=0
+         OR match(securityContext.capabilities.add{}, "(SYS_ADMIN|SYS_PTRACE|NET_ADMIN)")
+    | stats count by user.username, objectRef.name, objectRef.namespace
+    | table _time, user.username, objectRef.namespace, objectRef.name
