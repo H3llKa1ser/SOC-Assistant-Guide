@@ -80,6 +80,19 @@ Detects known exploitation tool signatures.
     | where count > 20
     | table _time, src_ip, http_user_agent, count, unique_paths
 
+### 4) Successful Exploitation Indicators (Web Shells)
+
+Detects potential web shell activity post-exploitation.
+
+    index=web sourcetype=access_combined status=200
+    | search uri_path="*.php*" OR uri_path="*.asp*" OR uri_path="*.aspx*" OR uri_path="*.jsp*"
+    | eval suspicious = if(match(uri_query, "(?i)(cmd|exec|command|shell|upload|eval|base64|system)"), 1, 0)
+    | where suspicious=1
+    | stats count values(uri_query) as queries by src_ip, uri_path
+    | where count > 3
+    | table _time, src_ip, uri_path, queries, count
+
+
 ## External Remote Services
 
 ### 1) Brute force attacks on Remote Access Services
@@ -152,3 +165,13 @@ Detects browser processes spawning unusual children.
     | where Process_Name IN ("*cmd.exe", "*powershell.exe", "*wscript.exe", "*mshta.exe", "*rundll32.exe")
     | stats count by dest, user, Parent_Process_Name, Process_Name, Process_Command_Line
     | table _time, dest, user, Parent_Process_Name, Process_Name, Process_Command_Line
+
+### 3) Cloud OAuth App Consent (Azure/M365)
+
+Detects potentially malicious app consent grants.
+
+    index=azure sourcetype=azure:aad:audit operationType="Consent to application"
+    | stats count values(targetResources{}.displayName) as app_names 
+            values(targetResources{}.modifiedProperties{}.newValue) as permissions by initiatedBy.user.userPrincipalName
+    | where match(permissions, "(?i)(Mail\.|Files\.|Directory\.|full_access)")
+    | table _time, initiatedBy.user.userPrincipalName, app_names, permissions
