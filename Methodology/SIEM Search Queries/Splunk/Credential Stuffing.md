@@ -4,28 +4,25 @@ Detect credential stuffing attacks
 
 #### DO NOT FORGET TO REPLACE SOME OF THE VALUES ACCORDING TO YOUR ENVIRONMENT!!!!
 
-Workflow
+Credential Stuffing Detection Workflow
 
-    ┌─────────────────────────────────────────────────────────────────┐
-    │                 CREDENTIAL STUFFING DETECTION WORKFLOW          │
-    ├─────────────────────────────────────────────────────────────────┤
-    │                                                                 │
-    │  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐      │
-    │  │   Layer 1    │───▶│   Layer 2    │───▶│   Layer 3    │      │
-    │  │  Detection   │    │  Correlation │    │   Response   │      │
-    │  └──────────────┘    └──────────────┘    └──────────────┘      │
-    │         │                   │                   │               │
-    │  • Volume-based      • Geo anomalies     • Block IP           │
-    │  • Velocity-based    • User-Agent        • Force MFA          │
-    │  • Pattern-based     • Success after     • Lock accounts      │
-    │  • IP reputation       failures          • Alert SOC          │
-    │                                                                 │
-    ├─────────────────────────────────────────────────────────────────┤
-    │  SCHEDULED SEARCHES:                                            │
-    │  • Real-time: Every 5 minutes (Query #10)                      │
-    │  • Hourly: Distributed attack detection (Query #2)             │
-    │  • Daily: Geographic anomaly report (Query #4)                 │
-    └─────────────────────────────────────────────────────────────────┘
+## Workflow Layers
+
+| Layer       | Purpose       | Examples                                                                 |
+|-------------|--------------|---------------------------------------------------------------------------|
+| **Layer 1** | Detection    | • Volume-based <br> • Velocity-based <br> • Pattern-based <br> • IP reputation |
+| **Layer 2** | Correlation  | • Geo anomalies <br> • User-Agent analysis <br> • Success after failures      |
+| **Layer 3** | Response     | • Block IP <br> • Force MFA <br> • Lock accounts <br> • Alert SOC              |
+
+---
+
+## Scheduled Searches
+
+| Frequency   | Purpose                                       | Query Reference |
+|-------------|-----------------------------------------------|-----------------|
+| Real-time   | Every 5 minutes                               | Query #10       |
+| Hourly      | Distributed attack detection                  | Query #2        |
+| Daily       | Geographic anomaly report                     | Query #4        |
 
 
 ### 1) High volume failed logins form a single IP
