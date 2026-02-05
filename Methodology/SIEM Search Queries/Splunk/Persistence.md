@@ -33,3 +33,53 @@
     | stats count by dest, user, Task_Name, task_command, task_args, run_as
     | table _time, dest, user, Task_Name, run_as, task_command, task_args
 
+### 4) Service Creation via sc.exe
+
+    index=wineventlog sourcetype="WinEventLog:Security" EventCode=4688
+    | search Process_Name="sc.exe" 
+    | search Process_Command_Line="*create*" OR Process_Command_Line="*config*"
+    | rex field=Process_Command_Line "(?:create|config)\s+(?<service_name>\w+)"
+    | rex field=Process_Command_Line "binPath=\s*[\"']?(?<bin_path>[^\"']+)"
+    | stats count by dest, user, service_name, bin_path, Process_Command_Line
+    | table _time, dest, user, service_name, bin_path
+
+### 5) Service Registry Modification
+
+    index=wineventlog sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=13
+    | search TargetObject="*\\SYSTEM\\CurrentControlSet\\Services\\*\\ImagePath*"
+      OR TargetObject="*\\SYSTEM\\CurrentControlSet\\Services\\*\\FailureCommand*"
+      OR TargetObject="*\\SYSTEM\\CurrentControlSet\\Services\\*\\Parameters\\ServiceDll*"
+    | rex field=TargetObject "Services\\\\(?<service_name>[^\\\\]+)"
+    | where NOT match(Details, "(?i)(system32|syswow64|program files|windows)")
+    | stats count by dest, user, service_name, TargetObject, Details
+    | table _time, dest, user, service_name, TargetObject, Details
+
+### 6) COM Object Hijacking
+
+    index=wineventlog sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=13
+    | search TargetObject="*\\Classes\\CLSID\\*\\InprocServer32*"
+      OR TargetObject="*\\Classes\\CLSID\\*\\LocalServer32*"
+      OR TargetObject="*\\Classes\\CLSID\\*\\TreatAs*"
+    | where NOT match(Details, "(?i)(system32|syswow64|program files)")
+    | rex field=TargetObject "CLSID\\\\(?<clsid>\{[^\}]+\})"
+    | stats count by dest, user, clsid, Details
+    | table _time, dest, user, clsid, Details
+
+### 7) AppInit DLLs
+
+    index=wineventlog sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=13
+    | search TargetObject="*\\Windows\\CurrentVersion\\Windows\\AppInit_DLLs*"
+      OR TargetObject="*\\Windows\\CurrentVersion\\Windows\\LoadAppInit_DLLs*"
+    | stats count by dest, user, TargetObject, Details
+    | table _time, dest, user, TargetObject, Details
+
+### 8) Shell Extention Handlers
+
+    index=wineventlog sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=13
+    | search TargetObject="*\\ShellEx\\*" 
+      OR TargetObject="*\\shellex\\ContextMenuHandlers\\*"
+      OR TargetObject="*\\shellex\\PropertySheetHandlers\\*"
+      OR TargetObject="*\\shellex\\ColumnHandlers\\*"
+    | where NOT match(Details, "(?i)(system32|program files)")
+    | stats count by dest, user, TargetObject, Details
+    | table _time, dest, user, TargetObject, Details
