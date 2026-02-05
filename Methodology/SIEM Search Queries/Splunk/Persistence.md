@@ -23,3 +23,13 @@
 
 ### 3) Scheduled Task
 
+    index=wineventlog sourcetype="WinEventLog:Security" EventCode=4698
+    | rex field=Task_Content "<Command>(?<task_command>[^<]+)</Command>"
+    | rex field=Task_Content "<Arguments>(?<task_args>[^<]+)</Arguments>"
+    | rex field=Task_Content "<UserId>(?<run_as>[^<]+)</UserId>"
+    | eval suspicious = if(match(task_command, "(?i)(powershell|cmd|wscript|cscript|mshta|rundll32|regsvr32|certutil|bitsadmin)")
+        OR match(task_command, "(?i)(\\temp\\|\\appdata\\|\\public\\|\\programdata\\)"), 1, 0)
+    | where suspicious=1
+    | stats count by dest, user, Task_Name, task_command, task_args, run_as
+    | table _time, dest, user, Task_Name, run_as, task_command, task_args
+
