@@ -96,3 +96,18 @@ Here are the simplified technical definitions for GPT Partition Entry fields:
 
 **6. Partition Name (72 bytes):** Human-readable partition label encoded in UTF-16LE format. Can contain up to 36 Unicode characters. Decode to view the partition's name.
 
+### Find the partition type GUID
+
+Find the start of the array, then add 128 bytes to jump to the second entry
+
+      512  x 2 = 1024 + 128 = 1152
+
+The second partition's metadata starts at Decimal offset 1152.
+
+Navigate to that offset, by going to:
+
+      Search -> Go to -> "Dec" radio button -> 1152 -> OK
+
+You will find the GUID in the first 16 bytes of that entry.
+
+On formatting it properly, you will find it on the Quick Explanation chapter of the Partition Entry Array part.
