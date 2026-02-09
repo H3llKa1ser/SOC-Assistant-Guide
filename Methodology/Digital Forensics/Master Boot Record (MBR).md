@@ -4,7 +4,7 @@
 
 1) HxD (Hex Analyzer)
 
-2) FTK Forensic Tool
+2) FTK Forensic Tool (Or any other Image forensics tool)
 
 Total Bytes of MBR
 
@@ -36,4 +36,14 @@ Bootloader Code Bytes Position
 Partitions Table Bytes Position
 
     446 - 509
+
+### Locating the partition
+
+Calculate the byte at the start of Partitions table (446) + 16 bytes (an entry in the table)
+
+    446 + 16 = 462
+
+Now, on the HxD tool, go to:
+
+    Search -> Go to -> "Dec" radio button -> 462 -> OK
 
