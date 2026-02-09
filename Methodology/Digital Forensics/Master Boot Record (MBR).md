@@ -76,14 +76,16 @@ Now you can locate where the LBA address begins.
 
 ## Quick Explanation of the above table
 
-Boot Indicator: This byte tells you whether the partition is bootable or not. A bootable partition contains files necessary for the operating system to boot. This boot indicator can only have one of the two values: 80 or 00. If it's 80, it means that the partition is bootable; else, if it's 00, it means that the partition is not bootable.  In Windows based systems, C: is the partition that is typically bootable. If visualized through the partition table, this partition would have the boot indicator set to 80.
+Here are the rephrased definitions in simpler technical language:
 
-Starting CHS Address: Cylinder Head Sector (CHS) is the 3 bytes that tell you where this partition is starting from on the disk. It will give you the starting physical address of the partition, such as the cylinder, head, and sector number. 
+**Boot Indicator (1 byte):** A flag showing if the partition is bootable. Value 0x80 = bootable, 0x00 = not bootable. Only one partition should be marked bootable (typically the C: drive in Windows).
 
-Partition Type: Every partition uses a filesystem such as NTFS, FAT32, etc. This byte indicates the filesystem of the partition. The partition we are taking as a reference has this byte as 07, which means it is an NTFS partition. Every filesystem has its own unique byte. 
+**Starting CHS Address (3 bytes):** The physical disk location where the partition begins, specified as Cylinder-Head-Sector coordinates. Legacy addressing method, rarely used in modern systems.
 
-Ending CHS Address: The last 3 bytes at the end of the CHS Address indicates the physical location where the partition ends on the disk. This field is also not that important, just like the stated CHS address, as we mostly use the logical address (LBA) instead of the physical address.
+**Partition Type (1 byte):** A code identifying the filesystem type. For example, 0x07 indicates NTFS. Each filesystem has a unique identifier.
 
-Starting LBA Address: Logical Block Addressing (LBA) is the logical address that indicates the start of the partition. We saw that the Starting CHS Address also gives us the starting address of the partition, but because CHS gives you the physical address of the partition, it becomes difficult for us to locate it. However, the Starting LBA Address gives you the logical address of the partition rather than the physical address. You can use it to easily find the start of the partition on the disk in a hexadecimal editor. By locating the partition on the disk, you can also carve data from a disk's hidden or deleted partitions. 
+**Ending CHS Address (3 bytes):** The physical disk location where the partition ends in CHS format. Legacy addressing method, mostly obsolete.
 
-Number of Sectors: These last 4 bytes of a partition tell you the number of sectors in the partition. 
+**Starting LBA Address (4 bytes):** The logical sector number where the partition begins. Unlike CHS (physical addressing), LBA provides a simple linear sector count, making it easy to locate partitions in disk editors or forensic tools.
+
+**Number of Sectors (4 bytes):** Total count of sectors contained in the partition, defining its size.
