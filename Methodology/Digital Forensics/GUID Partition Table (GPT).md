@@ -26,3 +26,36 @@ Important Bytes
 | 80–83          | 4            | Number of Partition Entries      | `80 00 00 00`                                       |
 | 84–87          | 4            | Size of Each Partition Entry     | `80 00 00 00`                                       |
 | 88–91          | 4            | CRC32 of Partition Array         | `41 0D C0 22`                                       |
+
+### Quick Explanation
+
+Here are the simplified technical definitions:
+
+**1. Signature (8 bytes):** Identifier that marks a valid GPT header. Always contains the ASCII string "EFI PART" (0x45 46 49 20 50 41 52 54).
+
+**2. Revision (4 bytes):** GPT specification version number. Typically 0x00 00 01 00, representing version 1.0.
+
+**3. Header Size (4 bytes):** Length of the GPT header in bytes. Usually 0x5C 00 00 00 (92 bytes in little-endian decimal).
+
+**4. CRC32 of Header (4 bytes):** Checksum for validating header integrity. A mismatch indicates corruption or tampering.
+
+**5. Reserved (4 bytes):** Unused bytes reserved for future GPT specifications.
+
+**6. Current LBA (8 bytes):** Logical sector address of this GPT header. Normally sector 1 (LBA 1).
+
+**7. Backup LBA (8 bytes):** Logical sector address of the backup GPT header, typically located at the end of the disk.
+
+**8. First Usable LBA (8 bytes):** The earliest sector address where partition data can begin.
+
+**9. Last Usable LBA (8 bytes):** The final sector address where partition data can end. No partitions can extend beyond this point.
+
+**10. Disk GUID (16 bytes):** Globally Unique Identifier that uniquely identifies the disk. Formatted as a standard GUID (e.g., 1DF1B0D6-43BE-374E-B1E6-3866ECB17389).
+
+**11. Partition Entry Array LBA (8 bytes):** Logical sector address where the partition entry table begins.
+
+**12. Number of Partition Entries (4 bytes):** Maximum partition count supported. GPT standard allows 128 partitions (0x80 00 00 00).
+
+**13. Size of Each Partition Entry (4 bytes):** Size of each partition table entry in bytes. Typically 128 bytes (0x80 00 00 00). This is the metadata size, not the actual partition size.
+
+**14. CRC32 of Partition Array (4 bytes):** Checksum for validating the entire partition entry table integrity. Detects corruption or tampering.
+
