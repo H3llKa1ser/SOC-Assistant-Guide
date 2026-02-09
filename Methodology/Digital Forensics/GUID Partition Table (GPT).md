@@ -59,3 +59,40 @@ Here are the simplified technical definitions:
 
 **14. CRC32 of Partition Array (4 bytes):** Checksum for validating the entire partition entry table integrity. Detects corruption or tampering.
 
+### Partition Entry Array
+
+Important Bytes
+
+| Bytes Position | Bytes Length | Field Name              | Value                                                                 |
+|----------------|--------------|-------------------------|------------------------------------------------------------------------|
+| 0–15           | 16           | Partition Type GUID     | `1628 73 2A C1 1F F8 D2 11 BA 4B 00 A0 C9 3E C9 3B`                    |
+| 16–31          | 16           | Unique Partition GUID   | `169E 43 0D 72 EC 12 54 44 8F B2 EE 17 8D F3 CD 3B`                    |
+| 32–39          | 8            | Starting LBA            | `00 08 00 00 00 00 00 00`                                              |
+| 40–47          | 8            | Ending LBA              | `FF 27 03 00 00 00 00 00`                                              |
+| 48–55          | 8            | Attributes              | `00 00 00 00 00 00 00 80`                                              |
+| 56–127         | 72           | Partition Name          | `45 00 46 00 49 00 20 00 73 00 79 00 73 ...` *(UTF-16LE encoded string)* |
+
+### Quick Explanation
+
+Here are the simplified technical definitions for GPT Partition Entry fields:
+
+**1. Partition Type GUID (16 bytes):** Identifier indicating the partition's purpose (e.g., EFI System Partition, Windows Data Partition). Stored in mixed-endian format requiring specific byte reordering:
+   - Reverse first 4 bytes (little-endian)
+   - Reverse next 2 bytes (little-endian)
+   - Reverse next 2 bytes (little-endian)
+   - Keep remaining 8 bytes as-is (big-endian)
+   
+   Example: `28 73 2A C1 1F F8 D2 11 BA 4B 00 A0 C9 3E C9 3B` becomes `C12A7328-F81F-11D2-BA4B-00A0C93EC93B` (EFI System Partition).
+
+   **Note:** The EFI System Partition (ESP) stores bootloader files with .efi extensions needed to load the OS kernel, unlike MBR which stores bootloaders in the boot sector.
+
+**2. Unique Partition GUID (16 bytes):** A globally unique identifier assigned to each individual partition on the disk. Stored in mixed-endian format; convert using the same method as Partition Type GUID.
+
+**3. Starting LBA (8 bytes):** Logical sector address where the partition begins on the disk.
+
+**4. Ending LBA (8 bytes):** Logical sector address where the partition ends on the disk.
+
+**5. Attributes (8 bytes):** Bit flags defining partition properties such as bootable, hidden, read-only, or required for platform operation.
+
+**6. Partition Name (72 bytes):** Human-readable partition label encoded in UTF-16LE format. Can contain up to 36 Unicode characters. Decode to view the partition's name.
+
