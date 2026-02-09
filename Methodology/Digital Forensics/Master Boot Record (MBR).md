@@ -47,3 +47,13 @@ Now, on the HxD tool, go to:
 
     Search -> Go to -> "Dec" radio button -> 462 -> OK
 
+#### Where a partition starts?
+
+    Starting LBA x 512
+
+#### How big is the partition?
+
+    Sector count x 512
+
+#### ALWAYS REVERSE THE BYTES FROM LITTLE-ENDIAN TO BIG-ENDIAN (LSB to MSB)
+
