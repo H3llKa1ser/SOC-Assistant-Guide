@@ -47,13 +47,29 @@ Now, on the HxD tool, go to:
 
     Search -> Go to -> "Dec" radio button -> 462 -> OK
 
-#### Where a partition starts?
+### Size of a partition
 
-    Starting LBA x 512
+Check the last 4 bytes of the partition table entry that contain the count of sectors in a partition.
 
-#### How big is the partition?
+Reverse to Big-Endian, convert to decimal, then multiply by 512 (Sector Size).
 
-    Sector count x 512
+Formula to calculate:
+
+    Sector Count x 512 (Sector Size)
+    ((((Sector Count x 512)/1000)/1000)/1000)
 
 #### ALWAYS REVERSE THE BYTES FROM LITTLE-ENDIAN TO BIG-ENDIAN (LSB to MSB)
 
+### Starting LBA of the partition
+
+Locate the standard starting LBA address as per the table above.
+
+Then reverse it to Big-Endian and revert to Decimal value, then multiply by 512.
+
+    2048 x 512 = 1048576
+
+Then use:
+
+    Search -> Go to -> "Dec" radio button -> 1048576 -> OK
+
+Now you can locate where the LBA address begins.
