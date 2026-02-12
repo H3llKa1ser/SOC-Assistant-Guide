@@ -44,3 +44,17 @@ Tool: https://github.com/EricZimmerman/MFTECmd
 Tool: https://github.com/EricZimmerman/MFTECmd
 
     .\MFTECmd.exe -f ..\Evidence\$J --csv ..\Evidence --csvf USNJrnl.csv
+
+USN Journal Update Reason Codes
+
+| Opcode                          | Description                                                                 |
+|---------------------------------|-----------------------------------------------------------------------------|
+| USN_REASON_DATA_OVERWRITE       | File or directory data was overwritten.                                     |
+| USN_REASON_DATA_EXTEND          | File or directory data was extended (e.g., file size increased).            |
+| USN_REASON_DATA_TRUNCATION      | File or directory data was truncated (e.g., file size decreased).           |
+| USN_REASON_NAMED_DATA_OVERWRITE | The alternate data stream was overwritten.                                  |
+| USN_REASON_NAMED_DATA_EXTEND    | An alternate data stream was extended.                                      |
+| USN_REASON_FILE_CREATE          | A new file or directory was created.                                        |
+| USN_REASON_FILE_DELETE          | A file or directory was deleted.                                            |
+| USN_REASON_RENAME_OLD_NAME      | The file or directory was renamed (old name recorded).                      |
+| USN_REASON_CLOSE                | The file or directory handle was closed after changes.                      |
