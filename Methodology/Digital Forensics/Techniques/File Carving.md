@@ -61,3 +61,19 @@ Use the file type information for the correct file signature in Hex format.
 ### 3) Extract files using Binwalk
 
     binwalk -e image.img
+
+## Automation
+
+### 1) Foremost
+
+Recover files using a custom configuration file for the tool
+
+    foremost -i image.img -o DIR_OUTPUT -c /etc/custom_foremost.conf
+
+If you know what files are you looking for, you can use this command instead for faster results
+
+    foremost -t pdf,png,jpg -i image.img -o DIR_OUTPUT -c /etc/custom_foremost.conf
+
+### 2) Scalpel
+
+    scalpel image.img -o DIR_OUTPUT -c /etc/scalpel/scalpel.conf
