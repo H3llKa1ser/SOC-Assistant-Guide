@@ -22,11 +22,25 @@
 
 3) Journaling
 
-        $J
+        $J (Inside $UsnJrnl)
+        $Max (Inside $UsnJrnl)
+        $LogFile
+        $UsnJrnl ($Extend directory location)
 
-### Analyze the MFT file and output the results in .csv format
+### Extracting the files for analysis
+
+On FTK Imager, right-click on the file, then click export file. Choose destination folder.
+
+Done!
+
+### 1) MFT File analysis
 
 Tool: https://github.com/EricZimmerman/MFTECmd
 
     .\MFTECmd.exe -f ..\Evidence\$MFT --csv ..\Evidence --csvf ..\Evidence\MFT_record.csv
 
+### 2) NTFS Journaling File analysis
+
+Tool: https://github.com/EricZimmerman/MFTECmd
+
+    .\MFTECmd.exe -f ..\Evidence\$J --csv ..\Evidence --csvf USNJrnl.csv
