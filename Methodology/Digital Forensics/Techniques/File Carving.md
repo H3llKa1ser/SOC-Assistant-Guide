@@ -40,7 +40,7 @@ Use the file type information for the correct file signature in Hex format.
 
 ### 5) Subtract the offset values with the ending offset as the minuend to get the file size in bytes.
 
-    Ending Offset - Starting Offset = File Size in Bytes
+    Ending Offset - Starting Offset = File Size in Bytes (Remove the zeroes from the offsets and use only the first 3 numbers for the byte size)
 
 ### 6) Extract the file
 
