@@ -6,6 +6,8 @@ Tools:
 
 1) Autopsy
 
+        ./autopsy --nosplash
+
 ## EXT Analysis
 
 ### 1) Check for partitions and file systems
