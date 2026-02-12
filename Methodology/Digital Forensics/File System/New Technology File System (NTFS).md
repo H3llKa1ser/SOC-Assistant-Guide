@@ -62,3 +62,9 @@ USN Journal Update Reason Codes
 | USN_REASON_FILE_DELETE          | A file or directory was deleted.                                            |
 | USN_REASON_RENAME_OLD_NAME      | The file or directory was renamed (old name recorded).                      |
 | USN_REASON_CLOSE                | The file or directory handle was closed after changes.                      |
+
+### 3) I30 File Analysis
+
+Tool: https://github.com/EricZimmerman/MFTECmd
+
+        .\MFTECmd.exe -f ..\Evidence\$I30 --csv ..\Evidence --csvf ..\Evidence\i30.csv
