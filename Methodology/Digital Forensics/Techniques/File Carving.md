@@ -20,7 +20,7 @@ Resource: https://filesig.search.org/
 
 6) EnCase
 
-## Manual Analysis
+## Manual Carving
 
 Steps
 
