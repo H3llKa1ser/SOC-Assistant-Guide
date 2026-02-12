@@ -53,3 +53,10 @@ Use debugfs for more information
 
     sudo dd if=/dev/loop0 bs=BLOCK_SIZE skip=RESULT_OF_PREVIOUS_COMMAND count=1 of=/tmp/recovered_file
 
+## Timestamps
+
+### 1) Analyze timestamp data for a file/directory
+
+    sudo stat /tmp/file.txt
+    sudo stat /tmp/dir/
+
