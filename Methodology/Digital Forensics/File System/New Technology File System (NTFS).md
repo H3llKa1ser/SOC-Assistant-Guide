@@ -27,6 +27,10 @@
         $LogFile
         $UsnJrnl ($Extend directory location)
 
+4) Index Allocation Attribute
+
+        $I30
+
 ### Extracting the files for analysis
 
 On FTK Imager, right-click on the file, then click export file. Choose destination folder.
