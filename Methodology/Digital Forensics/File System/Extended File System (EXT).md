@@ -2,6 +2,10 @@
 
 OS: Linux
 
+Tools:
+
+1) Autopsy
+
 ## EXT Analysis
 
 ### 1) Check for partitions and file systems
@@ -34,4 +38,18 @@ Use debugfs for more information
 
     sudo debugfs /dev/loop0
     debugfs: stat <INODE_NUM>
+
+## File Recovery
+
+### 1) Search for a file with a known string of your choice inside the file system
+
+    sudo strings -t d /dev/loop0 | grep -i "AAAAAAAA"
+
+### 2) Calculate the offset by using the provided offset from previous command times the block size
+
+    echo $((FILE_OFFSET / BLOCK_SIZE))
+
+### 3) Recover the file
+
+    sudo dd if=/dev/loop0 bs=BLOCK_SIZE skip=RESULT_OF_PREVIOUS_COMMAND count=1 of=/tmp/recovered_file
 
