@@ -49,3 +49,15 @@ Use the file type information for the correct file signature in Hex format.
 ### 7) Check the metadata of the extracted file
 
     exiftool extracted.png
+
+## Recovering files from Slack Space
+
+### 1) Run binwalk to check for file types and their offsets inside the file system
+
+    binwalk image.img
+
+### 2) Open a Hex Editor and navigate to the offset of your interest provided by Binwalk (Optional)
+
+### 3) Extract files using Binwalk
+
+    binwalk -e image.img
