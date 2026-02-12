@@ -1,4 +1,4 @@
-# File Allocation Table 32 (FAT32)
+# File Allocation Table (FAT)
 
 ## Tools:
 
