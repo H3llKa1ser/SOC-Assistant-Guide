@@ -46,6 +46,14 @@ Use the file type information for the correct file signature in Hex format.
 
     dd if=image.img of=extracted.png bs=1 skip=STARTING_OFFSET count=FILE_SIZE_BYTES
 
+You can also extract it manually by pressing on a Hex Editor
+
+    Ctrl+E
+
+Then Choose the corresponding start offset and ending offset to select all the bytes of the target file.
+
+Copy the hexdump to a tool like Cyberchef to recover the file.
+
 ### 7) Check the metadata of the extracted file
 
     exiftool extracted.png
