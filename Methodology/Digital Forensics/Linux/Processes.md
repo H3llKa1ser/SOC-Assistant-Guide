@@ -71,3 +71,9 @@ Check for failed cron logs
 Filter for specific users
 
     sudo grep cron /var/log/syslog | grep -i 'USER'
+
+### 4) Pspy
+
+Leave it for a few minutes to gather any running processes in the system for analysis.
+
+    pspy64
