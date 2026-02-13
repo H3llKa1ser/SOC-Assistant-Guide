@@ -88,6 +88,10 @@ Locations:
     /var/log/dnf.log (RHEL)
     /var/log/yum.log (RHEL)
 
+#### Filter installed packages
+
+    cat /var/log/dpkg.log | grep " install "
+
 ### 6) Web Server Logs
 
 Nginx
