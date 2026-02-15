@@ -77,3 +77,27 @@ Filter for specific users
 Leave it for a few minutes to gather any running processes in the system for analysis.
 
     pspy64
+
+## Services
+
+### 1) List all system services
+
+    sudo systemctl list-units --all --type=service
+
+### 2) List running services
+
+    sudo systemctl list-units --type=service --state=running
+
+### 3) Check the status of a specific service
+
+    sudo systemctl status SERVICE_NAME.service
+
+After that, you can view the associated executable for the service.
+
+### 4) Inspect service configuration files
+
+    cat /etc/systemd/system/SERVICE_NAME.service
+
+### 5) Inspect service logs
+
+    sudo journalctl -f -u SERVICE_NAME.service
