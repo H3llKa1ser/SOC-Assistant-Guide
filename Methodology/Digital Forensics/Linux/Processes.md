@@ -101,3 +101,22 @@ After that, you can view the associated executable for the service.
 ### 5) Inspect service logs
 
     sudo journalctl -f -u SERVICE_NAME.service
+
+## Autostart Scripts
+
+### 1) System scripts
+
+    /etc/init.d/
+    /etc/rc.d/
+    /etc/systemd/system/
+
+### 2) User scripts
+
+    ~/.config/autostart/
+    ~/.config/
+
+User scripts format
+
+    .desktop
+
+## 
