@@ -119,4 +119,35 @@ User scripts format
 
     .desktop
 
-## 
+## Application and Browser Artifacts
+
+### 1) Verify which applications have been installed on the system
+
+    sudo dpkg -l
+
+### 2) Search for hidden information files from text editors
+
+Vim
+
+    find /home/ -type f -name ".viminfo" 2>/dev/null
+
+Nano
+
+    find /home/ -type f -name ".nano_history" 2>/dev/null
+
+Emacs
+
+    find /home/ -type f -name ".emacs" 2>/dev/null
+    find /home/ -type f -name ".emacs.d" 2>/dev/null
+
+### 3) Search for browser data in all users' home directories
+
+    sudo find /home -type d \( -path "*/.mozilla/firefox" -o -path "*/.config/google-chrome" \) 2>/dev/null
+
+### 4) Check the contents of the browser directory of a user to enumerate their profile
+
+    sudo ls -al /home/USER/.mozilla/firefox
+
+### 5) Dump all browser data for a specific user
+
+    dumpzilla '/home/USER/.mozilla/firefox/fsd89fs8df90.default/' --All
