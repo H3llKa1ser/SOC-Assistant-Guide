@@ -38,4 +38,6 @@ Osquery website
 
 ### 1) List network connections
 
-    osq
+    osquery> SELECT pid, family, remote_address, remote_port, local_address, local_port, state FROM process_open_sockets LIMIT 20;
+
+### 2) 
