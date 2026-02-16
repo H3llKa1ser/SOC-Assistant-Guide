@@ -8,9 +8,15 @@ Osquery website
 
     sudo osqueryi
 
-### 2) User accounts currently on the host
+## Users
+
+### 1) User accounts currently on the host
 
     osquery> Select username, uid, description from users;
+
+### 2) User accounts and their directories
+
+    osquery> select username, directory from users;
 
 ## Processes
 
