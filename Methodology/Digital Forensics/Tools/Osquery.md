@@ -40,4 +40,18 @@ Osquery website
 
     osquery> SELECT pid, family, remote_address, remote_port, local_address, local_port, state FROM process_open_sockets LIMIT 20;
 
-### 2) 
+### 2) Remote Connections (C2 communication detection)
+
+    osquery> SELECT pid, fd, socket, local_address, remote_address, local_port, remote_port FROM process_open_sockets WHERE remote_address IS NOT NULL;
+
+### 3) DNS Queries
+
+    osquery> SELECT * FROM dns_resolvers;
+
+### 4) Network Interfaces
+
+    osquery> SELECT interface, address, mask, broadcast FROM interface_addresses;
+
+### 5) Listening ports
+
+    osquery> SELECT * FROM listening_ports;
