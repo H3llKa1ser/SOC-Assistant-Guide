@@ -23,11 +23,24 @@ Search for elevated privilege command execution
 
 Search for failed login attempts
 
+    sudo grep -i "failure" /var/log/auth.log
     cat /var/log/btmp
 
 Search for every login and logout activity
 
     cat /var/log/wtmp
+
+Search for sessions opened for a user
+
+    sudo grep -i "session opened" /var/log/auth.log
+
+Filter by date and time
+
+    sudo awk '/2024-06-04 15:30:00/,/2024-06-05 15:29:59/' /var/log/auth.log
+
+Relative time filtering
+
+    sudo grep "$(date --date='2 hours ago' '+%b %e %H:')" /var/log/auth.log
 
 ### 3) View system messages
 
