@@ -151,3 +151,4 @@ Count HTTP status codes
 
     awk '{print $9}' /var/log/apache2/access.log* | sort | uniq -c | sort -nr
 
+
