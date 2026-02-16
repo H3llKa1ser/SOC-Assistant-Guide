@@ -68,3 +68,34 @@ Filter logs by service
 Filter logs by priority
 
     sudo journalctl -p crit
+
+### 5) Auditd
+
+Rules location
+
+    /etc/audit/audit.rules (Persistent)
+    auditctl (Temporary)
+
+Monitor actions on a specific file
+
+    sudo auditctl -w /tmp/file.txt -p wra -k KEY
+
+Monitor execve syscalls
+
+    sudo auditctl -a always,exit -F arch=b64 -S execve -k KEY
+
+Audit logs
+
+    cat /var/log/audit/audit.log
+
+Query audit logs
+
+    sudo ausearch -i -k KEY
+
+Generate reports
+
+    sudo ausearch -i -k KEY | ausreport -f REPORT_LOGS
+
+Real-time monitoring
+
+    audispd
