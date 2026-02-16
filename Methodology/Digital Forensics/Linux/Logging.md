@@ -112,3 +112,42 @@ Generate reports
 Real-time monitoring
 
     audispd
+
+### 6) Application logs
+
+#### Apache2
+
+Configuration file
+
+    /etc/apache2/apache2.conf (Main configuration file)
+    /etc/apache2/sites-available/000-default.conf (Virtual host configuration file)
+
+Location
+
+    cat /var/log/apache2/access.log 
+    cat /var/log/apache2/error.log (Error logs)
+
+Filter results from a specific IP address
+
+    grep "IP_ADDRESS" /var/log/apache2/access.log*
+
+Filter HTTP status codes
+
+    grep "404" /var/log/apache2/access.log*
+
+Filter HTTP methods
+
+    grep "POST" /var/log/apache2/access.log*
+
+Filter error codes
+
+    grep "error" /var/log/apache2/error.log*
+
+Count number of requests from IP addresses
+
+    awk '{print $1}' /var/log/apache2/access.log* | sort | uniq -c | sort -nr
+
+Count HTTP status codes
+
+    awk '{print $9}' /var/log/apache2/access.log* | sort | uniq -c | sort -nr
+
