@@ -28,6 +28,10 @@
 
     top -d SECONDS -c -u USER
 
+### 8) Find process PID by name
+
+    pidof PROCESS_NAME
+
 # Cronjobs
 
 Tools and resources:
