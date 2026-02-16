@@ -46,3 +46,25 @@ Syslog configuration file
     /etc/rsyslog.conf
     /etc/syslog.conf
     /etc/rsyslog.d/50-default.conf
+
+### 4) Journal
+
+Configuration file
+
+    /etc/systemd/journald.conf
+
+Filter logs by date and time
+
+    sudo journalctl --since "YYYY-MM-DD HH:MM:SS" --until "YYYY-MM-DD HH:MM:SS"
+
+Filter logs by a specific time
+
+    sudo journalctl --since "1 hour ago"
+
+Filter logs by service
+
+    sudo journalctl -u SERVICE_NAME.service
+
+Filter logs by priority
+
+    sudo journalctl -p crit
