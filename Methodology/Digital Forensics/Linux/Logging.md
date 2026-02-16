@@ -41,4 +41,8 @@ Search for kernel messages
 
     grep 'kernel' /var/log/syslog
 
+Syslog configuration file
 
+    /etc/rsyslog.conf
+    /etc/syslog.conf
+    /etc/rsyslog.d/50-default.conf
