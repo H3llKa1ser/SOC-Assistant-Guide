@@ -16,7 +16,7 @@ Osquery website
 
 ### 1) Process information
 
-    osquery> Select pid, name, parent,path from processes;
+    osquery> Select pid, name, parent, path from processes;
 
 ### 2) Processes running from tmp directory
 
@@ -33,6 +33,10 @@ Osquery website
 ### 5) Processes run from user directories
 
     osquery> SELECT pid, name, path, cmdline, start_time FROM processes WHERE path LIKE '/home/%' OR path LIKE '/Users/%';
+
+### 6) Analyzer a specific process in detail
+
+    osquery> select pid, name, path from processes where pid = 'PID';
 
 ## Networking
 
@@ -55,3 +59,25 @@ Osquery website
 ### 5) Listening ports
 
     osquery> SELECT * FROM listening_ports;
+
+## Files
+
+### 1) List all opened files that are associated with the corresponding processes
+
+    osquery> SELECT pid, fd, path FROM process_open_files;
+
+### 2) Search for files being accessed from the tmp directory (can be another directory, change accordingly)
+
+    osquery> SELECT pid, fd, path FROM process_open_files where path LIKE '/tmp/%';
+
+### 3) Hidden files in root directory (can be in another location, change accordingly)
+
+    osquery> SELECT filename, path, directory, size, type FROM file WHERE path LIKE '/.%';
+
+### 4) Recently modified files
+
+    osquery> SELECT filename, path, directory, type, size FROM file WHERE path LIKE '/etc/%' AND (mtime > (strftime('%s', 'now') - 86400));
+
+### 5) Recently modified binaries
+
+    osquery> SELECT filename, path, directory, mtime FROM file WHERE path LIKE '/opt/%' OR path LIKE '/bin/' AND (mtime > (strftime('%s', 'now') - 86400));
