@@ -23,3 +23,11 @@
 ### 4) Enumerate a Powershell Profile
 
     type "C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1"
+
+### 5) Check Powershell Version
+
+    Get-Module | ft ModuleType, Version, Name
+
+### 6) List loaded modules
+
+    Get-Module -ListAvailable | select ModuleType, Version, Name
