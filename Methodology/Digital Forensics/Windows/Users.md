@@ -2,7 +2,7 @@
 
 ### 1) List local users
 
-    Get-LocalUser | tee l-users.txt
+    Get-LocalUser | ft Name, SIDtee l-users.txt
 
 ### 2) More details for local users
 
