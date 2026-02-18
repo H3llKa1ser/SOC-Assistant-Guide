@@ -42,6 +42,8 @@ Tools:
 
 2) Timeline Explorer (Eric Zimmerman Tools)
 
+#### TIP: AmCache refreshes itself every restart
+
 ### 1) Parse AmCache hile
 
     .\AmcacheParser.exe -f "C:\Windows\appcompat\Programs\Amcache.hve" --csv C:\Users\Administrator\Desktop --csvf Amcache_Parsed.csv
