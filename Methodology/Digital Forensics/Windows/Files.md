@@ -33,3 +33,15 @@ Tools:
 ### 1) Parse Prefetch files
 
     .\PECmd.exe -d "C:\Windows\Prefetch" --csv C:\Users\Administrator\Desktop --csvf Prefetch-Parsed.csv
+
+## Amcache (Appcompatcache/Shimcache)
+
+Tools:
+
+1) AmcacheParser (Eric Zimmerman Tools)
+
+2) Timeline Explorer (Eric Zimmerman Tools)
+
+### 1) Parse AmCache hile
+
+    .\AmcacheParser.exe -f "C:\Windows\appcompat\Programs\Amcache.hve" --csv C:\Users\Administrator\Desktop --csvf Amcache_Parsed.csv
