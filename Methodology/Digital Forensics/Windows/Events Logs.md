@@ -57,3 +57,19 @@ Logs location:
 5) User account deletion
 
 - 4726
+
+6) User account succcessful login
+
+- 4624
+
+7) User account failed login
+
+- 4625
+
+8) A Kerberos authentication ticket (TGT) was requested
+
+- 4768
+
+9) Kerberos pre-auth failed
+
+- 4771
