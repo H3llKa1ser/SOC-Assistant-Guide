@@ -9,6 +9,7 @@ Tools:
 Important registry hives location
 
     C:\Windows\System32\config\
+    C:\Users\USER\ (NTUSER.dat)
 
 Important registry hives:
 
