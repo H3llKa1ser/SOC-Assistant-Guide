@@ -84,3 +84,11 @@ Important info:
 
         {F4E57C4B-2036-45F0-A9AB-443BCFE33D9F}
 
+### 6) RunMRU registry key
+
+Stores information about the most recently executed prorgams via Run dialogue window.
+
+Location: 
+
+    HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU
+
