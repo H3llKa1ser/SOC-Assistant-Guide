@@ -6,6 +6,10 @@ Tools:
 
 2) Timeline Explorer (Eric Zimmerman Tools)
 
+#### .LNK Files location
+
+    C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Recent Items
+
 ### 1) Parse LNK files
 
     .\LECmd.exe -d C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Recent --csvf Parsed-LNK.csv --csv C:\Users\Administrator\Desktop
