@@ -34,6 +34,35 @@ Tools:
 
     Get-ADDBAccount -All -DBPath 'C:\Exports\Active Directory\NTDS.dit' -BootKey $bootKey
 
+### 6) GPO
+
+#### Custom user settings
+
+    HKEY_CURRENT_USER
+
+#### Login Scripts
+
+Location
+
+    TARGET_GPO -> User Configuration -> SYSVOL
+
+#### User Rights Assignments
+
+    %SystemRoot%\security\database\secedit.sdb
+
+#### Security Policy Changes
+
+    HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies
+
+#### System Services Configurations
+
+    HKEY_LOCAL_MACHINE\SYSTEM
+
+#### Network Configuration Adjustments
+
+    HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList
+    %SystemRoot%\System32\drivers\etc
+    
 # Sessions
 
 ### 1) List current sessions
