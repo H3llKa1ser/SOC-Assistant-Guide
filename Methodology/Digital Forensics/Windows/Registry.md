@@ -21,6 +21,8 @@ Important registry hives:
 
 4) SOFTWARE
 
+## File Explorer
+
 ### 1) TypedPaths registry key
 
 Identify directories searched or accessed through the file explorer's address bar.
@@ -93,3 +95,28 @@ Location:
 
     HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU
 
+## ShellBags
+
+Tools:
+
+1) ShellBags Explorer (Eric Zimmerman Tools)
+
+2) Regedit
+
+Give information about which folders were accessed, when and how they were viewed.
+
+Important key hives
+
+1) NTUSER.dat
+
+        %USERPROFILE%\NTUSER.dat
+
+2) USRCLASS.dat
+
+        %USERPROFILE%\AppData\Local\Microsoft\Windows\UsrClass.dat
+
+### 1) Main registry hive
+
+Location:
+
+    Computer\HKEY_CURRENT_USER\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell
