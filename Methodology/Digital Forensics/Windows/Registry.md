@@ -124,3 +124,13 @@ Important key hives
 Location:
 
     Computer\HKEY_CURRENT_USER\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell
+
+## Data Extraction
+
+### 1) Search for a text in key names in a specific registry
+
+    RECmd.exe -f c:\Users\Administrator\Desktop\collection\c\windows\System32\config\SAM --sk TEXT
+
+### 2) View key details
+
+    RECmd.exe -f c:\Users\Administrator\Desktop\collection\c\windows\System32\config\SAM --kn SAM\Domains\Account\Users\Names\Administrator
