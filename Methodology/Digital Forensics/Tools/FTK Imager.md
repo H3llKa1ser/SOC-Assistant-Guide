@@ -14,11 +14,11 @@ Cold Acquisition
 
 ## Registry data Acquisition
 
-Live System
+Live Acquisition
 
     Click Obtain Protected Files (Does not acquire all registry hives)
 
-Cold Acquisition
+Live/Cold Acquisition
 
     Navigate to the location of the hives -> Select them -> Export Files to a location of our choice
 
