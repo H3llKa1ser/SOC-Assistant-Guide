@@ -10,6 +10,8 @@ Tools:
 
 4) RECmd (Eric Zimmerman Tools)
 
+5) RegRipper
+
 Important registry hives location
 
     C:\Windows\System32\config\
