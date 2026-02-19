@@ -6,6 +6,8 @@ Tools:
 
 2) Regedit
 
+3) FTK Imager
+
 Important registry hives location
 
     C:\Windows\System32\config\
