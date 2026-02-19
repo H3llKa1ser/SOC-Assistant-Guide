@@ -10,7 +10,7 @@
 
     Check Use Target Options -> Target Source, then choose the drive of your choice (Live system, choose C) -> Target Destination to save your collected data -> Search for "Registry Hives" -> Uncheck Flush
 
-### 3) Btach Mode data collection
+### 3) Batch Mode data collection
 
 Create a _kape.cli file that contains the command you wish to be executed. Omit the .\kape.exe in the file.
 
