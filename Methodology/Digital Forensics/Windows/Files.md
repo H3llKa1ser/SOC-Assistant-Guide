@@ -51,3 +51,16 @@ Tools:
 ### 1) Parse AmCache hile
 
     .\AmcacheParser.exe -f "C:\Windows\appcompat\Programs\Amcache.hve" --csv C:\Users\Administrator\Desktop --csvf Amcache_Parsed.csv
+
+## Jump Lists
+
+They note which files were opened, what apps were used and which websites were visited.
+
+Tools:
+
+1) JumpListExplorer (Eric Zimmerman Tools)
+
+Locations:
+
+    %APPDATA%\Microsoft\Windows\Recent\AutomaticDestinations
+    %APPDATA%\Microsoft\Windows\Recent\CustomDestinations
