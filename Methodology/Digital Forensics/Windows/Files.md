@@ -16,6 +16,10 @@ Tools:
 
     .\LECmd.exe -d C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Recent --csvf Parsed-LNK.csv --csv C:\Users\Administrator\Desktop
 
+### 2) Parse a specific LNK file
+
+    .\LECmd.exe -f C:\Users\USER\AppData\Roaming\Microsoft\Windows\Recent\FILE.lnk
+
 Then, run the TimelineExplorer program and drag the .csv file to it for analysis
 
 ## File Execution
