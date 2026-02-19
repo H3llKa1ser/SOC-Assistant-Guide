@@ -8,6 +8,8 @@ Tools:
 
 3) FTK Imager
 
+4) RECmd (Eric Zimmerman Tools)
+
 Important registry hives location
 
     C:\Windows\System32\config\
