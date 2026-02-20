@@ -1,5 +1,9 @@
 # Google Chrome
 
+Tools:
+
+1) ChromeCacheView
+
 Location:
 
     C:\Users\USER\AppData\Local\Google\Chrome\User Data
