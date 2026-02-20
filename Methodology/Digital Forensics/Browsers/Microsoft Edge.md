@@ -34,6 +34,22 @@ In the Profile Path, insert your target user's Default directory profile, then c
 
     C:\Users\USER\AppData\Local\Microsoft\Edge\User Data\Default
 
-Load the results using SQLite DB in browser
+Load the results using SQLite DB in browser OR you can save the resutls in a DB file.
 
     View SQLite DB in Browser
+    Save SQLite DB
+
+#### SQL Queries to use
+
+Investigate URLs visited by the user
+
+    SELECT timestamp,url,title,visit_duration,visit_count,typed_count FROM 'timeline' WHERE type = 'url' LIMIT 0,30
+
+Investigate download attempts made
+
+    SELECT timestamp,url,title,value FROM timeline WHERE type = 'download' LIMIT 0,30
+
+View cookies' metadata
+
+    SELECT type,origin,key,value FROM 'storage' LIMIT 0,30
+
