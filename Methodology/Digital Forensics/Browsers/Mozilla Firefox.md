@@ -40,6 +40,10 @@ Go to last_visit_date column and convert epoch to human readable to get the time
 
     https://www.epochconverter.com/
 
+Use table to find the download metadata
+
+    moz_annos
+
 ### 3) Cookies.sqlite artifact analysis
 
 Open the DB file in DB Browser for SQLite
