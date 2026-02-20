@@ -12,7 +12,7 @@
 
     Get-NetFirewallProfile | ft Name, Enabled, DefaultInboundAction, DefaultOutboundAction | tee fw-profiles.txt
 
-## 4) Firewall Rules
+### 4) Firewall Rules
 
     Get-NetFirewallRule | Where-Object { $_.Enabled -eq "True" } | Sort-Object -Property DisplayName | ft -Property DisplayName,
     @{Name='Protocol';Expression={($PSItem | Get-NetFirewallPortFilter).Protocol}},
