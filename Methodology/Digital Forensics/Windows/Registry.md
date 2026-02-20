@@ -101,6 +101,12 @@ Location:
 
     HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU
 
+### 7) Persistence on Startup
+
+Location:
+
+    HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+
 ## Amcache (Appcompatcache/Shimcache)
 
 Use this to extract artifacts to prove evidence of execution
