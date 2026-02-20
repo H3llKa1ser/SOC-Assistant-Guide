@@ -1,5 +1,9 @@
 # Mozilla Firefox
 
+Tools:
+
+1) DB Browser for SQLite (places.sqlite)
+
 Browsing data stored location:
 
     C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles
