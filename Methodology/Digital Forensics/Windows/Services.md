@@ -6,6 +6,10 @@ Tools:
 
 2) Task Manager
 
+Location:
+
+    HKLM\SYSTEM\CurrentControlSet\Services
+
 #### Important Event IDs:
 
 1) New Service installation
@@ -19,6 +23,30 @@ Tools:
 ### 1) List running services
 
     "Running Services:"; Get-CimInstance -ClassName Win32_Service | Where-Object { $_.State -eq "Running" } | Select-Object Name, DisplayName, State, StartMode, PathName, ProcessId | ft -AutoSize | tee services-active.txt
+
+List all services set to automatic
+
+    Get-Service | Where-Object {$_.Status -eq "Running" -and $_.StartType -eq "Automatic"}
+
+List the binary these services execute
+
+    $services = Get-Service | Where-Object {$_.Status -eq "Running" -and $_.StartType -eq "Automatic"}
+    
+    foreach ($service in $services) {
+        $serviceName = $service.Name
+        $serviceDisplayName = $service.DisplayName
+        $serviceStatus = $service.Status
+        $serviceWMI = (Get-WmiObject Win32_Service | Where-Object { $_.Name -eq $serviceName })
+        $servicePath = $serviceWMI.PathName
+        $serviceUser = $serviceWMI.StartName
+    
+        Write-Host "Service Name: $serviceName"
+        Write-Host "Display Name: $serviceDisplayName"
+        Write-Host "Service Status: $serviceStatus"
+        Write-Host "Executable Path: $servicePath"
+        Write-Host "User Context: $serviceUser"
+        Write-Host ""
+    }
 
 ### 2) List non-running services
 
