@@ -21,3 +21,18 @@ Run XstReader, then go to:
 To check for email attachments, go to:
 
     Root - Mailbox -> IPM_SUBTREE -> Conversation History -> Click on the paperclip symbol
+
+Investigate the attachment by acquiring a copy
+
+    Save All Attachments
+
+View Email Headers
+
+    Click the radio button "Properties"
+
+### 3) Check if a user has opened a file directly using the Outlook client
+
+Files here are stored temporarily until the client is terminated.
+
+    ls -rec C:\Users\USER\AppData\Local\Microsoft\Windows\INetCache\Content.Outlook
+
