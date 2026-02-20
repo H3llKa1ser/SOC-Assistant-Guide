@@ -24,3 +24,16 @@ Default Chrome user profile location
 
     ls C:\Users\ | foreach {ls "C:\Users\$_\AppData\Local\Google\Chrome\User Data\Default" 2>$null | findstr Directory}
 
+### 2) Extensions directory analysis
+
+Go to the extensions directory to find any extensions associated with the user profile
+
+    cd 'C:\Users\USER\AppData\Local\Google\Chrome\User Data\Default\Extensions\'
+    dir
+
+Go to one of the extension directories, then open important files for analysis like:
+
+    manifest.js (Structure and behavior of the extension)
+    background.js (Scripts running in the background)
+    content_scripts.js (Files injected into the sites visited)
+    script.js 
