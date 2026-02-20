@@ -47,6 +47,20 @@ Windows Defender Logs
 
 - 5001
 
+2) Threat detected
+
+- 1116
+
+3) Threat remediated
+
+- 1117
+
+4) Defender settings modification or exclusion
+
+- 5007
+
+- 5013
+
 ### 3) User Accounts
 
 Logs location:
