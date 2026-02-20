@@ -2,7 +2,7 @@
 
 Tools:
 
-1) Task Scheduler
+1) Task Scheduler (taskschd.msc)
 
 Location:
 
