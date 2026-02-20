@@ -101,11 +101,13 @@ Location:
 
     HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU
 
-### 7) Persistence on Startup
+### 7) Persistence Mechanisms
 
 Location:
 
     HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+    HKLM\SYSTEM\ControlSet001\Services
+
 
 ## Amcache (Appcompatcache/Shimcache)
 
