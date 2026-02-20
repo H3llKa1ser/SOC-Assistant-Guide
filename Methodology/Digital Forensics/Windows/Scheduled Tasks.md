@@ -27,3 +27,20 @@ Location:
 Go to:
 
     Run program (CTRL+R) -> eventvwr.msc -> Windows Logs -> Security -> Filter Current Log -> Type the event IDs 4698,4702 -> OK
+
+### 3) List all running scheduled tasks
+
+    Get-ScheduledTask | Where-Object {$_.State —ne "Disabled"}
+
+OR
+
+    schtasks.exe /query /fo CSV | findstr /V Disabled
+
+OR
+
+    Get-ScheduledTask | Where-Object {$_.Date —ne $null —and $_.State —ne "Disabled"} | Sort-Object Date | select Date,TaskName,Author,State,TaskPath | ft
+
+One-Liner
+
+    Get-ScheduledTask | Where-Object {$_.Date —ne $null —and $_.State —ne "Disabled" —and $_.Actions.Execute —ne $null} | Sort-Object Date
+
