@@ -90,3 +90,62 @@ Location:
     }
         }
         $messages | fl
+
+### 7) Parse the properties field and collect the file attachment information. View conversation threads as well.
+
+     $teams_metadata = cat .\output.json | ConvertFrom-Json
+    $users = @{}
+    $messages = @{}
+    
+    # Initialise user hashtable for correlation
+    foreach ($data in $teams_metadata) {
+       if ($data.record_type -eq "contact") {
+         $users.add($data.mri, $data.userPrincipalName)
+       }
+    }
+    
+    # Combine all conversations/messages with the same ID
+    foreach ($data in $teams_metadata) {
+      if ($data.record_type -eq "message") {
+        if ($messages.keys -notcontains $data.conversationId) {
+          $messages[$data.conversationId] = [System.Collections.ArrayList]@()
+        }
+        $messages[$data.conversationId].add($data) > $null
+      }
+    }
+    
+    # Print the parsed output focused on the significant values
+    foreach ($conversationID in $messages.keys) {
+      Write-Host "Conversation ID: $conversationID`n"
+      $conversation = $messages[$conversationID] | Sort createdTime
+      foreach ($message in $conversation) {
+        $createdTime = $message.createdTime
+        $fromme = $message.isFromMe
+        $content = $message.content
+        $sender = $users[$message.creator]
+        $direction = if ($message.isFromMe) { 'Outbound' } else { 'Inbound' }
+        $attachments = if ($message.properties.files) { 'True' } else {'False'}
+    
+        Write-Host "Created Time: $createdTime"
+        Write-Host "Sent by: $sender"
+        Write-Host "Direction: $direction"
+        Write-Host "Message content: $content"
+        Write-Host "Has attachment: $attachments"
+        
+        # Parse file attachment details
+        if ($attachments -eq "True") {
+          foreach ($attachment in $message.properties.files) {
+            $filename = $attachment.fileName
+            $location = $attachment.fileInfo.fileUrl
+            $type = $attachment.fileType
+            
+            Write-Host "Attachment name: $filename"
+            Write-Host "Attachment location: $location"
+            Write-Host "Attachment type: $type"
+          }
+        }
+        Write-Host "`n"
+      }
+    
+      Write-host "----------------`n"
+    }
