@@ -6,6 +6,10 @@ Tools:
 
 2) SRUMDump https://github.com/MarkBaggett/srum-dump
 
+3) Netstat
+
+4) Pktmon (Packet Monitor)
+
 ### 1) List TCP Connections
 
     Get-NetTCPConnection | select Local*, Remote*, State, OwningProcess,` @{n="ProcName";e={(Get-Process -Id $_.OwningProcess).ProcessName}},` @{n="ProcPath";e={(Get-Process -Id $_.OwningProcess).Path}} | sort State | ft -Auto | tee tcp-conn.txt
@@ -75,3 +79,22 @@ Use SRUMDump tool and fill the relevant information:
 ### 11) Query RDP logs
 
     qwinsta
+
+## Pktmon Commands
+
+| Command              | Description                                                                |
+|----------------------|----------------------------------------------------------------------------|
+| `pktmon start`       | Start a PacketMonitor capture.                                             |
+| `pktmon stop`        | Stop a PacketMonitor capture.                                              |
+| `pktmon reset`       | Reset the count of packets that PacketMonitor has captured.                |
+| `pktmon counters`    | View the amount of packets PacketMonitor has captured across the interfaces.|
+| `pktmon etl2txt`     | Convert a PacketMonitor capture file to a text file.                       |
+| `pktmon etl2pcap`    | Convert a PacketMonitor capture file to a pcap.                            |
+
+## Netstat
+
+### 1) Main commands to display connections
+
+    netstat -ano
+    netstat -antp
+    netstat -anob
