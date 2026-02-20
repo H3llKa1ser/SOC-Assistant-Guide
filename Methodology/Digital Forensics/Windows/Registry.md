@@ -101,6 +101,28 @@ Location:
 
     HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU
 
+## Amcache (Appcompatcache/Shimcache)
+
+Use this to extract artifacts to prove evidence of execution
+
+Tools:
+
+1) AmcacheParser (Eric Zimmerman Tools)
+
+2) Timeline Explorer (Eric Zimmerman Tools)
+
+3) AppCompatCacheParser
+
+#### TIP: AmCache refreshes itself every restart
+
+### 1) Parse AmCache file
+
+    .\AmcacheParser.exe -f "C:\Windows\appcompat\Programs\Amcache.hve" --csv C:\Users\Administrator\Desktop --csvf Amcache_Parsed.csv
+
+### 2) Parse ShimCache file
+
+    .\AppCompatCacheParser.exe --csv output
+
 ## ShellBags
 
 Tools:
