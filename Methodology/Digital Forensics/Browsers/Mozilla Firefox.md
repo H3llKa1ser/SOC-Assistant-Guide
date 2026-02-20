@@ -28,3 +28,24 @@ Followed by the Regex format:
 
     ls C:\Users\ | foreach {ls "C:\Users\$_\AppData\Roaming\Mozilla\Firefox\Profiles" 2>$null}
 
+### 2) Place.sqlite artifact analysis
+
+Open the DB file with DB Browser for SQLite
+
+Use table to analyze browsing history
+
+    moz_places
+
+Go to last_visit_date column and convert epoch to human readable to get the time visited
+
+    https://www.epochconverter.com/
+
+### 3) Cookies.sqlite artifact analysis
+
+Open the DB file in DB Browser for SQLite
+
+Use table to analyze cookie data
+
+    moz_cookies
+
+Filter based on use-case
