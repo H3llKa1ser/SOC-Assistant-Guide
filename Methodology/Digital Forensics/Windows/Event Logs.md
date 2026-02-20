@@ -117,4 +117,22 @@ Location:
 
 - 4104
 
+### 5) Scheduled Tasks
 
+Location:
+
+    Event Viewer -> Apps and Services Logs -> Microsoft -> Windows -> TaskScheduler -> Operational
+
+#### Important Event IDs
+
+1) Task Creation
+
+- 106
+
+2) Task Startup
+
+- 100
+
+3) Immediately after task creation
+
+- 129
