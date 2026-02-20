@@ -73,3 +73,30 @@ Logs location:
 9) Kerberos pre-auth failed
 
 - 4771
+
+### 4) PowerShell 
+
+Locations:
+
+1) PowerShell History
+
+       %AppData%\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+
+#### Important Event IDs
+
+1) PowerShell Event Channel
+
+Location:
+
+    Event Viewer -> Applications and Services Logs -> Windows PowerShell
+
+- 600
+
+2) PowerShell ScriptBlock Logging
+
+Location: 
+
+    Event Viewer -> Apps and Services Logs -> Microsoft -> Windows -> PowerShell -> Operational
+
+- 4104
+
