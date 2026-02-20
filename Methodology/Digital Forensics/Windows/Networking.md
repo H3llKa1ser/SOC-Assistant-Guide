@@ -26,10 +26,6 @@ OR
 
     Get-CimInstance -Class Win32_Share | tee net-shares.txt
 
-OR 
-
-    Get-SmbConnection
-
 ### 4) Firewall Configuration
 
     Get-NetFirewallProfile | ft Name, Enabled, DefaultInboundAction, DefaultOutboundAction | tee fw-profiles.txt
@@ -79,6 +75,11 @@ Use SRUMDump tool and fill the relevant information:
 ### 11) Query RDP logs
 
     qwinsta
+
+### 12) List SMB Connections and Shares
+
+    Get-SmbConnection
+    Get-SmbShare
 
 ## Pktmon Commands
 
