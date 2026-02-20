@@ -80,7 +80,7 @@ Locations:
 
 1) PowerShell History
 
-       %AppData%\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+       C:\Users\USER\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
 
 #### Important Event IDs
 
