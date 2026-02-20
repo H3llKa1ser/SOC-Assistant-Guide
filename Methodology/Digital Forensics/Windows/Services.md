@@ -1,5 +1,11 @@
 # Services
 
+Tools:
+
+1) services.msc
+
+2) Task Manager
+
 #### Important Event IDs:
 
 1) New Service installation
