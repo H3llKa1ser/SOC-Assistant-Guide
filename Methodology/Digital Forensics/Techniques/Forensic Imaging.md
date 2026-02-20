@@ -66,7 +66,7 @@ Acquire UUID of the image
 
     sudo lsblk -l
 
-### 2) Get MD5 hash of the forensic image, then make the cross-verification with the device if it has the same hash
+### 2) Get SHA256 hash of the forensic image, then make the cross-verification with the device if it has the same hash
 
     sudo sha256sum example.img
     sudo sha256sum /dev/loop0
