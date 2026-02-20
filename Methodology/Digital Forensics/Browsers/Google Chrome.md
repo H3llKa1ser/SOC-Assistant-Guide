@@ -41,3 +41,4 @@ Go to one of the extension directories, then open important files for analysis l
     background.js (Scripts running in the background)
     content_scripts.js (Files injected into the sites visited)
     script.js 
+
