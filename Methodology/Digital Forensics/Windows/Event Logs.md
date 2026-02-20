@@ -4,6 +4,8 @@ Tools:
 
 1) Event Viewer
 
+2) EvtxECmd
+
 ## Event Types
 
 ### 1) RDP
@@ -34,6 +36,10 @@ RDP Logs
 4) Reconnect
 
 - 25
+
+#### Parse RDP Logs
+
+    .\EvtxECmd.exe -f .\Microsoft-Windows-TerminalServices-RemoteConnectionManager%4Operational.evtx --csv output --csvf RDPlog.csv
 
 ### 2) Windows Defender
 
