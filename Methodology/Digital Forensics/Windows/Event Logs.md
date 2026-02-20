@@ -11,12 +11,29 @@ Tools:
 RDP Logs
 
     Applications and Services Logs -> Microsoft -> Windows -> Terminal-Services-RemoteConnectionManager > Operational
+    Event Viewer -> Applications and Services Logs -> Microsoft -> Windows -> TerminalServices-LocalSessionManager -> Operational
 
 #### Important Event IDs:
 
 1) Successful Login
 
 - 1149
+
+- 4624 (Logon Type 10)
+
+- 21
+
+2) Failed login
+
+- 4625
+
+3) Disconnect
+
+- 24
+
+4) Reconnect
+
+- 25
 
 ### 2) Windows Defender
 
@@ -100,28 +117,4 @@ Location:
 
 - 4104
 
-### 5) RDP 
 
-Location:
-
-    Event Viewer -> Applications and Services Logs -> Microsoft -> Windows -> TerminalServices-LocalSessionManager -> Operational
-
-#### Important Event IDs
-
-1) Successful login
-
-- 4624 (Logon Type 10)
-
-- 21
-
-2) Failed login
-
-- 4625
-
-3) Disconnect
-
-- 24
-
-4) Reconnect
-
-- 25
