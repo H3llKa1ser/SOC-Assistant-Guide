@@ -188,3 +188,39 @@ Locations:
     ~/Library/Containers/com.microsoft.APP/Data/Library/Preferences
 
 View with plistutil / plutil
+
+## Browser History, Downloads and Bookmarks
+
+### 1) Safari
+
+Location:
+
+    ~/Library/Safari
+
+Important files:
+
+    Downloads.plist
+    UserNotificationPermissions.plist
+    Bookmarks.plist
+    History.db
+
+Tool: APOLLO's safari_history module
+
+Safari Cache
+
+    ~/Library/Containers/com.apple.Safari/Data/Library/Caches
+
+Important information:
+
+    TabSnapshots (Session restore)
+    WebKitCache (Browser Cache)
+
+### 2) Other Browsers
+
+Similar locations like Safari
+
+#### Chrome
+
+    ~/Library/Application\ Support/Google/Chrome/Default
+    ~/Library/Application\ Support/Google/Chrome/Default/Sessions/
+    ~/Library/Application\ Support/Google/Chrome/Default/Extensions
