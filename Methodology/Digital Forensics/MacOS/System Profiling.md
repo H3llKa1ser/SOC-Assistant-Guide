@@ -1,5 +1,7 @@
 # System Profiling
 
+## Use plistutil if you are on Linux instead of plutil
+
 ### 1) OS Version
 
 View System information (Mount the System volume first)
@@ -20,6 +22,7 @@ In DB Browser for SQLite, after loading the files, to see the serial number, go 
 ### 3) OS Installation date
 
     stat -x /private/var/db/.AppleSetupDone
+    stat /private/var/db/.AppleSetupDone (Linux)
 
 More details about OS Installation and updates
 
