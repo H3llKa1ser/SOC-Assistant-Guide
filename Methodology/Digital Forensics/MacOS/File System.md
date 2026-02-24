@@ -23,7 +23,7 @@ Tools:
 
 ### 1) Parse DS Store file
 
-    python3 parse.py ../.DS_Store
+    python3 parse.py /Users/.DS_Store
 
 ## Most Recently Used (MRU)
 
