@@ -30,4 +30,4 @@ Tools: APOLLO, DB Browser
 
 Use queries available in the APOLLO utility. Queries are in the file below:
 
-    cat knowledge_app_usage.txt
+    cat /home/USER/APOLLO/modules/knowledge_app_usage.txt
