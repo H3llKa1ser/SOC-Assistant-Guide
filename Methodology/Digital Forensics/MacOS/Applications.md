@@ -115,3 +115,72 @@ Locations:
 
 Tool: APOLLO's sms_chat module
 
+## Productivity Apps
+
+### 1) Emails
+
+Location:
+
+    ~/Library/Mail/V#/<UUID>/*.mbox
+
+Useful Directories
+
+    All Mail.mbox
+    Trash.mbox
+    Sent Mail.mbox
+    Drafts.mbox
+
+Important file to read:
+
+    plistutil -p Info.plist
+
+Messages and Attachments location example:
+
+    ls * /Users/USER/Library/Mail/V10/DEC2D507-7869-4151-98C3-E2F920A935CF/[Gmail].mbox/All Mail.mbox/708E1A15-F24E-40B5-8A69-FFD9A89FF251/Data
+
+### 2) Calendar
+
+Location:
+
+    ~/Library/Group\ Containers/group.com.apple.calendar/Calendar.sqlitedb
+
+Useful table:
+
+    CalendarItem
+
+### 3) Notes
+
+Location:
+
+    ~/Library/Group\ Containers/group.com.apple.notes/NoteStore.sqlite
+
+#### Parse the details of the database using mac_apt NOTES module
+
+    python3 mac_apt.py -o OUTPUT -c DD DISK_IMAGE NOTES
+
+Attachments location:
+
+    ~/Library/Group\ Containers/group.com.apple.notes/Accounts/<UUID>/Media
+
+Thumbnails location:
+
+    ~/Library/Group\ Containers/group.com.apple.notes/Accounts/<UUID>/Previews
+
+### 4) Reminders
+
+Location:
+
+    ~/Library/Group\ Containers/group.com.apple.reminders/Container_v1/Stores
+
+Useful table:
+
+    ZREMCDREMINDER
+
+### 5) Office Applications
+
+Locations:
+
+    ~/Library/Containers/com.microsoft.APP/Data
+    ~/Library/Containers/com.microsoft.APP/Data/Library/Preferences
+
+View with plistutil / plutil
