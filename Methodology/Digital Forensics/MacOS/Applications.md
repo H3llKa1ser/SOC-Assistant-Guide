@@ -25,3 +25,27 @@ More details about an app
 Installation details
 
     cat /var/log/install.log | grep Installed
+
+## Autostart
+
+### 1) Launch Agents (User) and Launch Daemons (System)
+
+Locations:
+
+    /System/Library
+    /Library
+    ~/Library
+
+Tools: plistutil / plutil
+
+### 2) Saved Application State
+
+Locations:
+
+##### Legacy Applications
+
+    ~/Library/Saved Application State/<application>.savedState
+
+##### Sandboxed macOS Applications
+
+    ~/Library/Containers/<application>/Data/Library/Application Support/<application>/Saved Application State/<application>.savedState
