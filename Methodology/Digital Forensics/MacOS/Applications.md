@@ -148,6 +148,10 @@ Useful table:
 
     CalendarItem
 
+Caclulate timestamps:
+
+    Timestamp + 978307200 = Epoch timestamp (Convert to epoch converter to get the date: https://www.epochconverter.com/)
+
 ### 3) Notes
 
 Location:
