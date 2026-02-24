@@ -76,3 +76,42 @@ AUTH_REASON Tab
     2 (User Consent)
     4 (System Set)
 
+## Contacts, Calls and Messages
+
+### 1) Contacts
+
+Location:
+
+    ~/Library/Application Support/AddressBook
+
+Metadata files: .plist
+
+Source files: .db
+
+Contact using apps location:
+
+    /private/var/db/CoreDuet/People/interactionC.db
+
+Tool: APOLLO's interaction_contact_interactions module
+
+#### TIP: If iCloud sync is enabled, it will include all interactions with contacts regardless of the device being accessed from.
+
+### 2) Calls
+
+Location:
+
+    ~/Library/Application Support/CallHistoryDB/CallHistory.storedata
+
+Tool: APOLLO's call_history module
+
+#### Same TIP as above.
+
+### 3) Messages
+
+Locations:
+
+    ~/Library/Messages/chat.db
+    ~/Library/Messages/Attachments
+
+Tool: APOLLO's sms_chat module
+
