@@ -71,3 +71,7 @@ Locations:
 
 Tools: APOLLO's tcc_db module
 
+AUTH_REASON Tab
+
+    2 (User Consent)
+    4 (System Set)
