@@ -49,3 +49,25 @@ Locations:
 ##### Sandboxed macOS Applications
 
     ~/Library/Containers/<application>/Data/Library/Application Support/<application>/Saved Application State/<application>.savedState
+
+## Notifications and Permissions
+
+### 1) Notifications
+
+Location:
+
+    /Users/USER/Library/Group\ Containers/group.com.apple.usernoted/db2
+
+Tools: APOLLO's notification_db module
+
+#### TIP: Convert notofication data presented in Hex to ASCII (Cyberchef) and save it as a plist file, then view with plistutil.
+
+### 2) Permissions
+
+Locations:
+
+    /Library/Application Support/com.apple.TCC/TCC.db
+    ~/Library/Application Support/com.apple.TCC/TCC.db
+
+Tools: APOLLO's tcc_db module
+
