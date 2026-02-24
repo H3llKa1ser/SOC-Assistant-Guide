@@ -49,3 +49,4 @@ Check if location services are active
 Check for shutdown events
 
     log show --info --predicate 'eventMessage contains "com.apple.system.loginwindow" and eventMessage contains "SessionAgentNotificationCenter"' 
+
