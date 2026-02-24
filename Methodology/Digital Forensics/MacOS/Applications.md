@@ -224,3 +224,30 @@ Similar locations like Safari
     ~/Library/Application\ Support/Google/Chrome/Default
     ~/Library/Application\ Support/Google/Chrome/Default/Sessions/
     ~/Library/Application\ Support/Google/Chrome/Default/Extensions
+
+## Photos
+
+Location:
+
+    ~/Pictures/Photos Library.photoslibrary
+
+Important files:
+
+    original (Directory)
+    database (Directory)
+    Photos.sqlite
+
+## Wallet and Apple Pay
+
+Location:
+
+    ~/Library/Passes
+
+Importanf files
+
+    Cards (Directory)
+    *.pkpass files
+    pass.json (Inside .pkpass files)
+    passes23.sqlite
+
+Tool: APOLLO's passes23_* module (TIP: Against newer macOS versions, change the queries from PAYMENT_TRANSACTION.PASS_PID to PAYMENT_TRANSACTION.PID)
