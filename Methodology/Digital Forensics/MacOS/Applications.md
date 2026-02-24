@@ -250,4 +250,6 @@ Importanf files
     pass.json (Inside .pkpass files)
     passes23.sqlite
 
-Tool: APOLLO's passes23_* module (TIP: Against newer macOS versions, change the queries from PAYMENT_TRANSACTION.PASS_PID to PAYMENT_TRANSACTION.PID)
+Tool: APOLLO's passes23_* module 
+
+#### (TIP: Against newer macOS versions, change the queries from PAYMENT_TRANSACTION.PASS_PID to PAYMENT_TRANSACTION.PID)
