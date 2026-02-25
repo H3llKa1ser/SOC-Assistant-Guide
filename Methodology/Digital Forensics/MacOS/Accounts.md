@@ -28,7 +28,7 @@ Logout event: DEAD_PROCESS
 
     grep USER_PROCESS asl.csv
 
-### 6) Screen locl/unlock
+### 6) Screen lock/unlock
 
 #### Read from parsed unified logs
 
