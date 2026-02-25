@@ -58,3 +58,17 @@ Locations:
 Locations:
 
     /data/data/[app.package.name]/
+
+### 8) User Accounts and Google Services
+
+Locations:
+
+    /data/system/users/0/accounts.db
+    /data/data/com.google.android.gms/databases
+
+### 9) Installed Applications
+
+Location:
+
+    /data/system/packages.xml
+
