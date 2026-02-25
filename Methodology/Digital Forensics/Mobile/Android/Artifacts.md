@@ -12,9 +12,38 @@ Locations:
 
     /data/data/com.android.providers.telephony/databases/mmssms.db
 
+Access the database:
+
+    sqlite3 mmssms.db
+
+Check tables:
+
+    .tables
+
+Retrieve content of SMS table
+
+    select * from SMS;
+
+Change mode of output
+
+    .mode MODE
+    .mode ? (Check various options)
+
 #### Call logs
 
     /data/data/com.android.providers.contacts/databases/calllog.db
+
+Access the database:
+
+    sqlite3 calllog.db
+
+Check tables:
+
+    .table
+
+Retrieve content of Calls
+
+    select * from calls;
 
 ### 2) Contacts and Address Book
 
@@ -22,11 +51,35 @@ Location:
 
     /data/data/com.android.providers.contacts/databases/contacts2.db
 
+Access the database:
+
+    sqlite3 ctntacts2.db
+
+Check tables:
+
+    .tables
+
+Dump content:
+
+    select * from data;
+
 ### 3) Browser History
 
 Location:
 
     /data/data/com.android.chrome/app_chrome/Default/History
+
+Access the database:
+
+    sqlite3 History
+
+Check tables:
+
+    .tables
+
+Dump content:
+
+    select * from urls;
 
 ### 4) Location Data
 
@@ -72,3 +125,18 @@ Location:
 
     /data/system/packages.xml
 
+### 10) Bluetooth information
+
+Location:
+
+    /data/misc/bluedroid
+
+This is a config file and can be opened with a text editor like Notepad and use the find feature to search for information.
+
+### 11) Wi-Fi information
+
+Location:
+
+    /data/misc/wifi
+
+This is an XML file.
