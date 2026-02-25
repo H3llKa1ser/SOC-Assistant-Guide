@@ -4,6 +4,8 @@ Tools:
 
 1) FTK Imager
 
+2) ALEAPP (Automated parsing) https://github.com/abrignoni/ALEAPP
+
 ### 1) SMS/MMS and Call logs
 
 Locations:
