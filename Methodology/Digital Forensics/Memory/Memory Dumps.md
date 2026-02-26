@@ -39,7 +39,7 @@ Tools:
 
     .vmem .vmsn .vmss .bin .sav (Convert the .sav file to analyze)
 
-### 4) Process memory dump Linux
+### 4) Process memory dump Linux (gcore tool)
 
     .core
 
