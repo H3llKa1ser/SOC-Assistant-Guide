@@ -17,6 +17,3 @@ Then
     idevicebackup2 backup --full ./backup
 
 
-    
-
-
