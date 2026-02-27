@@ -62,3 +62,20 @@ Mimic legitimate processes and system services
 ### 2) Parse process tree
 
     cut -d$'\t' -f1,2,3 processtree.txt
+
+## Uncover processes not part of the active processes list
+
+### 1) Dump processes
+
+    vol3 -f MEMDUMP.mem windows.psscan > psscan.txt
+
+### 2) Prepare files for comparison
+
+Extract PID and process name
+
+    awk '{print $1,$3}' pslist.txt | sort > pslist_processed.txt
+    awk '{print $1,$3}' psscan.txt | sort > psscan_processed.txt
+
+### 3) Compare both files to potentially uncover hidden processes
+
+    comm -23 psscan_processed.txt pslist_processed.txt
