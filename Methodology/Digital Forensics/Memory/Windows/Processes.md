@@ -87,3 +87,32 @@ Extract PID and process name
 ### 5) Display all the lines where the pslist test equals false
 
     awk 'NR==3 || $4 == "False"' psxview.txt
+
+## Dump process memory
+
+### 1) Find the path of the main executable and its linked DLLs
+
+Do the same for other suspicious processes identified
+
+    vol3 -f MEMDUMP.mem windows.dlllist --pid PID > PID_dlllist.txt
+
+### 2) Look for the path of the main executable
+
+    cat PID_dlllist.txt
+
+### 3) Dump process memory
+
+    mkdir PID
+    cd PID
+    vol3 ../MEMDUMP.mem windows.dumpfiles --pid PID
+
+### 4) Look for important files like macro documents and executables
+
+Macros
+
+    ls PID | grep -E ".docm|.dotm" -i
+
+Executables
+
+    ls PID | grep -E ".exe|.dat" -i
+
