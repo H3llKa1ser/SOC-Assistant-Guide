@@ -58,3 +58,20 @@ Linux
     python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.malfind
     python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.vadinfo
 
+### 10) System Service Descriptor Table (SSDT) Hook Detection
+
+Use this AFTER discovering suspicious kernel modules or abnormal process behavior (rootkit hunting)
+
+    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.ssdt
+
+ ### 11) Kernel Module enumeration
+
+    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.modules
+
+### 12) Driver enumeration
+
+Use this if you suspect Direct Kernel Object Manipulation (DKOM) or rookit behavior
+
+    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.driverscan
+ 
+ 
