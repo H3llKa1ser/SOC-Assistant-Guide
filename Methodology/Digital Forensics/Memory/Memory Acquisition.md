@@ -148,3 +148,62 @@ Create the /var/crash folder and assign permissions (optional if it exists)
     sudo mkdir -p /var/crash
     sudo chmod 1777 /var/crash
     
+## Hypervisors
+
+### 1) Hyper-V
+
+Get VM details
+
+    get-vm | FT VMId, VMName
+
+Take a checkpoint
+
+    get-vm -Id VM_ID | Checkpoint-VM
+
+Take a snapshot
+
+    Get-VMSnapshot -VMName 'VM_NAME' | FT Id,Name,Path
+
+Copy the .vmrs file, which contains the RAM content
+
+    cp C:\ProgramData\Microsoft\Windows\Hyper-V\Snapshots\97DBBAE5-3F91-4E5E-B177-FBB970E8703E.VMRS C:\temp\hostname-17-04-2025.VMRS
+
+Esnure integrity
+
+    Get-FileHash -Algorithm MD5 C:\temp\hostname-17-04-2025.VMRS
+
+### 2) vSphere
+
+Take a snapshot of the VM
+
+Navigate to the datastore where the VM is located and copy the .vmsn file
+
+Calculate a hash to ensure integrity
+
+### 3) KVM
+
+List all VMs 
+
+    virsh list
+
+Dump memory of VM
+
+    virsh dump vmname /path/to/dupm.raw --memory-only
+
+Ensure integrity
+
+    md5sum memdump.raw
+
+### 4) VirtualBox
+
+List VMs
+
+    .\VBoxManage.exe list runningvms
+
+Dump memory
+
+    .\VBoxManage.exe debugvm "VM_NAME" dumpvmcore --filename C:\temp\VM_NAME_memdump.elf
+
+Ensure integrity
+
+    Get-FileHash -Algorithm MD5 -Path C:\temp\VM_NAME_memdump.elf
