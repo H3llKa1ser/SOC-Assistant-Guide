@@ -79,3 +79,11 @@ Extract PID and process name
 ### 3) Compare both files to potentially uncover hidden processes
 
     comm -23 psscan_processed.txt pslist_processed.txt
+
+### 4) Use another module to cross reference findings
+
+    vol3 -f MEMDUMP.mem windows.psxview > psxview.txt
+
+### 5) Display all the lines where the pslist test equals false
+
+    awk 'NR==3 || $4 == "False"' psxview.txt
