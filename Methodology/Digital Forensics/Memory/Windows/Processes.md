@@ -52,3 +52,13 @@ Mimic legitimate processes and system services
     awk 'NR >3{print $2}' baseline.txt | sort | uniq > baseline_procs.txt
     awk 'NR >3{print $3}' pslist.txt | sort | uniq > current_procs.txt
     comm -13 baseline_procs.txt current_procs.txt
+
+## Link processes
+
+### 1) Dump process tree
+
+    vol3 -f MEMDUMP.mem windows.pstree > processtree.txt
+
+### 2) Parse process tree
+
+    cut -d$'\t' -f1,2,3 processtree.txt
