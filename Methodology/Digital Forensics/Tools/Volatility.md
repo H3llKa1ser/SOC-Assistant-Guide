@@ -53,4 +53,8 @@ Linux
 
     python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.dlllist
 
+### 9) Malware enumeration
+
+    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.malfind
+    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.vadinfo
 
