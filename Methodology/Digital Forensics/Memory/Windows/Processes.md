@@ -2,7 +2,7 @@
 
 ## Verify the memory dump
 
-### 1) Calculate MS5 hash of the memory dump
+### 1) Calculate MD5 hash of the memory dump
 
     md5sum MEMDUMP.mem > newhash.txt
 
