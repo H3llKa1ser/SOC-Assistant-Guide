@@ -24,3 +24,25 @@ Windows
 Linux
 
     python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem linux.info
+
+### 2) Active process enumeration
+
+    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.pslist
+
+### 3) Hidden process enumeration
+
+    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.psscan
+
+### 4) Process hierarchy
+
+    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.pstree
+
+### 5) File, registry and thread enumeration
+
+    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.handles
+
+### 6) Network connection enumeration
+
+    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.info
+
+
