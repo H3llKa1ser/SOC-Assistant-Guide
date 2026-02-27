@@ -43,6 +43,14 @@ Linux
 
 ### 6) Network connection enumeration
 
-    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.info
+    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.netstat
+
+### 7) TCP/UDP Socket enumeration
+
+    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.netscan
+
+### 8) DLL enumeration
+
+    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.dlllist
 
 
