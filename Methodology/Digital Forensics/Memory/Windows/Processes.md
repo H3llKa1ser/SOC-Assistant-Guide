@@ -1,0 +1,54 @@
+# Processes
+
+## Verify the memory dump
+
+### 1) Calculate MS5 hash of the memory dump
+
+    md5sum MEMDUMP.mem > newhash.txt
+
+### 2) Compare the newly calculated hash with the hash received from another colleague that did the acquisition
+
+    diff acquisitionhash.txt newhash.txt
+
+## Extract processes
+
+### 1) Extract
+
+    vol3 -f MEMDUMP.mem windows.pslist > pslist.txt
+
+### 2) Display extracted processes
+
+    cat pslist.txt | less
+
+## Search for suspicious processes
+
+### 1) Typosquatting
+
+    scvhost.exe
+    explorere.exe
+    lsasss.exe
+
+### 2) Unusual paths
+
+    svchost.exe in C:\Users\USER
+    cmd.exe in C:\tmp
+
+### 3) Masquerading
+
+Mimic legitimate processes and system services
+
+    dockerupdate.exe
+    defenderAV.exe
+    pdfupdateservice.exe
+
+## Compare with a Baseline
+
+### 1) Extract processes from Task Manager, then add to a file named:
+
+    baseline.txt
+
+### 2) Make the comparison
+
+    awk 'NR >3{print $2}' baseline.txt | sort | uniq > baseline_procs.txt
+    awk 'NR >3{print $3}' pslist.txt | sort | uniq > current_procs.txt
+    comm -13 baseline_procs.txt current_procs.txt
