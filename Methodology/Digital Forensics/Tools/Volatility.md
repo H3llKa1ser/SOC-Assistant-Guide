@@ -12,3 +12,15 @@ Memory Forensics Tool
 ### 2) Verify
 
     python3 vol.py -h
+
+## Usage
+
+### 1) Get OS information
+
+Windows
+
+    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem windows.info
+
+Linux
+
+    python3 vol.py -f ~/Desktop/Investigations/MEMDUMP.vmem linux.info
