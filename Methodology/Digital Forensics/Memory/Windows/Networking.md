@@ -14,3 +14,6 @@
 
     cat netscan.txt | grep ESTABLISHED
 
+### 4) Search for port number
+
+    cat netscan.txt | grep PORT_NUM
