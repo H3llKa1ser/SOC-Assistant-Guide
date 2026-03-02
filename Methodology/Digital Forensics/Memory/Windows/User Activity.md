@@ -1,5 +1,11 @@
 # User Activity
 
+Tools:
+
+1) Volatility
+
+2) oletools https://github.com/decalage2/oletools/blob/master/oletools/olevba.py
+
 ## Tracking Sessions
 
 ### 1) Dump user sessions from memory
@@ -28,3 +34,30 @@ Search for target process
 
     cat handles.txt | grep PROCESS_NAME
 
+## User Execution
+
+### 1) Dump files from a specific process
+
+    vol -f MEMDUMP.mem -o PID/ windows.dumpfiles --pid PID
+
+Identify target file in the dump
+
+    ls PID/ | grep dotm
+
+Copy file out of the dump directory for analysis
+
+    cp PID/FILE.dotm.dat .
+
+Confirm the file type
+
+    file FILE.dotm.dat
+
+### 2) Confirm Macro Execution
+
+Unzip the .dotm.dat file
+
+    unzip FILE.dotm.dat
+
+Extract potentially malicious macro
+
+    olevba word/vbaProject.bin
