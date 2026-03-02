@@ -52,3 +52,28 @@ Dump memory of the target process for further inspection
 
     vol -f MEMDUMP.mem windows.vadyarascan --pid PID --yara-file MALWARE.yar
 
+## Post-Exploitation
+
+### 1) Analyze connection entries associated with identified processes in previous steps
+
+    cat netscan.txt | grep powershell
+
+### 2) Dump target process
+
+    vol -f MEMDUMP.mem windows.memmap --pid PID --dump
+
+### 3) Investigate IOCs in the process dump
+
+    strings pid.PID.dmp | grep "IP"
+
+### 4) Dump memory of the initiator process
+
+    vol -f MEMDUMP.mem --pid PID --dump
+
+Then,
+
+    strings pid.PID.dmp | grep "domain.local"
+
+### 5) Check for POST HTTP requests within the dump
+
+    strings pid.PID.dmp | grep "POST" -C 8
