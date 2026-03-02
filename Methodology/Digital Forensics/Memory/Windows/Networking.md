@@ -17,3 +17,11 @@
 ### 4) Search for port number
 
     cat netscan.txt | grep PORT_NUM
+
+### 5) Search for IP Address
+
+    cat netscan.txt | grep IP
+
+### 6) Search for process
+
+    cat netscan.txt | grep PROCESS_NAME
