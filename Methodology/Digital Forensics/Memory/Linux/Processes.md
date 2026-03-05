@@ -19,3 +19,4 @@
 ### 5) Enumerate memory mapping for processes 
 
     vol3 -f MEMDUMP.mem linux.proc.Maps > procmaps.txt
+
