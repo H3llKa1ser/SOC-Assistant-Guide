@@ -63,6 +63,10 @@ Mimic legitimate processes and system services
 
     cut -d$'\t' -f1,2,3 processtree.txt
 
+OR (use this to find suspicious parent-child processes)
+
+    nl -ba pstree.txt | sed -n '20,40p'
+
 ## Uncover processes not part of the active processes list
 
 ### 1) Dump processes
