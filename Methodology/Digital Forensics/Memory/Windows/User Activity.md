@@ -34,6 +34,10 @@ Search for target process
 
     cat handles.txt | grep PROCESS_NAME
 
+Investigate commands executed
+
+    nl -ba cmdline.txt | sed -n '35,45p'
+
 ## User Execution
 
 ### 1) Dump files from a specific process
