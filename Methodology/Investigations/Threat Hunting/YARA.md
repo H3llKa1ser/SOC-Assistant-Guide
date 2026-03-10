@@ -10,6 +10,10 @@ https://github.com/YARAHQ/yara-forge
 
 https://yara.readthedocs.io/en/stable/writingrules.html
 
+3) Python script
+
+https://github.com/VirusTotal/yara-python
+
 ## Example YARA rule structure
 
     rule RULE_NAME
