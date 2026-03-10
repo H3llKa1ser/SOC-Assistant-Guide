@@ -82,6 +82,8 @@ Base64
 
 ## Conditions
 
+### 1) Operators
+
 | Boolean Operators | Relational Operators | Arithmetic Operators | Bitwise Operators | Keywords         |
 |-------------------|----------------------|----------------------|-------------------|------------------|
 | `and`             | `>=`                 | `+`                  | `&`               | `1 of them`      |
@@ -97,3 +99,23 @@ Base64
 |                   |                      |                      |                   | `matches`        |
 |                   |                      |                      |                   | `not defined`    |
 |                   |                      |                      |                   | `filesize`       |
+
+### 2) Statements
+
+all of them = Matches when all defined strings are present
+
+any of them = Matches when at least one of the defined strings is present
+
+1 of $(*) = Identical to "any of them" condition
+
+"$1 or $2" = Matches when values within $1 or $2 is present
+
+$1 and $2 = Matches when $1 and $2 are present
+
+$1 and ($2 or $3) = Matches when values $1 and $2 or $3 combinations are present
+
+none of them = Matches only when none of the defined strings are present
+
+filesize < 700KB = Matches all files smaller than 700 Kiobytes (Used only on files)
+
+($1 or $2) and filesize < 300KB = Matches for values $1 or $2 in files smaller than 300KB
