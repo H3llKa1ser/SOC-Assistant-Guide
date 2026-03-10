@@ -125,3 +125,17 @@ none of them = Matches only when none of the defined strings are present
 filesize < 700KB = Matches all files smaller than 700 Kiobytes (Used only on files)
 
 ($1 or $2) and filesize < 300KB = Matches for values $1 or $2 in files smaller than 300KB
+
+## Commands
+
+### 1) Scan a directory
+
+    yara64 example.yar C:\temp\
+
+### 2) Print XOR key and its encrypted string
+
+    yara64 examplexor.yar -X -s C:\temp\encrypted.txt
+
+### 3) Scan recursively
+
+    yara64 example.yar -r C:\temp\
