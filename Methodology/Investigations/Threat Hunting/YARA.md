@@ -21,8 +21,8 @@ https://yara.readthedocs.io/en/stable/writingrules.html
     
     
         strings:
-           $ = "STRING/INTEGER/VALUE/WHATEVER" (You can add as many as you have to)
-           $ = "STRING/INTEGER/VALUE/WHATEVER"
+           $ = "CHECK DOCUMENTATION FOR ALL COMBINATIONS" (You can add as many as you have to)
+           $ = "CHECK DOCUMENTATION FOR ALL COMBINATIONS"
     
         condition:
             all of them
