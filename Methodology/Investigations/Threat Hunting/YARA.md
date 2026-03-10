@@ -16,6 +16,8 @@ https://github.com/VirusTotal/yara-python
 
 ## Example YARA rule structure
 
+example.yar
+
     rule RULE_NAME
     {
         meta
