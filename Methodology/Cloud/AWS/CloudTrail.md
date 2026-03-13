@@ -54,3 +54,14 @@ Unusual changes in user privileges, IAM access keys and AWS logins.
 Insecure changes to EC2 security groups, like exposing sensitive services.
 
 Exposed S3 buckets they shouldn't be
+
+## S3 Data Events
+
+Extend CloudTrail to record data events
+
+    CloudTrail > Your Trail > Data Events
+
+Splunk
+
+     index=aws source="s3.json"
+ 
