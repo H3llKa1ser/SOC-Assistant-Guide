@@ -15,3 +15,10 @@ Splunk query
     | fillnull value=Success errorMessage
     | timechart span=30s count by errorMessage
     
+## GuardDuty
+
+Findings generated:
+
+    Policy:S3/BucketBlockPublicAccessDisabled: The "S3 Public Access Block" feature was disabled
+    Policy:S3/BucketAnonymousAccessGranted: The bucket was made public via ACL or bucket policy
+    Impact:S3/MaliciousIPCaller: A known-malicious IP address accessed an exposed S3 bucket
