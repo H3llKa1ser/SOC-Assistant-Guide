@@ -4,6 +4,10 @@
 
     CloudTrail -> Event History
 
+Splunk
+
+    index=aws sourcetype=aws-cloudtrail
+
 ### 2) Forward logs to an S3 Bucket, then configure Splunk (or any other SIEM) to pull logs from that S3 bucket.
 
 Splunk documentation: https://splunk.github.io/splunk-add-on-for-amazon-web-services/CloudTrail/
@@ -33,3 +37,20 @@ Splunk documentation: https://splunk.github.io/splunk-add-on-for-amazon-web-serv
       },
     }
 
+## Event Types
+
+### 1) Login Events
+
+    index=aws eventName=ConsoleLogin
+
+### 2) Control Plane Threats
+
+Write events
+
+    readOnly=false
+
+Unusual changes in user privileges, IAM access keys and AWS logins.
+
+Insecure changes to EC2 security groups, like exposing sensitive services.
+
+Exposed S3 buckets they shouldn't be
