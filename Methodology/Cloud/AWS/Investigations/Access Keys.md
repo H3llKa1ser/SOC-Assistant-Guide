@@ -26,7 +26,7 @@ SIEM: Splunk
 
 ### 1) Filter only for access key logins
 
-    index=aws iserIdentity.accessKeyId=AKIA*
+    index=aws userIdentity.accessKeyId=AKIA*
 
 Alternative query
 
