@@ -29,3 +29,19 @@ One of the security group rules has been modified
 3) Collect auth.log from the VMs and detect SSH brute force from the endpoint point of view
 
 4) As a last resort, detect the dropped miner with installed EDR, network, or endpoint logs
+
+# AWS SSM (Systems Manager)
+
+### 1) Checking the process tree during script execution via SSM
+
+    pstree -l -T -a -s PID
+
+CloudTrail log:
+
+    SendCommand
+
+# AWS Session Manager
+
+CloudTrail log:
+
+    StartSession
