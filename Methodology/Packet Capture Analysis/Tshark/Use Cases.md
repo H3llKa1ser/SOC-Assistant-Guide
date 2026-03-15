@@ -12,3 +12,6 @@
 
     tshark -r file.pcap -T fields -e http.user_agent | awk NF | sort -r | uniq -c | sort -r
 
+### 4) Extract Email Addresses
+
+    shark -r file.pcap -Y "http.request.method == POST" -T fields -e http.file_data
