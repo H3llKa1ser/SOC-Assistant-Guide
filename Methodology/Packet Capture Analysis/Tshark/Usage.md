@@ -31,3 +31,21 @@
 ### 8) Start sniffing the traffic and stop after NUM seconds, and save the dump into NUM files, each NUMkb
 
     tshark -w output.pcap -a duration:NUM -a filesize:NUM -a files:NUM
+
+## Capture Filters
+
+### 1) Filtering a host
+
+    tshark -r file.pcap -f "host 10.10.10.10"
+
+### 2) Filtering a network range 
+
+    tshark -r file.pcap -f "net 10.10.10.0/24"
+
+### 3) Filtering a Port
+
+    tshark -r file.pcap -f "port 80"
+
+### 4) Filtering a port range
+
+    tshark -r file.pcap -f "portrange 80-100"
