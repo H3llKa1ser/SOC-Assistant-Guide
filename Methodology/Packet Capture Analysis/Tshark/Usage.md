@@ -27,3 +27,7 @@
 ### 7) Show packet details in hex and ASCII dump for each packet
 
     tshark -r file.pcap -x
+
+### 8) Start sniffing the traffic and stop after NUM seconds, and save the dump into NUM files, each NUMkb
+
+    tshark -w output.pcap -a duration:NUM -a filesize:NUM -a files:NUM
