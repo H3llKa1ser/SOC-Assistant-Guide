@@ -146,3 +146,20 @@ Same parameters as endpoints
 
     tshark -r file.pcapng -z expert -q
 
+### 7) IP protocol types
+
+    tshark -r file.pcapng -z ptype,tree -q
+
+### 8) Available Hosts
+
+    tshark -r file.pcapng -z ip_hosts,tree -q
+
+### 9) Source and Destination IPs
+
+IPv4
+
+    tshark -r demo.pcapng -z ip_srcdst,tree -q
+
+IPv6
+
+    tshark -r demo.pcapng -z ipv6_srcdst,tree -q
