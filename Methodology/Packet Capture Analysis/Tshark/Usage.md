@@ -49,3 +49,23 @@
 ### 4) Filtering a port range
 
     tshark -r file.pcap -f "portrange 80-100"
+
+### 5) Filtering source address
+
+    tshark -r file.pcap -f "src host 10.10.10.10"
+
+### 6) Filtering destination address
+
+    tshark -r file.pcap -f "dst host 10.10.10.10"
+
+### 7) Filtering TCP
+
+    tshark -r file.pcap -f "tcp"
+
+### 8) Filtering MAC address
+
+    tshark -r file.pcap -f "ether host F8:DB:C5:A2:5D:81"
+
+### 9) Filtering IP Protocols 1 (ICMP)
+
+    tshark -r file.pcap -f "ip proto 1"
