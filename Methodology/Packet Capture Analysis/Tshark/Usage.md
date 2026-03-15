@@ -32,6 +32,10 @@
 
     tshark -w output.pcap -a duration:NUM -a filesize:NUM -a files:NUM
 
+### 9) Colored output (Wireshark Style)
+
+    tshark -r file.pcap --color
+
 ## Capture Filters
 
 ### 1) Filtering a host
@@ -111,4 +115,24 @@
 ### 10) Filtering all DNS "A" packets
 
     tshark -r file.pcap -Y 'dns.qry.type == 1'
+
+## Statistics
+
+### 1) Protocol Hierarchy
+
+    tshark -r file.pcapng -z io,phs -q
+
+### 2) View a specific protocol in Protocol Hierarchy
+
+    tshark -r file.pcapng -z io,phs,udp -q
+
+### 3) Packet Length Tree
+
+    tshark -r file.pcapng -z plen,tree -q
+
+### 4) Endpoints
+
+Endpoints: ip, ipv6, wlan, tcp, udp, eth
+
+    tshark -r file.pcapng -z endpoints,ip -q
 
