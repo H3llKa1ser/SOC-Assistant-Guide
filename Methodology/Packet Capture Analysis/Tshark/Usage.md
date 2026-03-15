@@ -69,3 +69,46 @@
 ### 9) Filtering IP Protocols 1 (ICMP)
 
     tshark -f "ip proto 1"
+
+## Display Filters
+
+### 1) Filtering an IP without specifying a direction.
+
+    tshark -r file.pcap -Y 'ip.addr == 10.10.10.10'
+
+### 2) Filtering a network range 
+
+    tshark -r file.pcap -Y 'ip.addr == 10.10.10.0/24'
+
+### 3) Filtering a source IP
+
+    tshark -r file.pcap -Y 'ip.src == 10.10.10.10'
+
+### 4) Filtering a destination IP
+
+    tshark -r file.pcap -Y 'ip.dst == 10.10.10.10'
+
+### 5) Filtering TCP port
+
+    tshark -r file.pcap -Y 'tcp.port == 80'
+
+### 6) Filtering source TCP port
+
+    tshark -r file.pcap -Y 'tcp.srcport == 80'
+
+### 7) Filtering HTTP packets
+
+    tshark -r file.pcap -Y 'http'
+
+### 8) Filtering HTTP packets with response code "200"
+
+    tshark -r file.pcap -Y "http.response.code == 200"
+
+### 9) Filtering DNS packets
+
+    tshark -r file.pcap -Y 'dns'
+
+### 10) Filtering all DNS "A" packets
+
+    tshark -r file.pcap -Y 'dns.qry.type == 1'
+
