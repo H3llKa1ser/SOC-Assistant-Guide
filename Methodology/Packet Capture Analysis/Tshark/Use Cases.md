@@ -15,3 +15,7 @@
 ### 4) Extract Email Addresses
 
     tshark -r file.pcap -Y tshark -Y "http contains gmail.com" -V
+
+### 5) Extract Server Banner
+
+    tshark -r file.pcap -Y "http.server" -T fields -e http.server
