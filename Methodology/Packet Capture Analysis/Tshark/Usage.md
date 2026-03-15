@@ -23,3 +23,7 @@
 ### 6) Verbose output (Packet filtering in Wireshark)
 
     tshark -r file.pcap -c NUM -V
+
+### 7) Show packet details in hex and ASCII dump for each packet
+
+    tshark -r file.pcap -x
