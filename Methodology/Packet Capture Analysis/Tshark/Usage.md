@@ -44,6 +44,10 @@
 
     tshark -r file.pcapng --export-objects http,/home/user/Desktop/extracted-by-tshark -q
 
+### 12) Extract fields
+
+    tshark -r file.pcapng -T fields -e ip.src -e ip.dst -E header=y 
+
 ## Capture Filters
 
 ### 1) Filtering a host
@@ -137,6 +141,18 @@
 ### 3) HTTP
 
     tshark -r file.pcapng -z follow,http,ascii,0 -q
+
+## Filters
+
+### 1) Contains
+
+    tshark -r file.pcapng -Y 'http.server contains "Apache"' -T fields -e ip.src -e ip.dst -e http.server -E header=y
+
+### 2) Matches
+
+    tshark -r file.pcapng -Y 'http.request.method matches "(GET|POST)"'               
+    tshark -r file.pcapng -Y 'http.request.method matches "(GET|POST)"' -T fields -e ip.src -e ip.dst -e http.request.method -E header=y
+
 
 ## Statistics
 
