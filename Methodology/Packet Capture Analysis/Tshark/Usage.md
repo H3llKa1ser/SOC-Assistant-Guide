@@ -36,6 +36,10 @@
 
     tshark -r file.pcap --color
 
+### 10) Collect plaintext credentials from a .pcap file
+
+    tshark -r file.pcap -z credentials -q
+
 ## Capture Filters
 
 ### 1) Filtering a host
@@ -115,6 +119,20 @@
 ### 10) Filtering all DNS "A" packets
 
     tshark -r file.pcap -Y 'dns.qry.type == 1'
+
+## Follow Stream
+
+### 1) TCP
+
+    tshark -r file.pcapng -z follow,tcp,ascii,0 -q
+
+### 2) UDP
+
+    tshark -r file.pcapng -z follow,udp,ascii,0 -q
+
+### 3) HTTP
+
+    tshark -r file.pcapng -z follow,http,ascii,0 -q
 
 ## Statistics
 
