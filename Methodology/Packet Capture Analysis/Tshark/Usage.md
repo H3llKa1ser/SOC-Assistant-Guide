@@ -36,36 +36,36 @@
 
 ### 1) Filtering a host
 
-    tshark -r file.pcap -f "host 10.10.10.10"
+    tshark -f "host 10.10.10.10"
 
 ### 2) Filtering a network range 
 
-    tshark -r file.pcap -f "net 10.10.10.0/24"
+    tshark -f "net 10.10.10.0/24"
 
 ### 3) Filtering a Port
 
-    tshark -r file.pcap -f "port 80"
+    tshark -f "port 80"
 
 ### 4) Filtering a port range
 
-    tshark -r file.pcap -f "portrange 80-100"
+    tshark -f "portrange 80-100"
 
 ### 5) Filtering source address
 
-    tshark -r file.pcap -f "src host 10.10.10.10"
+    tshark -f "src host 10.10.10.10"
 
 ### 6) Filtering destination address
 
-    tshark -r file.pcap -f "dst host 10.10.10.10"
+    tshark -f "dst host 10.10.10.10"
 
 ### 7) Filtering TCP
 
-    tshark -r file.pcap -f "tcp"
+    tshark -f "tcp"
 
 ### 8) Filtering MAC address
 
-    tshark -r file.pcap -f "ether host F8:DB:C5:A2:5D:81"
+    tshark -f "ether host F8:DB:C5:A2:5D:81"
 
 ### 9) Filtering IP Protocols 1 (ICMP)
 
-    tshark -r file.pcap -f "ip proto 1"
+    tshark -f "ip proto 1"
