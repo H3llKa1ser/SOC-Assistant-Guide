@@ -8,4 +8,18 @@
 
     sudo tshark -D
 
-Then choose from the available interfaces to sniff traffic
+### 3) Read data from a .pcap file
+
+    tshark -r file.pcap
+
+### 4) Write output to another file from sniffed traffic
+
+    tshark -r file.pcap -w output.pc
+
+### 5) Packet count (Stop after capturing a specified number of packets.)
+
+    tshark -r file.pcap -c NUM
+
+### 6) Verbose output (Packet filtering in Wireshark)
+
+    tshark -r file.pcap -c NUM -V
