@@ -4,7 +4,7 @@
 
     sudo tshark -i INTERFACE
 
-OR 
+### 2) List available network interfaces
 
     sudo tshark -D
 
