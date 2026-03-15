@@ -14,4 +14,4 @@
 
 ### 4) Extract Email Addresses
 
-    shark -r file.pcap -Y "http.request.method == POST" -T fields -e http.file_data
+    tshark -r file.pcap -Y tshark -Y "http contains gmail.com" -V
