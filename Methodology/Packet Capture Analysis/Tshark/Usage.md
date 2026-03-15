@@ -40,6 +40,10 @@
 
     tshark -r file.pcap -z credentials -q
 
+### 11) Extract files from HTTP traffic
+
+    tshark -r file.pcapng --export-objects http,/home/user/Desktop/extracted-by-tshark -q
+
 ## Capture Filters
 
 ### 1) Filtering a host
