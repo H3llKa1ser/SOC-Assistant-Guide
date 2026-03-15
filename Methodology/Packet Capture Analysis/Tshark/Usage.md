@@ -158,8 +158,44 @@ Same parameters as endpoints
 
 IPv4
 
-    tshark -r demo.pcapng -z ip_srcdst,tree -q
+    tshark -r file.pcapng -z ip_srcdst,tree -q
 
 IPv6
 
-    tshark -r demo.pcapng -z ipv6_srcdst,tree -q
+    tshark -r file.pcapng -z ipv6_srcdst,tree -q
+
+### 10) Destination and Ports
+
+IPv4
+
+    tshark -r file.pcapng -z dests,tree -q
+
+IPv6
+
+    tshark -r file.pcapng -z ipv6_dests,tree -q
+
+### 11) DNS
+
+    tshark -r file.pcapng -z dns,tree -q
+
+### 12) HTTP
+
+HTTP
+
+    tshark -r file.pcapng -z http,tree -q
+
+HTTP2
+
+    tshark -r file.pcapng -z http2,tree -q
+
+Load Distribution
+
+    tshark -r file.pcapng -z http_srv,tree -q
+
+Requests
+
+    tshark -r file.pcapng -z http_req,tree -q
+
+Requests and Responses
+
+    tshark -r file.pcapng -z http_seq,tree -q
