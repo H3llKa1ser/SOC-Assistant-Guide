@@ -136,3 +136,13 @@ Endpoints: ip, ipv6, wlan, tcp, udp, eth
 
     tshark -r file.pcapng -z endpoints,ip -q
 
+### 5) Conversations
+
+Same parameters as endpoints
+
+    tshark -r file.pcapng -z conv,ip -q 
+
+### 6) Expert Info
+
+    tshark -r file.pcapng -z expert -q
+
