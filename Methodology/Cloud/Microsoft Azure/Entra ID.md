@@ -184,3 +184,25 @@ Link: https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-pro
     | sort - _time
     | table _time, initiatedBy.user.userPrincipalName, activityDisplayName, result, targetResources{}.userPrincipalName
 
+### 4) List all assigned role activities
+
+Look for common target roles like Global Administrator, Exchange Administrator, User Administrator, Application Administrator
+
+    index="task-5" sourcetype="azure:aad:audit" activityDisplayName="Add member to role" 
+    | table _time, activityDisplayName, initiatedBy.user.userPrincipalName, targetResources{}.userPrincipalName, targetResources{}.modifiedProperties{}.newValue | sort - _time
+
+### 5) List user creation activity
+
+Look for backdoor accounts, like a new admin account outside normal procedures.
+
+    index="task-5" sourcetype="azure:aad:audit" activityDisplayName="Add user"
+    | eval initiator=coalesce('initiatedBy.user.userPrincipalName','initiatedBy.app.displayName')
+    | eval userCreated='targetResources{}.userPrincipalName'
+    | table _time, activityDisplayName,initiator, userCreated
+
+### 6) List MFA onboard attempts
+
+    index="task-5" sourcetype="azure:aad:audit" activityDisplayName="User started security info registration" loggedByService="Authentication Methods"  operationType="Add"
+    | eval initiator=coalesce('initiatedBy.user.userPrincipalName','initiatedBy.app.displayName')
+    | table _time, activityDisplayName, initiator, initiatedBy.user.ipAddress, additionalDetails{}.value
+
