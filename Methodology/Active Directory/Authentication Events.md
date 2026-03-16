@@ -14,3 +14,4 @@
 
     index=* EventCode=4624 Account_Name=USER.NAME Authentication_Package=NTLM
     | table _time host user Workstation_Name Source_Network_Address Authentication_Package
+
