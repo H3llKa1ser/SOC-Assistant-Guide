@@ -152,7 +152,7 @@ Link: https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-pro
     | stats count as mfa_failures values(status.errorCode) as errorCodes values(status.failureReason) as failureReasons by userPrincipalName, ipAddress
     | sort - mfa_failures
 
-### 2) List ImpossibleTravel alerts in Idenitty Protection logs
+### 2) List ImpossibleTravel alerts in Identity Protection logs
 
     index="task-4" sourcetype="azure:aad:identity_protection:riskdetection"
     | where riskEventType="impossibleTravel"
