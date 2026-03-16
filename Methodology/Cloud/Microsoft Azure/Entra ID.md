@@ -206,3 +206,26 @@ Look for backdoor accounts, like a new admin account outside normal procedures.
     | eval initiator=coalesce('initiatedBy.user.userPrincipalName','initiatedBy.app.displayName')
     | table _time, activityDisplayName, initiator, initiatedBy.user.ipAddress, additionalDetails{}.value
 
+## OAuth Consent
+
+#### High risk permissions
+
+- Mail.Read.All / Mail.ReadWrite.All: Read or modify all mailboxes in the tenant.
+
+- Files.ReadWrite.All: Read and write all files across SharePoint and OneDrive.
+
+- RoleManagement.ReadWrite.Directory: Assign and remove Entra ID roles, including Global Administrator.
+
+- Directory.ReadWrite.All: Read and write all directory data, including users and groups.
+
+- offline_access: Maintain access indefinitely via refresh tokens, even when the user is not actively signed in.
+
+### 1) List all consent grants to an application
+
+    index="main" sourcetype="azure:aad:audit"
+    activityDisplayName="Consent to application"
+    | eval initiator=coalesce('initiatedBy.user.userPrincipalName','initiatedBy.app.displayName')
+    | eval appName='targetResources{}.displayName'
+    | eval permissionsGranted='targetResources{}.modifiedProperties{}.newValue'
+    | table _time, initiator, appName, permissionsGranted
+    | sort - _time
