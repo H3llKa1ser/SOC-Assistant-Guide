@@ -36,3 +36,4 @@ No Sysmon method
     index=iis cs_method=POST cs_uri_query="*{WEBSHELL_FILENAME}"
     | table _time, c_ip, cs_uri_stem, cs_uri_query, sc_status
     | sort _time  
+
