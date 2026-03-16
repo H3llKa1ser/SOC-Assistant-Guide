@@ -59,11 +59,37 @@
     | sort - event_count
     | table applications, userPrincipalName, ip_addresses, errorCodes, event_count
 
+#### 2.1) Filter out Conditional Access
+
+    index="task-2" sourcetype="azure:aad:signin" "status.errorCode"!=0 conditionalAccessStatus!=success
+    | table _time, userPrincipalName, appDisplayName, ipAddress, location.countryOrRegion, status.errorCode, status.failureReason
+    | sort - _time
+
+#### 2.2) List failed sign-in attempts by IP address
+
+    index="task-2" sourcetype="azure:aad:signin" "status.errorCode"!=0 conditionalAccessStatus!=success
+    | stats dc(userPrincipalName) as targeted_accounts, count as failures by ipAddress
+    | sort - failures
+
 ### 3) List successful sign-ins from an IP address
 
     index=scenario sourcetype="azure:aad:signin" "status.errorCode"=0 ipAddress="<ADD-IP-HERE>"
     | stats values(ipAddress) as ip_addresses values(appDisplayName) as applications  by userPrincipalName
     | table applications, userPrincipalName, ip_addresses
+
+OR 
+
+    index="task-2" sourcetype="azure:aad:signin" "status.errorCode"=0
+    | where ipAddress="<SUSPICIOUS_IP>"
+    | stats count by userPrincipalName, status.errorCode
+    | sort status.errorCode
+
+#### 3.1) List successful logins by user
+
+    index="task-2" sourcetype="azure:aad:signin" "status.errorCode"=0
+    | where userPrincipalName="<TARGET_USER>"
+    | stats count by userPrincipalName, status.errorCode, ipAddress
+    | sort status.errorCode
 
 ## Entra ID Authentication error codes
 
