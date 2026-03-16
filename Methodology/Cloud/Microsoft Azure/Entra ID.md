@@ -91,6 +91,21 @@ OR
     | stats count by userPrincipalName, status.errorCode, ipAddress
     | sort status.errorCode
 
+### 4) List blocked sign-ins by Conditional Access Policies (CAP)
+
+    index="task-3" sourcetype="azure:aad:signin" conditionalAccessStatus=failure
+    | spath output=policies path=appliedConditionalAccessPolicies{}
+    | mvexpand policies
+    | spath input=policies output=policy_result path=result
+    | spath input=policies output=policy_name path=displayName
+    | where policy_result="failure"
+    | stats values(policy_name) as FailedPolicies by _time, appDisplayName, userDisplayName, ipAddress, conditionalAccessStatus
+    | eval FailedPolicies=mvjoin(FailedPolicies, ", ")
+    | table _time, appDisplayName, userDisplayName, ipAddress, conditionalAccessStatus, FailedPolicies
+    | sort - _time
+
+
+
 ## Entra ID Authentication error codes
 
 | Code   | Description                                           |
@@ -100,6 +115,34 @@ OR
 | `50074`| MFA required but not provided                         |
 | `50055`| Password expired                                      |
 | `50140`| User selects "No" for the Keep me signed in" option during login |
+
+## Identity Protection
+
+Link: https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks
+
+### 1) List high-risk sign-ins
+
+    index="task-3" sourcetype="azure:aad:signin"
+    | where riskLevelDuringSignIn="high"
+    | table _time, userPrincipalName, appDisplayName, ipAddress, location.countryOrRegion, riskLevelDuringSignIn, riskLevelAggregated
+    | sort - _time
+
+### 2) List all risk detection logs
+
+    index="task-3" sourcetype="azure:aad:identity_protection:riskdetection"
+
+### 3) List all risk detecions related to anonymized IPs
+
+    index="task-3" sourcetype="azure:aad:identity_protection:riskdetection"
+    | where riskEventType="anonymizedIPAddress"
+    | table _time, userPrincipalName, activity, ipAddress, location.countryOrRegion, riskLevel, riskEventType
+    | sort - _time
+
+### 4) List all risky user alerts
+
+    index="task-3" sourcetype="azure:aad:identity_protection:risky_user"
+    | table _time, userPrincipalName, riskLevel, riskState, riskDetail 
+    | sort - _time
 
 ## Audit Logs
 
