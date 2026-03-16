@@ -74,4 +74,4 @@
 | `50053`| Account locked due to too many failed attempts        |
 | `50074`| MFA required but not provided                         |
 | `50055`| Password expired                                      |
-
+| `50140`| User selects "No" for the Keep me signed in" option during login |
