@@ -144,6 +144,27 @@ Link: https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-pro
     | table _time, userPrincipalName, riskLevel, riskState, riskDetail 
     | sort - _time
 
+## Multi Factor Authentication (MFA)
+
+### 1) List MFA failures by user
+
+    index="task-4" sourcetype="azure:aad:signin" (status.errorCode=50074 OR status.errorCode=50076 OR status.errorCode=500121)
+    | stats count as mfa_failures values(status.errorCode) as errorCodes values(status.failureReason) as failureReasons by userPrincipalName, ipAddress
+    | sort - mfa_failures
+
+### 2) List ImpossibleTravel alerts in Idenitty Protection logs
+
+    index="task-4" sourcetype="azure:aad:identity_protection:riskdetection"
+    | where riskEventType="impossibleTravel"
+    | table _time, userPrincipalName, activity, ipAddress, location.countryOrRegion, riskLevel, riskEventType
+    | sort - _time
+
+### 3) List successful sign-in activity for a user
+
+    index="task-4" sourcetype="azure:aad:signin" status.errorCode=0
+    | table _time, userPrincipalName, ipAddress, location.countryOrRegion, conditionalAccessStatus
+    | sort - _time
+
 ## Audit Logs
 
 ### 1) List all Audit logs
