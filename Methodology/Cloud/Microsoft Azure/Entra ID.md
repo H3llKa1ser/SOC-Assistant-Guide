@@ -1,6 +1,8 @@
 # Entra ID
 
-## Sign-in log example format
+## Sign-in logs
+
+#### Sign-in log example format
 
     {
       "id": "014adaeb-c9db-4119-8a9b-a9f68dd4b700",
