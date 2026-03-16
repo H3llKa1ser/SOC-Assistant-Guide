@@ -46,7 +46,6 @@
       ]
     }
 
-### 1) List all sign-in events
 
 ### 1) List all sign-in events
 
@@ -75,3 +74,23 @@
 | `50074`| MFA required but not provided                         |
 | `50055`| Password expired                                      |
 | `50140`| User selects "No" for the Keep me signed in" option during login |
+
+## Audit Logs
+
+### 1) List all Audit logs
+
+    index=scenario sourcetype="azure:aad:audit"
+
+### 2) List changes targeting a specific user
+
+    index=scenario sourcetype="azure:aad:audit" targetResources{}.userPrincipalName="<ADD-USER-EMAIL>" 
+    | eval initiator=coalesce('initiatedBy.user.userPrincipalName', 'initiatedBy.app.displayName')
+    | sort - _time
+    | table _time, initiator, activityDisplayName, result, targetResources{}.userPrincipalName
+
+### 3) List changes performed by a user
+
+    index=scenario sourcetype="azure:aad:audit" initiatedBy.user.userPrincipalName="<ADD-USER-EMAIL>" 
+    | sort - _time
+    | table _time, initiatedBy.user.userPrincipalName, activityDisplayName, result, targetResources{}.userPrincipalName
+
