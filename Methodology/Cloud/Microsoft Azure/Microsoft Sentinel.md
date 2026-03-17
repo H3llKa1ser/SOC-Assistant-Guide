@@ -56,7 +56,7 @@ List, view, and manually run playbooks
 
 Allows Microsoft Sentinel to add playbooks to automation rules
 
-## Content Hub Installation
+## Content Hub and Data Connectors
 
 ### 1) Install Microsoft Entra ID (example) content solution type
 
@@ -77,3 +77,16 @@ Go to Microsoft Sentinel and open the available workspace. Under Content managem
 Under Content name, click on Microsoft Entra ID. Review the data connector status
 
 <img width="815" height="404" alt="image" src="https://github.com/user-attachments/assets/5aca3d0b-0277-4ee2-b144-f4c9ce392790" />
+
+### 5) Select Manage to review the deployed Entra ID connectors
+
+### 6) Select the Microsoft Entra ID data connector and open the connector page
+
+### 7) Click Connect on your desired data connector
+
+### 8) Review the data connector's status to ensure it is connected
+
+### 9) When the log data starts to flow, the Last Log Received will be updated (this might take 10-15min, but it's not required to wait for it)
+
+### 10) Once the connection is established, the data type icon will turn to green, indicating that the corresponding log table is populated and now contains data in the Log Analytics workspace
+
