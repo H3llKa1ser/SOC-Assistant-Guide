@@ -31,3 +31,29 @@ Region: Azure region where the ingested log data will reside. This setting is si
 ### 5) Add Microsoft Sentinel to a Log Analytics Workspace
 
 ### 6) READY!
+
+## Roles
+
+### 1) Microsoft Sentinel Reader
+
+View data, incidents, workbooks, and other Microsoft Sentinel resources
+
+### 2) Microsoft Sentinel Responder (in addition to the above Sentinel Reader)
+
+Manage incidents
+
+### 3) Microsoft Sentinel Contributor (in addition to the above Sentinel Responder)
+
+Install/Update solutions from the Content hub.
+
+Create and edit workbooks, analytics rules, and other Microsoft Sentinel resources
+
+### 4) Microsoft Sentinel Playbook Operator
+
+List, view, and manually run playbooks
+
+### 5) Microsoft Sentinel Automation Contributor (not for user accounts)
+
+Allows Microsoft Sentinel to add playbooks to automation rules
+
+
