@@ -90,3 +90,38 @@ Under Content name, click on Microsoft Entra ID. Review the data connector statu
 
 ### 10) Once the connection is established, the data type icon will turn to green, indicating that the corresponding log table is populated and now contains data in the Log Analytics workspace
 
+## Analytics Rules
+
+### 1) Choose a rule template, then create a rule
+
+    Microsoft Sentinel > Analytics > Rule templates > Select a rule template > Create rule
+
+<img width="1465" height="794" alt="image" src="https://github.com/user-attachments/assets/ab1ac286-40d3-4176-86c1-eecad486083e" />
+
+### 2) General
+
+Description, name, severity and tactics are included in the rule
+
+### 3) Set rule logic
+
+You may modify the KQL logic of the rule if needed and schedule the query according to use case.
+
+### 4) Incident creating
+
+Youc an enable/disable incident creation, by applying alert grouping.
+
+### 5) Automated Response (SOAR)
+
+You can apply playbooks to run for various use cases.
+
+Playbook actions:
+
+- To run a playbook
+
+- To change status/severity
+
+- To assign an owner
+
+- To add tags
+
+- To add task
