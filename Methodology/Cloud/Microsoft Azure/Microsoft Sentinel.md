@@ -56,4 +56,24 @@ List, view, and manually run playbooks
 
 Allows Microsoft Sentinel to add playbooks to automation rules
 
+## Content Hub Installation
 
+### 1) Install Microsoft Entra ID (example) content solution type
+
+Go to Microsoft Sentinel and open the available workspace. Under Content management, select Content hub
+
+<img width="243" height="126" alt="image" src="https://github.com/user-attachments/assets/854047c8-f0bd-4445-87e8-5584ea09770a" />
+
+### 2) Search for Entra ID, then click Install
+
+<img width="1601" height="682" alt="image" src="https://github.com/user-attachments/assets/431147ee-9091-430e-b168-dc4de8f0576e" />
+
+### 3) Review the installed content by clicking Manage for more details
+
+<img width="971" height="725" alt="image" src="https://github.com/user-attachments/assets/f9568215-b88e-4bb1-98fd-d41fe2a3dee3" />
+
+### 4) Review Data Connector status
+
+Under Content name, click on Microsoft Entra ID. Review the data connector status
+
+<img width="815" height="404" alt="image" src="https://github.com/user-attachments/assets/5aca3d0b-0277-4ee2-b144-f4c9ce392790" />
