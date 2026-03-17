@@ -18,6 +18,14 @@
 | 7 | Unlock | User unlocking a previously locked workstation |
 | 10 | RemoteInteractive | RDP session |
 
+## Logon Types for Lateral Movement Indicators
+
+| Logon Type | Meaning | Common Protocol | What It Tells Us |
+|------------|--------|-----------------|------------------|
+| 3 | Network logon | SMB, PsExec | Remote access without an interactive session |
+| 7 | Unlock/Reconnect | RDP | Session reconnect or workstation unlock |
+| 10 | RemoteInteractive | RDP | Full desktop session |
+
 ### 1) Check distribution of logon types
 
     index=* EventCode=4624
