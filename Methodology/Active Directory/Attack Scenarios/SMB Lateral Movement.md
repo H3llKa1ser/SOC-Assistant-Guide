@@ -25,3 +25,7 @@ Remove the dollar sign first from the previous query
     index=win EventCode=1 host={SOURCE_HOST} CommandLine="*ADMIN$*"
     | table _time, User, Image, CommandLine
     | sort _time
+
+## TIP: 
+
+The net use command is just one way attackers access admin shares. C2 frameworks like Cobalt Strike and Metasploit have built-in SMB modules that connect to shares without spawning net.exe, meaning they won't generate Sysmon Event 1 process creation events. In those cases, Event 4648 on the source machine can still reveal which credentials were used and which servers were targeted, even when the command itself doesn't appear in process creation logs. Event 5140 on the destination side also still fires regardless of how the connection was made.
