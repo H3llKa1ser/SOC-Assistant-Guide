@@ -44,3 +44,14 @@ From the Microsoft Defender XDR Settings
     Select Microsoft Defender XDR
     Select Permissions and roles
     On the Activate workloads page, select the toggle for the workload you want to activate
+
+## Responding to True Positive Incidents
+
+After investigation, if this alert is considered a malicious event, the following can be done on the device to mitigate the threat and prevent further escalation.
+
+    Collect Investigation Package for further analysis.
+    Start Microsoft Defender XDR Automated Investigation.
+    Initiate Live Response Session to see the registry changes.
+    Isolate the device to prevent lateral movement or the attack from getting access to other devices.
+
+<img width="898" height="712" alt="image" src="https://github.com/user-attachments/assets/58962f94-5a58-481e-8bdd-964f12f1e111" />
