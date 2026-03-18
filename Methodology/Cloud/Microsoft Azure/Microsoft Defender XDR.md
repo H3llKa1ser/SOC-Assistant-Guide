@@ -55,3 +55,26 @@ After investigation, if this alert is considered a malicious event, the followin
     Isolate the device to prevent lateral movement or the attack from getting access to other devices.
 
 <img width="898" height="712" alt="image" src="https://github.com/user-attachments/assets/58962f94-5a58-481e-8bdd-964f12f1e111" />
+
+## Prevention
+
+Ensure the following Microsoft Defender for endpoint Attack Surface Reduction (ASR) Rules are in block mode to restrict Defense evasion activities.
+
+#### Note: ASR rules are only supported on Windows operating systems.
+
+    Block Office applications from injecting code into other processes: To prevent common Defense Evasion techniques where malicious Office macros are injected into trusted processes.
+    Block execution of potentially obfuscated scripts: To prevent execution of highly obfuscated scripts from running.
+    Block untrusted and unsigned processes that run from USB: To prevent malware execution from removable drives, which is a common way to bypass security tools.
+    Block all Office applications from creating child processes: This will prevent malware from launching scripts or binaries through Office apps like Word or Excel files.
+    Block executable content from email and webmail: This will prevent users from running malicious attachments from phishing campaigns that may lead to Defense Evasion.
+
+Ensure Tamper Protection is enabled to stop threat actors from disabling Defender and modifying the security controls, which is a common impair defense technique.
+
+    To see the Tamper protection setting on your Defender portal
+    
+    Navigate to Settings and select Endpoint 
+    
+    On Advanced features, ensure Tamper protection is turned on
+
+<img width="950" height="595" alt="image" src="https://github.com/user-attachments/assets/eabc0c2d-5f17-4bc7-9996-19ffe7240466" />
+
