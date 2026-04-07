@@ -8,6 +8,8 @@
 
 - Pre_Authentication_Type=0
 
+- DONT_REQUIRE_PREAUTH flag on an account
+
 ### 1) Look all TGT request events to check what normal traffic looks like
 
     index=task3 EventCode=4768
