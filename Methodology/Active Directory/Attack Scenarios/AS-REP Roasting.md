@@ -10,6 +10,8 @@
 
 - DONT_REQUIRE_PREAUTH flag on an account
 
+- NO 4769 and 4624 events after event 4768 with Pre_Authentication_Type=0
+
 ### 1) Look all TGT request events to check what normal traffic looks like
 
     index=task3 EventCode=4768
