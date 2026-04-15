@@ -71,3 +71,4 @@ Catches blocks from WAF, Firewall Rules, Rate Limiting, Bot Management, API Shie
         targeted_hosts AS "Targeted Subdomains",
         EdgeColoCode AS "CF Edge PoP", first_seen AS "First Seen", last_seen AS "Last Seen",
         Country AS "Country", City AS "City"
+
