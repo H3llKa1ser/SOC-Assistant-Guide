@@ -89,3 +89,71 @@ Select and order only the fields you want to show.
     index=transactions
     | bucket response_time span=0.5
     | stats count by response_time
+
+### 14) appendcols – Merge Two Searches Side by Side
+
+Combine results from different searches into one table.
+
+    index=sales | stats sum(revenue) AS total_revenue by region
+    | appendcols
+        [search index=sales | stats count AS total_orders by region]
+    | table region, total_revenue, total_orders
+
+### 15) join – Combine Data from Different Indexes
+
+Like a SQL JOIN — merge two datasets on a common field.
+
+    index=users
+    | join user_id
+        [search index=orders | stats sum(amount) AS total_spent by user_id]
+    | table user_id, username, email, total_spent
+    | sort -total_spent
+
+### 16) fillnull – Replace Nulls with Readable Defaults
+
+Prevents confusing blank cells in your output.
+
+    index=web_logs
+    | stats count by user, status_code
+    | fillnull value="N/A"
+
+### 17) sort – Control Display Order
+
+Make tables easier to scan by sorting meaningfully.
+
+    index=auth_logs
+    | stats count AS login_attempts by user
+    | sort -login_attempts
+    | head 20
+
+### 18) where – Filter Results with Expressions
+
+More powerful than simple keyword filtering.
+
+    index=transactions
+    | stats avg(response_time) AS avg_rt by endpoint
+    | where avg_rt > 2.0
+    | sort -avg_rt
+
+### 19) case() inside eval – Multi-Condition Labels
+
+More powerful than simple if() — like a switch statement.
+
+    index=web_logs
+    | eval severity = case(
+        status_code >= 500, "🔴 Server Error",
+        status_code >= 400, "🟡 Client Error",
+        status_code >= 300, "🔵 Redirect",
+        status_code >= 200, "🟢 Success",
+        true(), "⚪ Unknown"
+      )
+    | stats count by severity
+
+### 20) foreach – Apply Logic Across Multiple Fields
+
+Avoid repetitive eval statements.
+
+    index=sales
+    | stats sum(q1_revenue) AS q1, sum(q2_revenue) AS q2, sum(q3_revenue) AS q3, sum(q4_revenue) AS q4 by region
+    | foreach q* [eval <<FIELD>> = "$" + tostring('<<FIELD>>', "commas")]
+
