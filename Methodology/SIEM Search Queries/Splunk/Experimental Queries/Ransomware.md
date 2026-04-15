@@ -52,3 +52,5 @@ Detects ransomware across three phases: reconnaissance, encryption, and ransom n
         events AS "Total Events", encryption_events AS "Encryption Events",
         ransom_notes AS "Ransom Notes Found", shadow_cmds AS "Shadow Delete Commands",
         severity AS "Severity", kill_chain_progress AS "Kill Chain Stage"
+
+#### : Full ransomware lifecycle — LockBit, BlackCat/ALPHV, Royal, Akira, Rhysida, Play, Medusa — from shadow deletion through encryption to ransom note drop.
