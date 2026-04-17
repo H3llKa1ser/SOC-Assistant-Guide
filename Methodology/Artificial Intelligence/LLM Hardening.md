@@ -1,5 +1,7 @@
 # LLM Hardening
 
+### These hardening techniques all work TOGETHER with Defence-in-Depth in mind (Layered defence)
+
 ## Prompts
 
 ### 1) System Prompts
@@ -83,3 +85,6 @@ Output guardrails run after the model responds. They're the safety net for what 
 | **Neural classifier** _(e.g., Prompt Guard 2)_ | Tens–hundreds of ms       | Semantic intent, not strings      | —                       |
 | **LLM-as-judge evaluator**   | Seconds                    | High accuracy, low throughput     | —                       |
 
+## 4) Principle of Least Privilege
+
+Pretty self-explanatory. Give access to ONLY WHAT'S NECESSARY, WHEN IT'S NECESSARY, IF IT'S NECESSARY.
