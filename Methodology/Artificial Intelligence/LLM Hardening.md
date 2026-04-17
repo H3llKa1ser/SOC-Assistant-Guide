@@ -85,6 +85,12 @@ Output guardrails run after the model responds. They're the safety net for what 
 | **Neural classifier** _(e.g., Prompt Guard 2)_ | Tens–hundreds of ms       | Semantic intent, not strings      | —                       |
 | **LLM-as-judge evaluator**   | Seconds                    | High accuracy, low throughput     | —                       |
 
-## 4) Principle of Least Privilege
+### 4) Principle of Least Privilege
 
 Pretty self-explanatory. Give access to ONLY WHAT'S NECESSARY, WHEN IT'S NECESSARY, IF IT'S NECESSARY.
+
+### 5) Rate Limiting, Logging and Monitoring
+
+No defence layer catches everything. Rate limiting, logging, and monitoring are how you find out when something slips through. Rate limiting constrains the damage window, throttling token consumption and flagging anomalous patterns like repeated override attempts phrased differently. Logging every request and response creates the audit trail needed to reconstruct what happened. Monitoring for unusual output behaviour (unexpected data volumes, outputs that resemble exfiltration payloads) helps catch occurrences that might otherwise go unnoticed.
+
+These controls don't prevent attacks. They ensure that when prevention fails, you find out about it and can adapt your security posture to avoid similar attacks in the future.
