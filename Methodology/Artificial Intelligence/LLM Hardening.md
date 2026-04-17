@@ -1,5 +1,7 @@
 # LLM Hardening
 
+## Prompts
+
 ### 1) System Prompts
 
 | Pattern                   | What it does                                                                                                                                                   | Why it matters                                                                                                                      |
@@ -37,3 +39,24 @@ The user_input variable is whatever your application captured from the user — 
 
 4) If your application retrieves external content (a document, an email, a RAG chunk), treat it the same way as user input. Pass it in the user message or a clearly labelled block, never inside system, where it would carry the same authority as your own instructions.
 
+## Guardrails
+
+### 1) Input Sanitization
+
+Simple low-hanging fruit to block:
+
+    "Ignore previous instructions." 
+    "Act as DAN." 
+    "You have no restrictions."
+
+Can be bypassed by these techniques:
+
+1) Base64 encoding
+
+2) Leetspeak language (31337 h@x0r)
+
+3) Swap letters for Unicode homoglyphs
+
+4) Emoji Smuggling
+
+5) Zero-width characters
