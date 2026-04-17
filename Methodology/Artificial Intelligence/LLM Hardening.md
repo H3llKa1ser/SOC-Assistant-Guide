@@ -75,3 +75,11 @@ Input guardrails run before the prompt reaches the model. They're the first gate
 
 Output guardrails run after the model responds. They're the safety net for what gets through, catching leaked credentials or PII in the response, policy violations the model was manipulated into producing, or malformed outputs heading into downstream systems. An output guardrail can apply regex scrubbing to catch API keys in a response before it reaches the client, or enforce schema validation on tool calls before they're executed.
 
+#### Guardrails trade-offs
+
+| Check type                   | Typical latency           | Coverage                         | Regex/blocklist         |
+|------------------------------|---------------------------|-----------------------------------|-------------------------|
+| **Microseconds**             | Microseconds               | Known patterns only               | Regex/blocklist         |
+| **Neural classifier** _(e.g., Prompt Guard 2)_ | Tens–hundreds of ms       | Semantic intent, not strings      | —                       |
+| **LLM-as-judge evaluator**   | Seconds                    | High accuracy, low throughput     | —                       |
+
