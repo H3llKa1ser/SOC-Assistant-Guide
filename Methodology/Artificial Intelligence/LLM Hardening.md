@@ -60,3 +60,18 @@ Can be bypassed by these techniques:
 4) Emoji Smuggling
 
 5) Zero-width characters
+
+### 2) AI-Powered Guardrails
+
+Use classifiers instead of string matching (anomaly detection)
+
+Example classifier:
+
+Llama Prompt Guard 2 (Meta)
+
+### 3) Input vs Output Guardrails
+
+Input guardrails run before the prompt reaches the model. They're the first gate, rejecting malicious instructions, stripping PII from the user's message, and blocking off-topic requests. If the check fails, nothing is generated, keeping the cost low and the problem contained.
+
+Output guardrails run after the model responds. They're the safety net for what gets through, catching leaked credentials or PII in the response, policy violations the model was manipulated into producing, or malformed outputs heading into downstream systems. An output guardrail can apply regex scrubbing to catch API keys in a response before it reaches the client, or enforce schema validation on tool calls before they're executed.
+
