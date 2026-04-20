@@ -85,3 +85,4 @@ A missing or sparse model card is one of the strongest warning signs of a suspic
 | **4. Security scan** | Run Fickling, ModelScan, and dependency auditing tools. Inspect the model card for completeness                              | Detect malicious content and known vulnerabilities                                                           |
 | **5. Approve or reject** | Based on findings, either promote the model to production or quarantine permanently                                      | Enforce a gate between untested and trusted artefacts                                                        |
 
+The framework above assumes you have a file. When you consume a model through an API, the gates look different: there is no checksum to verify, no model file to scan. But the governance instinct remains the same: you are still deciding whether to trust an artefact you did not build.
