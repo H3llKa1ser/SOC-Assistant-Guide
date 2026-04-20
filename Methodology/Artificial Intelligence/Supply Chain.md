@@ -99,3 +99,18 @@ Run an automated safety check
 
     fickling --check-safety -p /opt/supply-chain/models/model_review_v2.pkl
 
+### 2) ModelScan: Multi-Format Model Scanning
+
+Run scan on a model
+
+    modelscan -p /opt/supply-chain/models/model_review_v2.pkl
+
+#### Scanner results interpretation
+
+| Severity   | Meaning                                                          | Action                                                   |
+|------------|------------------------------------------------------------------|----------------------------------------------------------|
+| **CRITICAL** | Confirmed dangerous operation (e.g., `os.system`, `subprocess`) | Do not use — quarantine immediately                      |
+| **HIGH**     | Likely dangerous operation (e.g., `eval`, network calls)        | Do not use without thorough review                       |
+| **MEDIUM**   | Suspicious but potentially legitimate (e.g., custom unpickler)  | Review carefully before use                              |
+| **LOW**      | Informational (e.g., non-standard pickle opcodes)               | Note and monitor                                         |
+
