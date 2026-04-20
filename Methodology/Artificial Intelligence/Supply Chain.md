@@ -114,3 +114,14 @@ Run scan on a model
 | **MEDIUM**   | Suspicious but potentially legitimate (e.g., custom unpickler)  | Review carefully before use                              |
 | **LOW**      | Informational (e.g., non-standard pickle opcodes)               | Note and monitor                                         |
 
+## Behavioral Analysis
+
+Example model load that generates a session event stream:
+
+    SESSION START — model_load
+    MODEL LOAD BEGIN — /models/sentiment_model.pkl (pickle)
+    FILE ACCESS — /models/sentiment_model.pkl (rb) [normal]
+    MODEL LOAD COMPLETE — object_type: SentimentModel
+    SESSION STOP — model_load
+
+Monitor for any suspicious signs in the telemetry.
