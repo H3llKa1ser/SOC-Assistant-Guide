@@ -152,3 +152,49 @@ Examine the model's layer architecture without loading or executing the model
 
     python3 /opt/supply-chain/tools/inspect_h5_model.py /opt/supply-chain/models/image_classifier_v2.h5
 
+## Dependency Auditing
+
+### 1) Version Pinning
+
+Always pin exact versions in your requirements.txt. When you list a package without a version (just numpy), pip fetches the latest available version from PyPI every time you install. If an attacker publishes a malicious update as the newest version, every unpinned installation pulls it automatically:
+
+    # BAD: allows any version
+    numpy
+    requests
+    
+    # BETTER: pins major.minor but allows patches
+    numpy>=1.24,<1.25
+    requests>=2.31,<2.32
+    
+    # BEST: pins exact version
+    numpy==1.24.3
+    requests==2.31.0
+
+### 2) Lockfiles
+
+Version pinning fixes the version number, but a lockfile goes further: it records the exact version and cryptographic hash of every installed package. This means even if an attacker replaces a package on PyPI with the same version number but different contents, the hash mismatch will block installation. Two popular tools generate lockfiles:
+
+| Tool         | Lockfile            | Command                                   |
+|--------------|---------------------|-------------------------------------------|
+| **pip-compile** _(pip-tools)_ | `requirements.txt` with hashes | `pip-compile --generate-hashes`           |
+| **Poetry**   | `poetry.lock`        | `poetry lock`                              |
+
+A lockfile ensures that every team member and CI/CD pipeline installs identical packages, eliminating the window for dependency confusion or version manipulation.
+
+### 3) Vulnerability Scanning
+
+Run a vulnerability scan to check a project's dependencies against known vulnerability databases.
+
+    pip-audit -r /opt/supply-chain/project/requirements.txt
+
+### 4) Private Package Indices
+
+For organisations with internal packages, the strongest defence against dependency confusion is a private package index. This ensures pip never resolves internal package names against public PyPI.
+
+The concept is simple: configure pip to use your private index as the primary source:
+
+    # ~/.pip/pip.conf
+    [global]
+    index-url = https://your-private-pypi.company.com/simple/
+    extra-index-url = https://pypi.org/simple/
+
