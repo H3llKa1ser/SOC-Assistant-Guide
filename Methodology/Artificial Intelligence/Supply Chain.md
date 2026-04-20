@@ -75,3 +75,13 @@ When evaluating a model's provenance, check these model card sections:
 
 A missing or sparse model card is one of the strongest warning signs of a suspicious model. Legitimate model authors invest significant effort in documentation.
 
+### 3) Model Acquisition Framework
+
+| Step               | Action                                                                                                                        | Purpose                                                                                                     |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| **1. Quarantine**  | Download the model into an isolated staging area — never directly into production                                             | Prevent untested artefacts from reaching live systems                                                       |
+| **2. Source verification** | Verify the author, organisation, and repository. Check for verification badges, publication history, and community reputation | Establish provenance and credibility                                                                        |
+| **3. Integrity check** | Compute SHA-256 checksums and compare against the author's published values                                                | Confirm the file has not been tampered with in transit                                                       |
+| **4. Security scan** | Run Fickling, ModelScan, and dependency auditing tools. Inspect the model card for completeness                              | Detect malicious content and known vulnerabilities                                                           |
+| **5. Approve or reject** | Based on findings, either promote the model to production or quarantine permanently                                      | Enforce a gate between untested and trusted artefacts                                                        |
+
