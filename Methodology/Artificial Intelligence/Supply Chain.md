@@ -86,3 +86,16 @@ A missing or sparse model card is one of the strongest warning signs of a suspic
 | **5. Approve or reject** | Based on findings, either promote the model to production or quarantine permanently                                      | Enforce a gate between untested and trusted artefacts                                                        |
 
 The framework above assumes you have a file. When you consume a model through an API, the gates look different: there is no checksum to verify, no model file to scan. But the governance instinct remains the same: you are still deciding whether to trust an artefact you did not build.
+
+## Model Scanning
+
+### 1) Fickling: Static Pickle Analysis
+
+Run the tool on different models to compare
+
+    fickling /opt/supply-chain/models/model_review_v2.pkl
+
+Run an automated safety check
+
+    fickling --check-safety -p /opt/supply-chain/models/model_review_v2.pkl
+
