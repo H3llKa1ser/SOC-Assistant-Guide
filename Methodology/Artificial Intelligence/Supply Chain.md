@@ -198,3 +198,12 @@ The concept is simple: configure pip to use your private index as the primary so
     index-url = https://your-private-pypi.company.com/simple/
     extra-index-url = https://pypi.org/simple/
 
+## Software Bill Of Materials (SBOM)
+
+### 1) SBOM Formats
+
+| Format        | Maintained By    | Strengths                                                                                   |
+|---------------|------------------|---------------------------------------------------------------------------------------------|
+| **SPDX**      | Linux Foundation | Strong licence compliance focus; ISO standard (ISO/IEC 5962:2021)                          |
+| **CycloneDX** | OWASP            | Security-focused; includes vulnerability data; lightweight                                 |
+
