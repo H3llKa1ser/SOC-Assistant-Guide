@@ -125,3 +125,20 @@ Example model load that generates a session event stream:
     SESSION STOP — model_load
 
 Monitor for any suspicious signs in the telemetry.
+
+## Architecture-level threats
+
+Example model inspection before loading:
+
+    [2026-04-20T09:47:44.174Z] SESSION START — model_inspect
+    [2026-04-20T09:47:44.174Z] MODEL INSPECT BEGIN — /models/image_classifier_v2.h5 (keras_h5) via h5py
+    [2026-04-20T09:47:44.174Z] LAYER — InputLayer "input_layer_1" [clean]
+    [2026-04-20T09:47:44.175Z] LAYER — Flatten "flatten_1" [clean]
+    [2026-04-20T09:47:44.175Z] LAYER — Dense "dense_2" [clean]
+    [2026-04-20T09:47:44.176Z] LAYER — Dense "dense_3" [clean]
+    [2026-04-20T09:47:44.176Z] LAYER — Lambda "lambda" [SUSPICIOUS — architecture_warning: manipulate_output]
+    [2026-04-20T09:47:44.177Z] MODEL INSPECT COMPLETE — 5 layers, 1 suspicious
+    [2026-04-20T09:47:44.177Z] SESSION STOP — model_inspect
+
+Unlike the pickle payload, this code does not fire on load: it fires every time the model makes a prediction. The clean model and the tampered one look identical in file properties, size, and format. The architecture inspection is the only way to see the difference.
+
