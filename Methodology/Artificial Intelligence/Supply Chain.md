@@ -142,3 +142,13 @@ Example model inspection before loading:
 
 Unlike the pickle payload, this code does not fire on load: it fires every time the model makes a prediction. The clean model and the tampered one look identical in file properties, size, and format. The architecture inspection is the only way to see the difference.
 
+### 1) Architecture Inspection
+
+Run ModelScan to detect suspicious Keras models
+
+    modelscan -p /opt/supply-chain/models/image_classifier_v2.h5
+
+Examine the model's layer architecture without loading or executing the model
+
+    python3 /opt/supply-chain/tools/inspect_h5_model.py /opt/supply-chain/models/image_classifier_v2.h5
+
