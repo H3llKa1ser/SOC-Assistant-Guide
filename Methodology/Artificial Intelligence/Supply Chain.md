@@ -207,3 +207,19 @@ The concept is simple: configure pip to use your private index as the primary so
 | **SPDX**      | Linux Foundation | Strong licence compliance focus; ISO standard (ISO/IEC 5962:2021)                          |
 | **CycloneDX** | OWASP            | Security-focused; includes vulnerability data; lightweight                                 |
 
+Licensing is itself a supply chain risk. AI projects pull in models, datasets, and frameworks under diverse licences. A model trained on restrictively-licensed data may impose obligations on your application, and a copyleft dependency can force you to open-source your entire project simply because one library you pulled in requires it. SBOMs make this manageable by mapping every component to its licence terms, so automated tools can flag incompatibilities before deployment.
+
+## 2) Generate an SBOM
+
+Use Syft to generate an SBOM in CycloneDX format. 
+
+    syft /opt/supply-chain/project/ --exclude './venv/**' -o cyclonedx-json > /tmp/sbom.json
+
+Review what Syft identified
+
+    syft /opt/supply-chain/project/ --exclude './venv/**' -o table
+
+Explore the full JSON structure of the SBOM
+
+    cat /tmp/sbom.json | python3 -m json.tool | less
+
