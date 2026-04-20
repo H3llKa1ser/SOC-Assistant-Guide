@@ -43,3 +43,35 @@ When you call torch.load(), PyTorch uses pickle internally to deserialise the fi
     # SAFE: pickle is restricted to tensor reconstruction only
     model = torch.load("model.pt", weights_only=True)
 
+## Verification
+
+### 1) SHA-256 Checksum Verification
+
+Check expected checksums (example)
+
+    cat /opt/supply-chain/models/checksums.json
+
+Compute the actual hash of each model and compare it against the expected value
+
+    sha256sum /opt/supply-chain/models/product_recommender.safetensors /opt/supply-chain/models/model_review_v2.pkl /opt/supply-chain/models/product_recommender.pkl
+
+For stronger assurance, look for cryptographic signatures (digital signatures) on model artefacts.
+
+### 2) Model Cards
+
+A model card is documentation that ships with a model, describing what it does, how it was trained, and where it falls short. The format was proposed by Mitchell et al. (2019) and has since become an industry standard for repositories such as Hugging Face.
+
+When evaluating a model's provenance, check these model card sections:
+
+1) Model details: Author, organisation, version, and licence. No author or missing licence is an immediate red flag.
+
+2) Intended use: What the model is designed for. Vague or overly broad claims suggest a generic or poorly documented model.
+
+3) Training data: Dataset name, size, and source. No training data description is a strong warning sign.
+
+4) Performance: Metrics on standard benchmarks. No metrics, or unrealistically high claims, warrant scepticism.
+
+5) Limitations: Known failure modes and biases. Every model has limitations. A card with none is incomplete.
+
+A missing or sparse model card is one of the strongest warning signs of a suspicious model. Legitimate model authors invest significant effort in documentation.
+
