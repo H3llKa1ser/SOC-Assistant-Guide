@@ -223,3 +223,43 @@ Explore the full JSON structure of the SBOM
 
     cat /tmp/sbom.json | python3 -m json.tool | less
 
+## API Provider Assessment
+
+When your application calls a third-party LLM provider (OpenAI, Anthropic, or an aggregator like OpenRouter), the tools from Tasks 4-8 do not apply. Fickling, ModelScan, pip-audit, and Syft all assume you have a file on disk. When you call an API, there is no file. You are trusting the entire provider pipeline: training data you cannot inspect, fine-tuning decisions you cannot verify, infrastructure you do not control, and versioning practices that may change the model behind your endpoint without notice. There is no checksum to compare. If you also use system prompt templates sourced from external repositories, those templates become supply chain artefacts the moment you integrate them. Supply chain risks take a different form, but they are just as real.
+
+### 1) Provider Due Diligence
+
+Security Posture Assessment
+
+| Factor              | What to Verify                                                                                                       | Red Flag                                                                                           |
+|---------------------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| **Data handling**   | Privacy policy, data retention, training opt-out                                                                    | "We may use your data to improve our models" with no opt-out                                        |
+| **Model versioning**| Versioned endpoints, deprecation notices, and changelogs                                                            | Model changes without notification                                                                 |
+| **Security certifications** | SOC 2, ISO 27001, penetration testing                                                                         | No published security documentation                                                                |
+| **Incident response** | Disclosed vulnerabilities, response timeline                                                                       | No security contact or disclosure policy                                                            |
+| **Transparency**    | Model cards, training data documentation, and system prompt handling                                                | Undocumented model behaviour changes                                                                |
+
+### 2) Behavior Monitoring
+
+Since you cannot inspect API-served model weights, monitor the model's outputs instead. Establish a behavioural baseline by running a fixed set of test prompts periodically and flagging significant changes in responses. A shift could indicate the provider updated the model behind the same endpoint. Track factual accuracy, response format, and refusal rates over time to catch output quality degradation. Sudden changes in latency or error rates may signal infrastructure modifications on the provider's side.
+
+This is the API equivalent of checksum verification: you cannot verify the file, so you verify the behaviour.
+
+### 3) System Prompt Governance
+
+System prompts are increasingly shared, reused, and sourced from public repositories. A system prompt template is a supply chain artefact. If it comes from an untrusted source, it can alter your application's behaviour in ways you did not intend. Treat system prompts with the same rigour as code: version-control them, review changes through your standard process, and test prompt changes against your behavioural baseline before deployment.
+
+### 4) Sandboxed Evaluation
+
+For downloaded models, you scan the weights before loading. For API-served models, the model is a black box. The primary mitigation is dynamic evaluation in an isolated sandbox. Before integrating any third-party LLM into production, test it against a fixed set of prompts with known-correct answers, send adversarial probes to test safety boundaries, and compare outputs against any existing model you are replacing. A model that fails these checks is not ready for production.
+
+Do not rely solely on published benchmarks. A model can be fine-tuned to perform well on standard safety evaluations while containing targeted backdoors that activate only on specific inputs. Your own evaluation, tailored to your use case, is the only benchmark you can trust.
+
+| Phase | Activity                                       | Pass Condition                                                                                           |
+|-------|------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| **1** | Load in an isolated sandbox                    | Model loads without errors in an air‑gapped environment                                                  |
+| **2** | Fixed prompt battery                           | Answers match known‑correct responses                                                                    |
+| **3** | Adversarial probes                             | Safety boundaries hold under adversarial input                                                           |
+| **4** | Baseline comparison                            | Output distribution matches the existing model                                                           |
+| **Result** | Promote or reject                         | All phases pass → **Production**; any fail → **Reject**                                                   |
+
