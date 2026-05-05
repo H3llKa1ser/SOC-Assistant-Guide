@@ -1,3 +1,5 @@
+# Email Investigation
+
 ## Tools: VirusTotal, MxToolbox, Search Engines
 
 ### Investigate the true origins of an email sender domain and SMTP server IP with these tools above.
@@ -6,7 +8,7 @@
 
 ## Email sender behavior analysis
 
-### If somehow, the email sender domain and the SMTP server are not blacklisted and the domain has not been spoofed, you can check the sender behavior by doing the following:
+If somehow, the email sender domain and the SMTP server are not blacklisted and the domain has not been spoofed, you can check the sender behavior by doing the following:
 
 #### 1) Have the recipient/s received emails from the email sender or its domain before? If yes, this behavior could be considered normal.
 
