@@ -4,3 +4,5 @@ A Security Operations playbook to assist blue teamers from day-to-day tasks to D
 Inspired by:
 
 1) TryHackMe: https://tryhackme.com/
+
+The Methodology directory content has mostly up-to-date techniques and knowledge.
