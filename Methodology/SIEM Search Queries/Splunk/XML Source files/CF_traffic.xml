@@ -1,0 +1,297 @@
+<dashboard version="1.1">
+  <label>Cloudflare Security &amp; Traffic Dashboard</label>
+  <description>Consolidated view of Cloudflare Firewall and HTTP Dataset logs</description>
+
+  <!-- ==================== ROW 1: Top IPs and Countries ==================== -->
+  <row>
+    <panel>
+      <title>Top 10 Client IPs (Firewall)</title>
+      <table>
+        <search>
+          <query>index=* sourcetype="cloudflare:firewall"
+| stats count AS Hits by ClientIP
+| sort - Hits
+| head 10</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">cell</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Top 10 Client IPs (HTTP)</title>
+      <table>
+        <search>
+          <query>index=* sourcetype="cloudflare:http"
+| stats count AS Hits by ClientIP
+| sort - Hits
+| head 10</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">cell</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Top Countries</title>
+      <chart>
+        <search>
+          <query>index=* sourcetype="cloudflare:firewall" OR sourcetype="cloudflare:http"
+| iplocation ClientIP
+| stats count AS Hits by Country
+| sort - Hits
+| head 10</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">all</option>
+      </chart>
+    </panel>
+  </row>
+
+  <!-- ==================== ROW 2: Paths Requested ==================== -->
+  <row>
+    <panel>
+      <title>Top Requested Paths (Firewall)</title>
+      <chart>
+        <search>
+          <query>index=* sourcetype="cloudflare:firewall"
+| stats count AS Hits by ClientRequestPath
+| sort - Hits
+| head 15</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">bar</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.chart.showDataLabels">all</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Top Requested Paths (HTTP)</title>
+      <chart>
+        <search>
+          <query>index=* sourcetype="cloudflare:http"
+| stats count AS Hits by ClientRequestPath
+| sort - Hits
+| head 15</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">bar</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.chart.showDataLabels">all</option>
+      </chart>
+    </panel>
+  </row>
+
+  <!-- ==================== ROW 3: User Agents Associated with IPs ==================== -->
+  <row>
+    <panel>
+      <title>User Agents by Client IP</title>
+      <table>
+        <search>
+          <query>index=* sourcetype="cloudflare:firewall" OR sourcetype="cloudflare:http"
+| stats values(ClientRequestUserAgent) AS UserAgents, count AS Hits by ClientIP
+| sort - Hits
+| head 20</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="count">20</option>
+        <option name="drilldown">cell</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+  </row>
+
+  <!-- ==================== ROW 4: HTTP Status Codes and Methods ==================== -->
+  <row>
+    <panel>
+      <title>HTTP Status Codes Distribution</title>
+      <chart>
+        <search>
+          <query>index=* sourcetype="cloudflare:firewall" OR sourcetype="cloudflare:http"
+| stats count AS Hits by EdgeResponseStatus
+| sort - Hits</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">all</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>HTTP Methods Distribution</title>
+      <chart>
+        <search>
+          <query>index=* sourcetype="cloudflare:firewall" OR sourcetype="cloudflare:http"
+| stats count AS Hits by ClientRequestMethod
+| sort - Hits</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">all</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Status Codes Over Time</title>
+      <chart>
+        <search>
+          <query>index=* sourcetype="cloudflare:firewall" OR sourcetype="cloudflare:http"
+| timechart count by EdgeResponseStatus</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">area</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.drilldown">all</option>
+      </chart>
+    </panel>
+  </row>
+
+  <!-- ==================== ROW 5: Requested Hosts ==================== -->
+  <row>
+    <panel>
+      <title>Top Requested Hosts</title>
+      <chart>
+        <search>
+          <query>index=* sourcetype="cloudflare:firewall" OR sourcetype="cloudflare:http"
+| stats count AS Hits by host
+| sort - Hits
+| head 10</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">bar</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.chart.showDataLabels">all</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Hosts Over Time</title>
+      <chart>
+        <search>
+          <query>index=* sourcetype="cloudflare:firewall" OR sourcetype="cloudflare:http"
+| timechart count by host</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">line</option>
+        <option name="charting.drilldown">all</option>
+      </chart>
+    </panel>
+  </row>
+
+  <!-- ==================== ROW 6: Firewall Actions ==================== -->
+  <row>
+    <panel>
+      <title>Firewall Actions Distribution</title>
+      <chart>
+        <search>
+          <query>index=* sourcetype="cloudflare:firewall"
+| stats count AS Hits by Action
+| sort - Hits</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">all</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Firewall Actions Over Time</title>
+      <chart>
+        <search>
+          <query>index=* sourcetype="cloudflare:firewall"
+| timechart count by Action</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">area</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.drilldown">all</option>
+      </chart>
+    </panel>
+  </row>
+
+  <!-- ==================== ROW 7: Bot Management & WAF Attack Scores ==================== -->
+  <row>
+    <panel>
+      <title>Bot Score Distribution</title>
+      <chart>
+        <search>
+          <query>index=* sourcetype="cloudflare:http"
+| eval BotCategory=case(
+    BotScore&lt;=29, "Likely Bot (0-29)",
+    BotScore&gt;=30 AND BotScore&lt;=49, "Suspicious (30-49)",
+    BotScore&gt;=50, "Likely Human (50-99)"
+  )
+| stats count AS Hits by BotCategory</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">all</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Verified Bot Categories</title>
+      <chart>
+        <search>
+          <query>index=* sourcetype="cloudflare:http" VerifiedBotCategory=*
+| stats count AS Hits by VerifiedBotCategory
+| sort - Hits
+| head 10</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">bar</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.chart.showDataLabels">all</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>High WAF Attack Scores (Potential Threats)</title>
+      <table>
+        <search>
+          <query>index=* sourcetype="cloudflare:http" WAFAttackScore>=50
+| table _time ClientIP ClientRequestMethod ClientRequestPath WAFAttackScore BotScore EdgeResponseStatus
+| sort - WAFAttackScore
+| head 20</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="count">20</option>
+        <option name="drilldown">cell</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+  </row>
+
+  <!-- ==================== ROW 8: Recent Firewall Events (Detail) ==================== -->
+  <row>
+    <panel>
+      <title>Recent Firewall Events</title>
+      <table>
+        <search>
+          <query>index=* sourcetype="cloudflare:firewall"
+| table _time Action RayID ClientIP ClientRequestMethod ClientRequestPath ClientRequestUserAgent EdgeResponseStatus
+| sort - _time
+| head 50</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="count">20</option>
+        <option name="drilldown">cell</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+  </row>
+</dashboard>
