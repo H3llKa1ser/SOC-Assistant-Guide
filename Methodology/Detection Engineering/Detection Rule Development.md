@@ -8,3 +8,6 @@
 | **Metadata**           | Contextual information attached to the rule: name, description, severity, MITRE ATT&CK mapping, author, and known false positive scenarios.                  | **Name:** "RDP Brute Force Attempt"<br>**MITRE ATT&CK:** `T1110.001` (Brute Force: Password Guessing)<br>**Severity:** Medium<br>**False positive note:** "Legitimate users may trigger this rule during password resets." |
 | **Response action**    | Defines what happens when the rule fires. This can range from a simple alert to automated enrichment, notification, or containment actions.                  | Alert created in the SIEM dashboard, notification sent to the on‑call analyst, source IP automatically enriched with threat intelligence data.                                                        |
 
+## Adversarial Detection Framework (ADE)
+
+https://adeframework.org/
