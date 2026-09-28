@@ -1027,3 +1027,4 @@ On the image, in Autopsy and with TSK, you find a new systemd service `/etc/syst
 ## Final recommendations
 
 Preparation determines outcomes. Before an incident, deploy persistent journald storage, auditd with a solid rule set, remote log forwarding to a SIEM, and NTP-synced clocks, and prepare a trusted toolkit (UAC, AVML, LiME builds for your standard kernels, static binaries) plus kernel symbol files for Volatility. During an incident, capture memory first, never trust the suspect system's binaries, never write to its disks, and hash and document everything. During analysis, correlate across sources, because a single log can be forged but consistent evidence across auth logs, wtmp, the journal, auditd, filesystem timestamps, and memory is very hard to fake.
+
