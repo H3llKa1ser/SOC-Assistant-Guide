@@ -187,5 +187,3 @@ When a hunt finds something real, avoid tipping off the operator. Don't reset th
 - The SigmaHQ rules repository, for detections you can convert to KQL or SPL.
 - Mandiant M-Trends, Sophos Active Adversary, and Kaspersky's annual ransomware reports, for trend data.
 - MITRE ATT&CK, particularly T1486 (Data Encrypted for Impact), T1490 (Inhibit System Recovery), T1567 (Exfiltration Over Web Service), and T1219 (Remote Access Software).
-
-If it's useful, I can turn this into a hunt playbook doc with hypotheses, queries, and owners that your team can keep editing.
