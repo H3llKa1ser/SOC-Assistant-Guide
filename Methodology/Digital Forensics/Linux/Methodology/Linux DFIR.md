@@ -866,3 +866,4 @@ A realistic Linux case usually proceeds like this:
 8. **Verify binary integrity** against package databases and a clean reference.
 9. **Scope** by searching other hosts for the same indicators (hashes, IPs, SSH key fingerprints, file paths) with Velociraptor or osquery.
 10. **Document** everything with hashes, timestamps, and chain of custody.
+
