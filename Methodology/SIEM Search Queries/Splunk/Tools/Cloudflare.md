@@ -1,5 +1,15 @@
 # Cloudflare
 
+## Alerts
+
+### 1) Successful login with leaked credentials
+
+This is a high-fidelity account-takeover signal.
+
+    index=cloudflare sourcetype=cloudflare:json earliest=-15m ClientRequestMethod=POST ClientRequestPath="/api/login*" EdgeResponseStatus=200
+      LeakedCredentialCheckResult IN ("password_leaked", "username_and_password_leaked")
+    | table _time, ClientRequestHost, ClientIP, ClientCountry, ClientASN, JA4, BotScore, ClientRequestUserAgent, LeakedCredentialCheckResult, RayID
+
 ## Threat Detection
 
 ### 1) Top blocked IPs
