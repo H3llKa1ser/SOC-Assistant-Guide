@@ -242,6 +242,19 @@ Daily cost trend per site
 
 Authorised scanners (Invicti, Tenable) will show up here too. Recognise them by their source IPs before escalating.
 
+### 22) Potential Subdomain Takeover
+
+Cloudflare's 52x and 530 errors mean the origin is down, unreachable or misconfigured. A 530 (origin DNS error) on a hostname nobody maintains can mean a dangling DNS record that someone could take over.
+
+    index=cloudflare sourcetype=cloudflare:json earliest=-24h EdgeResponseStatus IN (520, 521, 522, 523, 524, 525, 526, 530)
+    | eval Meaning=case(EdgeResponseStatus=520, "Origin returned empty or unknown response", EdgeResponseStatus=521, "Origin refused connection",
+                        EdgeResponseStatus=522, "Origin connection timed out", EdgeResponseStatus=523, "Origin unreachable",
+                        EdgeResponseStatus=524, "Origin response timeout", EdgeResponseStatus=525, "TLS handshake failed",
+                        EdgeResponseStatus=526, "Invalid origin certificate", EdgeResponseStatus=530, "Origin DNS error (check for dangling record)")
+    | stats count AS Errors, dc(ClientIP) AS Clients, values(Meaning) AS Meanings, latest(_time) AS LastSeen BY ClientRequestHost, EdgeResponseStatus
+    | eval LastSeen=strftime(LastSeen, "%F %T")
+    | sort - Errors
+
 ### 22) Directory brute-forcing: high 404 rate from one source
 
     index=cloudflare sourcetype=cloudflare:json earliest=-24h
