@@ -6,9 +6,13 @@
 
 This is a high-fidelity account-takeover signal.
 
-    index=cloudflare sourcetype=cloudflare:json earliest=-15m ClientRequestMethod=POST ClientRequestPath="/api/login*" EdgeResponseStatus=200
-      LeakedCredentialCheckResult IN ("password_leaked", "username_and_password_leaked")
-    | table _time, ClientRequestHost, ClientIP, ClientCountry, ClientASN, JA4, BotScore, ClientRequestUserAgent, LeakedCredentialCheckResult, RayID
+    index=cloudflare sourcetype=cloudflare:json earliest=-15m ClientRequestMethod=POST ClientRequestPath="/api/login*"
+      LeakedCredentialCheckResult="usernamePasswordLeaked"
+    | eval Outcome=case(SecurityAction="block" OR like(SecurityAction, "%challenge%"), "mitigated", EdgeResponseStatus=200, "SUCCESS", EdgeResponseStatus=401, "failed", true(), "other ".EdgeResponseStatus)
+    | table _time, ClientRequestHost, Outcome, ClientIP, ClientCountry, ClientASN, JA4, BotScore, ClientRequestUserAgent, RayID
+    | sort - _time
+
+Alert on any SUCCESS row. Every row is still worth a look, because it means someone is trying a real breached credential pair.
 
 ## Threat Detection
 
@@ -228,7 +232,25 @@ Daily cost trend per site
     | eval Exposed=if(isnotnull(mvfind(Statuses, "^200$")), "CHECK: 200 returned", "")
     | sort - DistinctPaths
 
-### 21) 
+### 21) Vulnerability scanners by user agent
+
+    index=cloudflare sourcetype=cloudflare:json earliest=-24h
+    | where match(ClientRequestUserAgent, "(?i)(nuclei|sqlmap|nikto|nmap|masscan|zgrab|httpx|gobuster|dirbuster|feroxbuster|ffuf|wfuzz|wpscan|acunetix|nessus|openvas|burp|zap|whatweb|arachni|qualys)")
+    | stats count AS Requests, dc(ClientRequestPath) AS DistinctPaths, values(ClientRequestHost) AS Sites,
+            values(EdgeResponseStatus) AS Statuses, values(SecurityAction) AS Actions BY ClientIP, ClientASN, ClientCountry, ClientRequestUserAgent
+    | sort - DistinctPaths
+
+Authorised scanners (Invicti, Tenable) will show up here too. Recognise them by their source IPs before escalating.
+
+### 22) Directory brute-forcing: high 404 rate from one source
+
+    index=cloudflare sourcetype=cloudflare:json earliest=-24h
+    | bin _time span=10m
+    | stats count AS Requests, count(eval(EdgeResponseStatus=404)) AS NotFound, dc(ClientRequestPath) AS DistinctPaths
+      BY _time, ClientIP, ClientASN, ClientRequestHost, JA4
+    | eval NotFoundPct=round(NotFound/Requests*100, 1)
+    | where DistinctPaths>=100 AND NotFoundPct>=60
+    | sort - DistinctPaths
 
 ## Troubleshooting
 
