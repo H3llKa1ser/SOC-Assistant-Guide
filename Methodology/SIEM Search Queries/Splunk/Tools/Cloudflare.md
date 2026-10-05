@@ -136,6 +136,90 @@ The host filter is dropped, because a Ray ID is unique on its own.
     | sort - count
     | head 15
 
+### 14) Spoofed search-engine crawlers
+
+Crawler user agents that Cloudflare hasn't verified.
+
+    index=cloudflare sourcetype=cloudflare:json earliest=-24h ClientRequestUserAgent="*bot*"
+    | where match(ClientRequestUserAgent, "(?i)(googlebot|bingbot|adsbot|applebot|yandexbot|baiduspider|duckduckbot)")
+        AND (isnull(VerifiedBotCategory) OR VerifiedBotCategory="")
+    | stats count AS Requests, dc(ClientIP) AS UniqueIPs, values(ClientASN) AS ASNs, values(ClientRequestPath) AS Paths
+      BY ClientRequestHost, ClientRequestUserAgent
+    | eval Paths=mvindex(Paths, 0, 9)
+    | sort - Requests
+
+Hits on /api/login or registration paths should be most likely hostile.
+
+### 15) Residential-proxy rotation on login
+
+The same client, with an identical fingerprint and user agent, appearing from many networks within an hour and mostly failing.
+
+    index=cloudflare sourcetype=cloudflare:json earliest=-24h ClientRequestMethod=POST ClientRequestPath="/api/login*"
+    | bin _time span=1h
+    | stats count AS Attempts, count(eval(EdgeResponseStatus=401)) AS Failed, dc(ClientIP) AS IPs,
+            dc(ClientASN) AS ASNs, dc(ClientCountry) AS Countries BY _time, JA4, ClientRequestUserAgent
+    | eval FailRate=round(Failed/Attempts*100, 1)
+    | where ASNs>=20 AND FailRate>=60
+    | sort - Failed
+
+### 16) New login tooling: fingerprints first seen in the last 24 hours
+
+    index=cloudflare sourcetype=cloudflare:json earliest=-7d ClientRequestMethod=POST ClientRequestPath="/api/login*" JA4=*
+    | stats earliest(_time) AS FirstSeen, count AS Requests, dc(ClientIP) AS IPs,
+            count(eval(EdgeResponseStatus=401)) AS Failed, values(ClientRequestUserAgent) AS UAs BY JA4
+    | where FirstSeen>=relative_time(now(), "-24h") AND Requests>=20
+    | eval FailRate=round(Failed/Requests*100, 1), FirstSeen=strftime(FirstSeen, "%F %T"), UAs=mvindex(UAs, 0, 2)
+    | sort - Requests
+
+### 17) Logins from hosting networks and Tor that got through
+
+    index=cloudflare sourcetype=cloudflare:json earliest=-24h ClientRequestMethod=POST ClientRequestPath="/api/login*" EdgeResponseStatus=200
+      (ClientCountry="t1" OR ClientASN IN (8075, 15169, 16509, 14618, 16276, 51167, 8560, 20860, 21859, 207990, 151592, 141968, 140389))
+    | stats count AS SuccessfulLogins, dc(ClientIP) AS IPs, values(ClientRequestHost) AS Sites, min(BotScore) AS MinScore,
+            values(LeakedCredentialCheckResult) AS LeakedCreds BY ClientASN, ClientCountry, JA4
+    | sort - SuccessfulLogins
+
+### 18) Registration enumeration
+
+Bursts of email or username availability checks from one source.
+
+    index=cloudflare sourcetype=cloudflare:json earliest=-24h ClientRequestPath="*/registration/verification/*"
+    | eval Check=case(like(ClientRequestPath, "%/email%"), "email", like(ClientRequestPath, "%/username%"), "username", true(), "other")
+    | bin _time span=10m
+    | stats count AS Checks, min(BotScore) AS MinScore, values(EdgeResponseStatus) AS Statuses, values(SecurityAction) AS Actions
+      BY _time, ClientRequestHost, Check, ClientIP, JA4
+    | where Checks>=20
+    | sort - Checks
+
+### 19) Address-lookup abuse
+
+Address lookups go to a paid third-party service, so scripted lookups carry a direct cost.
+
+    index=cloudflare sourcetype=cloudflare:json earliest=-24h ClientRequestPath="*/v1/address*"
+    | bin _time span=1h
+    | stats count AS Lookups, dc(ClientRequestPath) AS DistinctAddresses, min(BotScore) AS MinScore
+      BY _time, ClientRequestHost, ClientIP, ClientASN, JA4
+    | where Lookups>=60
+    | sort - Lookups
+
+Daily cost trend per site
+
+    index=cloudflare sourcetype=cloudflare:json earliest=-30d ClientRequestPath="*/v1/address*"
+    | timechart span=1d count BY ClientRequestHost limit=0
+
+### 20) Sensitive-file and admin-panel probing
+
+    index=cloudflare sourcetype=cloudflare:json earliest=-24h
+      (ClientRequestPath="*/.env*" OR ClientRequestPath="*/.git/*" OR ClientRequestPath="*/.aws/*" OR ClientRequestPath="*/wp-login.php*"
+       OR ClientRequestPath="*/wp-admin*" OR ClientRequestPath="*/phpmyadmin*" OR ClientRequestPath="*/actuator*"
+       OR ClientRequestPath="*/server-status*" OR ClientRequestPath="*/config.json*" OR ClientRequestPath="*/backup*")
+    | stats count AS Probes, dc(ClientRequestPath) AS DistinctPaths, values(EdgeResponseStatus) AS Statuses,
+            values(SecurityAction) AS Actions BY ClientIP, ClientCountry, ClientASN, ClientRequestHost
+    | eval Exposed=if(isnotnull(mvfind(Statuses, "^200$")), "CHECK: 200 returned", "")
+    | sort - DistinctPaths
+
+### 21) 
+
 ## Troubleshooting
 
 ### 1) Actions taken on a domain
