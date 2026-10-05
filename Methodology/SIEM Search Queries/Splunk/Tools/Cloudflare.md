@@ -292,3 +292,12 @@ This confirms the bot fields are actually in the Logpush job. A count of 0 means
     | stats count AS ErrorCount BY ClientRequestPath, EdgeResponseStatus, Source
     | sort - ErrorCount
     | head 20
+
+### 6) Skip rule enumeration
+
+    index=cloudflare sourcetype=cloudflare:json earliest=-24h SecurityAction="skip"
+    | stats count AS Requests, dc(ClientIP) AS IPs, dc(ClientASN) AS ASNs, values(ClientASN) AS ASNList, dc(ClientRequestUserAgent) AS UAs,
+            min(BotScore) AS MinScore, min(WAFAttackScore) AS MinAttackScore, values(ClientRequestHost) AS Sites BY SecurityRuleDescription
+    | eval ASNList=mvindex(ASNList, 0, 9)
+    | sort - ASNs
+
