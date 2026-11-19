@@ -25,3 +25,9 @@ Update packages to remediate vulnerabilities regarding the Nessus scanners.
 ### 6) 
 
     exit
+
+# Tenable Patch verification
+
+### 1) Confirm that the patch you downloaded from Tenable Security center has been applied
+
+    sudo /opt/sc/support/bin/sqlite3 /opt/sc/application.db "SELECT value FROM Configuration WHERE name = 'Patch Log'" | sed 's/\\n/\n/g'
